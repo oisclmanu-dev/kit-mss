@@ -200,7 +200,7 @@
       var st = uniq(r.blocs, "statut"), dp = uniq(r.blocs, "departement"), em = uniq(r.blocs, "emetteur");
       if (r.blocs.length > 3 || st.length > 1 || dp.length > 1 || em.length > 1) {
         h += '<div class="rub-filtres"><input type="search" id="rq" placeholder="Filtrer…">' +
-          (em.length > 1 ? '<select id="re"><option value="">Tous émetteurs</option>' + em.map(function (x) { return "<option>" + esc(x) + "</option>"; }).join("") + "</select>" : "") +
+          (em.length > 1 ? '<select id="re"><option value="">Tous organismes</option>' + em.map(function (x) { return "<option>" + esc(x) + "</option>"; }).join("") + "</select>" : "") +
           (st.length > 1 ? '<select id="rs"><option value="">Tous statuts juridiques</option>' + st.map(function (x) { return "<option>" + esc(x) + "</option>"; }).join("") + "</select>" : "") +
           (dp.length > 1 ? '<select id="rd"><option value="">Tous départements</option>' + dp.map(function (x) { return "<option>" + esc(x) + "</option>"; }).join("") + "</select>" : "") + "</div>";
       }
