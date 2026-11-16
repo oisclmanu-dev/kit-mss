@@ -1,0 +1,12 @@
+# Fiche du bloc — le logo se nomme logo.png (ou .jpg, .svg, .webp)
+
+Nom : MSS Exemple Centre-Ville
+Statut juridique : Association loi 1901
+Département : 29 - Finistère
+Ville : Quimper
+Adresse : 1 rue de l'Exemple
+Contact : Prénom Nom
+Téléphone : 02 00 00 00 00
+Email : contact@exemple.fr
+Site : www.exemple.fr
+Description : Exemple fictif — accueil, bilan, orientation vers une activité physique adaptée.

@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Kit OISCL – Maisons Sport-Santé</title>
+<link rel="stylesheet" href="assets/kit.css">
+</head>
+<body>
+<!-- Ce fichier ne se modifie pas. Le contenu vient de menu.txt et du dossier rubriques (voir mode-emploi.html). -->
+<div class="app">
+  <aside class="sidebar" id="sidebar">
+    <div class="brand">
+      <div class="brand-logo" id="brandLogo">♥</div>
+      <div>
+        <div class="brand-title" id="brandTitle">Kit</div>
+        <div class="brand-sub" id="brandSub"></div>
+      </div>
+    </div>
+    <nav class="nav" id="nav" aria-label="Menu principal"></nav>
+    <div class="sidebar-foot"><a href="mode-emploi.html" target="_blank">📘 Mode d'emploi</a></div>
+  </aside>
+
+  <div class="main">
+    <header class="topbar">
+      <button class="burger" id="burger" aria-label="Ouvrir le menu">☰</button>
+      <h1 class="page-title" id="pageTitle">Accueil</h1>
+      <form class="quick-search" id="quickSearch" role="search">
+        <input type="search" id="quickQ" placeholder="Rechercher une structure, une ville…" aria-label="Recherche rapide">
+        <button type="submit">🔍</button>
+      </form>
+    </header>
+
+    <section class="view" id="viewLoading"><div class="empty">Chargement du kit…</div></section>
+
+    <section class="view" id="viewLocal" hidden>
+      <div class="hero"><h2>Le kit se consulte depuis son adresse web</h2><p>Ouvert directement depuis l'ordinateur, le navigateur l'empêche de lire ses fichiers de configuration. Déposez le dossier complet sur votre hébergement, puis ouvrez l'adresse du site.</p></div>
+    </section>
+
+    <section class="view" id="viewHome" hidden>
+      <div class="hero"><h2 id="heroTitle">Bienvenue</h2><p id="heroText"></p></div>
+      <div class="tiles" id="tiles"></div>
+      <div class="stats" id="stats"></div>
+    </section>
+
+    <section class="view" id="viewSearch" hidden>
+      <div class="search-panel">
+        <div class="search-row"><input type="search" id="q" placeholder="Nom, ville, mot-clé…" aria-label="Mot-clé"></div>
+        <div class="filters">
+          <label>Statut juridique <select id="fStatut"><option value="">Tous</option></select></label>
+          <label>Département <select id="fDept"><option value="">Tous</option></select></label>
+          <label>Rubrique <select id="fRub"><option value="">Toutes</option></select></label>
+          <button class="btn-ghost" id="reset" type="button">Réinitialiser</button>
+          <button class="btn-ghost" id="exportCsv" type="button">⬇ Exporter (CSV)</button>
+        </div>
+      </div>
+      <div class="result-count" id="count"></div>
+      <div class="cards" id="results"></div>
+    </section>
+
+    <section class="view" id="viewRub" hidden></section>
+  </div>
+</div>
+<div class="overlay" id="overlay"></div>
+<script src="assets/kit.js"></script>
+</body>
+</html>

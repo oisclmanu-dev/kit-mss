@@ -1,0 +1,12 @@
+# Fiche du bloc — le logo se nomme logo.png (ou .jpg, .svg, .webp)
+
+Nom : Financeur Exemple
+Statut juridique : Établissement public
+Département : 35 - Ille-et-Vilaine
+Ville : Rennes
+Adresse : 
+Contact : 
+Téléphone : 
+Email : 
+Site : 
+Description : Exemple fictif — appel à projets annuel.

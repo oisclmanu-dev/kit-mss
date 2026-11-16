@@ -1,0 +1,21 @@
+# =====================================================================
+#  MENU GÉNÉRAL DU SITE
+#  • Réglages du site : lignes "Clé : valeur"
+#  • [Menu] : une ligne par rubrique, dans l'ordre d'affichage.
+#    Chaque ligne = le nom EXACT d'un dossier situé dans "rubriques".
+#  • Les lignes commençant par # sont ignorées.
+# =====================================================================
+
+Titre : Kit OISCL
+Sous-titre : Maisons Sport-Santé
+Message d'accueil : Retrouvez ici les procédures, la liste des MSS du collectif, les partenaires, les financements, les contacts et les formations.
+Couleur : #0f766e
+
+[Menu]
+Procédure Habilitation & extension MSS
+Référencement SS
+Liste MSS collectif
+Partenaires
+Financements
+Contacts
+Formations

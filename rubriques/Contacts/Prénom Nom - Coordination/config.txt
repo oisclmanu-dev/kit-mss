@@ -1,0 +1,12 @@
+# Fiche du bloc — le logo se nomme logo.png (ou .jpg, .svg, .webp)
+
+Nom : Prénom Nom - Coordination
+Statut juridique : Association loi 1901
+Département : 29 - Finistère
+Ville : Quimper
+Adresse : 
+Contact : Coordinateur·rice du collectif
+Téléphone : 02 00 00 00 02
+Email : coordination@exemple.fr
+Site : 
+Description : Exemple fictif — interlocuteur pour les questions d'habilitation.

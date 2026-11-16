@@ -1,0 +1,12 @@
+# Fiche du bloc — le logo se nomme logo.png (ou .jpg, .svg, .webp)
+
+Nom : Formation Exemple - Accueil du public
+Statut juridique : Organisme de formation
+Département : 56 - Morbihan
+Ville : Lorient
+Adresse : 
+Contact : 
+Téléphone : 
+Email : formation@exemple.fr
+Site : 
+Description : Exemple fictif — 2 jours, pour les coordinateurs MSS.

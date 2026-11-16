@@ -1,0 +1,15 @@
+# MODÈLE DE RUBRIQUE
+# 1. Copiez ce dossier dans "rubriques" et renommez-le (ex. "Actualités")
+# 2. Ajoutez ce même nom dans la liste [Menu] de menu.txt
+# 3. Complétez ce fichier
+
+Introduction : Phrase d'introduction de la rubrique.
+# Page : page.html
+# Titre des blocs : Nos structures
+
+[Blocs]
+# Nom exact de chaque sous-dossier bloc, un par ligne
+
+[Documents]
+# documents/mon-fichier.pdf
+# Libellé affiché | documents/autre-fichier.pdf

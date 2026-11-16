@@ -1,0 +1,12 @@
+# Fiche du bloc — le logo se nomme logo.png (ou .jpg, .svg, .webp)
+
+Nom : MSS Exemple Hôpital
+Statut juridique : Établissement de santé
+Département : 35 - Ille-et-Vilaine
+Ville : Rennes
+Adresse : 
+Contact : Prénom Nom
+Téléphone : 
+Email : mss@exemple.fr
+Site : 
+Description : Exemple fictif — MSS portée par un établissement de santé.

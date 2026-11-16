@@ -1,0 +1,16 @@
+# =====================================================================
+#  CONFIGURATION DE LA RUBRIQUE « Référencement SS »
+#  • Introduction : texte affiché sous le titre
+#  • Page : page.html  → contenu libre (facultatif)
+#  • [Blocs] : une ligne par bloc = nom EXACT d'un sous-dossier de cette
+#    rubrique. Chaque bloc a son config.txt et son logo (logo.png…).
+#  • [Documents] : un fichier par ligne (chemin depuis ce dossier).
+#    Pour un libellé personnalisé :  Mon libellé | documents/fichier.pdf
+# =====================================================================
+
+Introduction : Comment référencer une structure, un club ou une activité sport-santé.
+Page : page.html
+
+[Blocs]
+
+[Documents]

@@ -1,0 +1,12 @@
+# Fiche du bloc — le logo se nomme logo.png (ou .jpg, .svg, .webp)
+
+Nom : Partenaire Exemple - Comité sportif
+Statut juridique : Association loi 1901
+Département : 29 - Finistère
+Ville : Brest
+Adresse : 
+Contact : Prénom Nom
+Téléphone : 
+Email : partenaire@exemple.fr
+Site : 
+Description : Exemple fictif — mise à disposition d'éducateurs sportifs.

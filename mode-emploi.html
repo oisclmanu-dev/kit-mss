@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Mode d'emploi du kit</title>
+<link rel="stylesheet" href="assets/rubrique.css">
+<style>pre{background:#f9fafb;border:1px solid var(--bord);border-radius:10px;padding:14px;overflow:auto;font-size:13.5px;line-height:1.65}</style>
+</head>
+<body>
+<main class="page">
+<h1>📘 Mode d'emploi du kit</h1>
+<p class="intro">Tout le site est piloté par des fichiers texte à ouvrir avec le Bloc-notes. Trois niveaux : le <b>menu</b>, les <b>rubriques</b>, les <b>blocs</b>. Il fonctionne sur n'importe quel hébergement web, sans PHP.</p>
+
+<h2>Organisation</h2>
+<pre>menu.txt                              ← 1. réglages du site + liste des rubriques
+logo/logo.png                         ← logo du site (facultatif)
+rubriques/
+  Liste MSS collectif/                ← 2. une rubrique = un dossier du nom du menu
+    config.txt                        ←    introduction, liste des blocs, documents
+    page.html                         ←    contenu libre (facultatif)
+    documents/                        ←    fichiers à télécharger
+    MSS du Pays de Quimper/           ← 3. un bloc = un dossier
+      config.txt                      ←    ses informations
+      logo.png                        ←    son logo</pre>
+
+<h2>Règles d'écriture (identiques dans tous les fichiers)</h2>
+<div class="bloc">
+<p>• <b>Clé : valeur</b> sur une ligne (ex. <code>Ville : Quimper</code>). Les lignes suivantes sans « : » prolongent le texte.</p>
+<p>• <b>[Section]</b> entre crochets, puis un élément par ligne.</p>
+<p>• Les lignes commençant par <b>#</b> sont des commentaires ignorés.</p>
+<p>• Les noms dans les listes doivent être <b>exactement</b> ceux des dossiers (accents, espaces, majuscules). En cas d'erreur, le site affiche un encadré rouge qui indique le dossier introuvable.</p>
+</div>
+
+<h2>1. Le menu : <code>menu.txt</code></h2>
+<pre>Titre : Kit OISCL
+Sous-titre : Maisons Sport-Santé
+Message d'accueil : Retrouvez ici…
+Couleur : #0f766e
+
+[Menu]
+Procédure Habilitation &amp; extension MSS
+Liste MSS collectif
+Partenaires</pre>
+<p>L'ordre des lignes donne l'ordre du menu. Chaque ligne correspond à un dossier de <code>rubriques/</code>.</p>
+
+<h2>2. Une rubrique : <code>rubriques/&lt;Nom&gt;/config.txt</code></h2>
+<pre>Introduction : Les MSS membres du collectif.
+Page : page.html
+Titre des blocs : Nos MSS
+
+[Blocs]
+MSS du Pays de Quimper
+MSS Exemple Hôpital
+
+[Documents]
+documents/cahier-des-charges.pdf
+Modèle de convention | documents/Modèles/convention.docx
+https://www.exemple.fr/guide</pre>
+<p>• <b>Page</b> (facultatif) : un fichier <code>page.html</code> pour du texte mis en forme (étapes, tableaux…). Voir le modèle <code>_MODELE RUBRIQUE</code>.<br>
+• <b>[Documents]</b> : un fichier par ligne. <code>Libellé | chemin</code> pour choisir le texte affiché. Un sous-dossier (ex. <code>documents/Modèles/</code>) crée un groupe. Les liens web sont acceptés.</p>
+
+<h2>3. Un bloc : <code>rubriques/&lt;Rubrique&gt;/&lt;Bloc&gt;/config.txt</code></h2>
+<pre>Nom : MSS du Pays de Quimper
+Statut juridique : Association loi 1901
+Département : 29 - Finistère
+Ville : Quimper
+Adresse : 1 rue …
+Contact : Prénom Nom
+Téléphone : 02 00 00 00 00
+Email : contact@mss.fr
+Site : www.mss.fr
+Description : Accueil, bilan, orientation…
+Horaires : du lundi au vendredi
+Document : plaquette.pdf</pre>
+<p>• Le <b>logo</b> se dépose dans le dossier du bloc sous le nom <code>logo.png</code> (ou <code>logo.jpg</code>, <code>logo.svg</code>, <code>logo.webp</code>). Sans logo, l'initiale s'affiche.<br>
+• Toute ligne supplémentaire (ex. « Horaires ») s'affiche sur la fiche.<br>
+• Tous les blocs alimentent la <b>recherche</b>. Les filtres <b>Statut juridique</b> et <b>Département</b> se créent à partir des valeurs saisies : écrivez-les toujours de la même façon (ex. « 29 - Finistère »).</p>
+
+<h2>Opérations courantes</h2>
+<table>
+  <tr><th>Je veux…</th><th>Je fais…</th></tr>
+  <tr><td>Ajouter une MSS</td><td>Copier <code>rubriques/_MODELE BLOC</code> dans <code>rubriques/Liste MSS collectif</code>, le renommer, le remplir, ajouter le logo, puis ajouter son nom sous <code>[Blocs]</code> dans le <code>config.txt</code> de la rubrique.</td></tr>
+  <tr><td>Retirer une MSS</td><td>Supprimer sa ligne sous <code>[Blocs]</code>. Le dossier peut rester, il n'est plus affiché.</td></tr>
+  <tr><td>Changer l'ordre des blocs</td><td>Changer l'ordre des lignes sous <code>[Blocs]</code>.</td></tr>
+  <tr><td>Ajouter une rubrique</td><td>Copier <code>rubriques/_MODELE RUBRIQUE</code>, le renommer, puis ajouter son nom sous <code>[Menu]</code> dans <code>menu.txt</code>.</td></tr>
+  <tr><td>Ajouter un document</td><td>Le déposer dans <code>documents/</code> de la rubrique et ajouter sa ligne sous <code>[Documents]</code>.</td></tr>
+</table>
+
+<h2>Bon à savoir</h2>
+<div class="bloc">
+  <p>• Le site doit être consulté depuis son <b>adresse web</b>. Ouvert par un double-clic sur l'ordinateur, il ne peut pas lire ses fichiers.</p>
+  <p>• Enregistrez les fichiers texte en <b>UTF-8</b> (choix par défaut du Bloc-notes de Windows 10 et 11).</p>
+  <p>• Après une modification, rechargez la page (F5). Si rien ne change, faites Ctrl+F5.</p>
+  <p>• À ne pas toucher : <code>index.html</code>, <code>mode-emploi.html</code> et le dossier <code>assets</code>.</p>
+</div>
+</main>
+</body>
+</html>
