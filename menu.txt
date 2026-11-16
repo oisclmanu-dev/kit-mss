@@ -6,7 +6,7 @@
 #  • Les lignes commençant par # sont ignorées.
 # =====================================================================
 
-Titre : Kit OISCL
+Titre : Kit collectif MSS BZH
 Sous-titre : Maisons Sport-Santé
 Message d'accueil : Retrouvez ici les procédures, la liste des MSS du collectif, les partenaires, les financements, les contacts et les formations.
 Couleur : #0f766e
