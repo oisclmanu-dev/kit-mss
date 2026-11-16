@@ -1,0 +1,12 @@
+# Fiche du bloc — déposez le logo dans ce dossier sous le nom logo.png (ou .jpg, .svg, .webp)
+
+Nom : MSS des Pays de Morlaix / CH
+Statut juridique : Établissement de santé
+Département : 29 - Finistère
+Ville : Morlaix
+Adresse : 15 rue de Kersaint Gilly
+Contact : COZ Alexia
+Téléphone : 06 01 22 21 75
+Email : TBriand@ch-morlaix.fr; ACoz@ch-morlaix.fr
+Site : https://www.ch-morlaix.fr/medecine-du-sport
+Description : 

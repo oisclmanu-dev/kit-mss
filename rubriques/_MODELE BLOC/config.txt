@@ -1,0 +1,20 @@
+# MODÈLE DE BLOC (une structure, un contact, un financeur…)
+# 1. Copiez ce dossier dans la rubrique voulue et renommez-le
+#    (ex. rubriques/Liste MSS collectif/MSS du Pays de Quimper)
+# 2. Ajoutez ce même nom dans la liste Section Blocs du config.txt de la rubrique
+# 3. Remplissez les lignes ci-dessous et déposez le logo nommé logo.png
+#    (ou logo.jpg / logo.svg / logo.webp) dans ce dossier
+# Toute ligne supplémentaire (ex. « Horaires : … ») s'affiche aussi.
+
+Nom :
+Statut juridique : Association loi 1901
+Département : 29 - Finistère
+Ville :
+Adresse :
+Contact :
+Téléphone :
+Email :
+Site :
+Description :
+# Document : plaquette.pdf
+# Émetteur : ARS Bretagne      (pour un financement : affiché en badge + filtre)

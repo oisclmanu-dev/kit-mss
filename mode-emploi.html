@@ -18,7 +18,7 @@ logo/logo.png                         ← logo du site (facultatif)
 rubriques/
   Liste MSS collectif/                ← 2. une rubrique = un dossier du nom du menu
     config.txt                        ←    introduction, liste des blocs, documents
-    page.html                         ←    contenu libre (facultatif)
+    page.html                         ←    contenu libre (texte, tableaux, carte…)
     documents/                        ←    fichiers à télécharger
     MSS du Pays de Quimper/           ← 3. un bloc = un dossier
       config.txt                      ←    ses informations
@@ -46,8 +46,6 @@ Partenaires</pre>
 
 <h2>2. Une rubrique : <code>rubriques/&lt;Nom&gt;/config.txt</code></h2>
 <pre>Introduction : Les MSS membres du collectif.
-Carte : https://umap.openstreetmap.fr/fr/map/…
-Page : page.html
 Titre des blocs : Nos MSS
 
 [Blocs]
@@ -58,8 +56,7 @@ MSS Exemple Hôpital
 documents/cahier-des-charges.pdf
 Modèle de convention | documents/Modèles/convention.docx
 https://www.exemple.fr/guide</pre>
-<p>• <b>Carte</b> (facultatif) : adresse d'une carte en ligne (uMap, Google My Maps…), affichée en haut de la rubrique. <code>Hauteur de la carte : 480</code> règle sa hauteur en pixels.<br>
-• <b>Page</b> (facultatif) : un fichier <code>page.html</code> pour du texte mis en forme (étapes, tableaux…). Voir le modèle <code>_MODELE RUBRIQUE</code>.<br>
+<p>• <b>page.html</b> : chaque rubrique a sa page, affichée automatiquement sous l'introduction. On y met du texte mis en forme (intertitres, étapes, tableaux), des images ou une carte. Pour intégrer une carte uMap ou une vidéo, collez son code <code>&lt;iframe&gt;</code> dans la page (exemple dans <code>Liste MSS collectif/page.html</code>).<br>
 • <b>[Documents]</b> : un fichier par ligne. <code>Libellé | chemin</code> pour choisir le texte affiché. Un sous-dossier (ex. <code>documents/Modèles/</code>) crée un groupe. Les liens web sont acceptés.</p>
 
 <h2>3. Un bloc : <code>rubriques/&lt;Rubrique&gt;/&lt;Bloc&gt;/config.txt</code></h2>
@@ -77,6 +74,7 @@ Horaires : du lundi au vendredi
 Document : plaquette.pdf</pre>
 <p>• Le <b>logo</b> se dépose dans le dossier du bloc sous le nom <code>logo.png</code> (ou <code>logo.jpg</code>, <code>logo.svg</code>, <code>logo.webp</code>). Sans logo, l'initiale s'affiche.<br>
 • Toute ligne supplémentaire (ex. « Horaires ») s'affiche sur la fiche.<br>
+• Pour un financement, la ligne <code>Émetteur : ARS Bretagne</code> affiche l'émetteur en badge et ajoute un filtre « Tous émetteurs » dans la rubrique.<br>
 • Tous les blocs alimentent la <b>recherche</b>. Les filtres <b>Statut juridique</b> et <b>Département</b> se créent à partir des valeurs saisies : écrivez-les toujours de la même façon (ex. « 29 - Finistère »).</p>
 
 <h2>Opérations courantes</h2>

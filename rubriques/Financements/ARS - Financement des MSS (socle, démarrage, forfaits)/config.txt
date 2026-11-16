@@ -1,0 +1,14 @@
+# Fiche du bloc — déposez le logo de l'émetteur dans ce dossier sous le nom logo.png (ou .jpg, .svg, .webp)
+# Attention : dans les lignes de suite d'un texte, n'utilisez pas le caractère deux-points.
+
+Nom : Financement des Maisons Sport-Santé
+Émetteur : ARS Bretagne
+Département : Toute la Bretagne
+Description : Soutien financier de l'ARS aux MSS pour la mise en œuvre de leurs missions, dans le cadre de déploiement et de financement défini par l'ARS Bretagne.
+Formes d'aide : aide au démarrage ou financement « socle » (montant établi par l'ARS selon ses critères), complétés sur demande par un forfait APA précarité et/ou un forfait SI Dénéo.
+Démarche : formulaire en ligne « Demande de forfait APA précarité et demande de forfait Dénéo », puis convention de financement transmise par l'ARS pour signature.
+Dernière campagne connue : 2025, formulaire à compléter avant le 20 juin 2025.
+Calendrier : campagne annuelle lancée par mail par l'ARS (juin).
+Contact : Direction de la santé publique, prévention et promotion de la santé
+Email : ars-bretagne-pps-ar@ars.sante.fr
+Site : https://www.bretagne.ars.sante.fr
