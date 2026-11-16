@@ -1,0 +1,22 @@
+# Bloc issu du référentiel des partenariats 2025 du collectif MSS Bretagne.
+# Chaque ligne = type de partenaire, puis nombre total de citations et détail par département.
+
+Nom : Secteur Santé
+Département : Toute la Bretagne
+Description : Professionnels et structures de santé, de la ville à l'hôpital. Nombre de citations par les 15 MSS ayant répondu, par département.
+
+Médecins : 16 citations (56 → 4, 29 → 2, 35 → 6, 22 → 4)
+CPTS : 14 citations (56 → 4, 29 → 2, 35 → 5, 22 → 3)
+Centres hospitaliers : 14 citations (56 → 3, 29 → 1, 35 → 6, 22 → 4)
+MSP : 9 citations (56 → 3, 29 → 1, 35 → 3, 22 → 2)
+Paramédicaux : 8 citations (56 → 4, 29 → 1, 35 → 1, 22 → 2)
+Cliniques privées : 8 citations (56 → 4, 29 → 1, 35 → 2, 22 → 1)
+Associations de patients : 6 citations (56 → 3, 29 → 1, 35 → 0, 22 → 2)
+DAC : 6 citations (56 → 1, 29 → 2, 35 → 1, 22 → 2)
+Mutuelles : 6 citations (56 → 0, 29 → 2, 35 → 3, 22 → 1)
+Onco Bretagne : 3 citations (56 → 1, 29 → 1, 35 → 1, 22 → 0)
+CLIC : 3 citations (56 → 1, 29 → 1, 35 → 1, 22 → 0)
+Médecine du travail : 2 citations (56 → 0, 29 → 1, 35 → 1, 22 → 0)
+CRCDC : 2 citations (56 → 1, 29 → 0, 35 → 1, 22 → 0)
+URPS : 1 citation (56 → 0, 29 → 1, 35 → 0, 22 → 0)
+UTEP : 1 citation (56 → 0, 29 → 0, 35 → 1, 22 → 0)

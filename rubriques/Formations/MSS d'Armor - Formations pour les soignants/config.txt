@@ -1,0 +1,15 @@
+# Fiche du bloc — déposez le logo de l'organisme dans ce dossier sous le nom logo.png (ou .jpg, .svg, .webp)
+# Attention : dans les lignes de suite d'un texte, n'utilisez pas le caractère deux-points.
+
+Nom : Formations pour les soignants
+Organisme : MSS d'Armor
+Département : 22 - Côtes-d'Armor
+Ville : Saint-Brieuc
+Description : Sensibilisation et expertise à l'activité physique comme outil de prévention. Formation destinée aux professionnels soignants qui veulent renforcer leurs compétences pour utiliser l'activité physique dans la prévention de la perte d'autonomie et l'intégrer au quotidien de la prise en charge.
+Public : professionnels soignants
+Contenu : modules théoriques et pratiques (bienfaits de l'activité physique, exercices adaptés, accompagnement personnalisé).
+Porteur : Maison Sport Santé d'Armor, gérée par VYV3 Bretagne. Formation agréée par l'IMFB, centre de formation du Groupe VYV3 Bretagne, certifiée Qualiopi.
+Inscription : proposition personnalisée sur demande (contacter la coordinatrice au 06 86 40 00 97).
+Téléphone : 02 96 75 27 59
+Horaires : lundi, mardi et jeudi de 9 h à 16 h 30, vendredi de 9 h à 15 h
+Site : https://www.sport-sante-armor.fr/formations-pour-les-soignants/
