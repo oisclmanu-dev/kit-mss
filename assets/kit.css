@@ -212,3 +212,6 @@ h4.groupe{margin:16px 0 6px;font-size:15px}
   .p-annexes{margin-top:8mm;font-size:11pt;background:#f3f4f6;padding:3mm 4mm;border-radius:8px}
   .p-badge{background:var(--accent);color:#fff;border-radius:4px;padding:0 4px;font-size:8.5pt}
 }
+.vide-cat{color:var(--texte-doux);font-size:13.5px;font-style:italic;margin:2px 0 10px 4px}
+h4.groupe{margin:20px 0 8px;font-size:15.5px;color:var(--primaire-fonce)}
+@media print{#print h3.p-cat{font-size:11.5pt;margin:4mm 0 1mm;color:#333}}

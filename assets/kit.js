@@ -81,13 +81,19 @@
       rub.titre = cfg.val("Titre") || nom;
       rub.intro = cfg.val("Introduction", "Intro", "Description");
       rub.titreBlocs = cfg.val("Titre des blocs");
+      rub.titreDocs = cfg.val("Titre des documents");
       rub.pageDeclaree = !!cfg.val("Page");
       rub.page = cfg.val("Page") || "page.html";
       rub.carte = cfg.val("Carte", "Intégration", "Integration");
       rub.hauteurCarte = parseInt(cfg.val("Hauteur de la carte", "Hauteur carte"), 10) || 480;
-      rub.documents = (cfg.listes.documents || []).map(function (d) {
+      // [Documents] : une ligne par document ; « Catégorie : Nom » ouvre une sous-catégorie
+      rub.documents = []; rub.categories = [];
+      var cat = "";
+      (cfg.listes.documents || []).forEach(function (d) {
+        var c = d.match(/^cat[ée]gorie\s*:\s*(.+)$/i);
+        if (c) { cat = c[1].trim(); if (rub.categories.indexOf(cat) < 0) rub.categories.push(cat); return; }
         var p = d.split("|"), cible = (p[1] || p[0]).trim(), lib = p[1] ? p[0].trim() : "";
-        return { libelle: lib, fichier: cible, url: lien(rub.base, cible) };
+        rub.documents.push({ libelle: lib, fichier: cible, url: lien(rub.base, cible), categorie: cat });
       });
       return Promise.all((cfg.listes.blocs || []).map(function (b) { return chargerBloc(rub, b); }));
     }).then(function (blocs) { rub.blocs = blocs; return rub; });
@@ -206,20 +212,14 @@
       }
       h += '<div class="result-count" id="rc"></div><div class="cards" id="rcards"></div>';
     }
-    if (r.documents.length) {
-      var groupes = {}, ordre = [];
-      r.documents.forEach(function (d) {
-        var parts = /^https?:/i.test(d.fichier) ? [d.fichier] : d.fichier.replace(/^documents\//i, "").split("/"), g = parts.length > 1 ? parts[0] : "";
-        if (!(g in groupes)) { groupes[g] = []; ordre.push(g); }
-        groupes[g].push(d);
-      });
-      h += '<h3 class="section">Documents</h3>';
-      ordre.forEach(function (g) {
-        if (g) h += '<h4 class="groupe">📁 ' + esc(g) + "</h4>";
-        h += '<ul class="docs">' + groupes[g].map(docHtml).join("") + "</ul>";
+    if (r.documents.length || r.categories.length) {
+      h += '<h3 class="section">' + esc(r.titreDocs || "Documents") + "</h3>";
+      groupesDocs(r).forEach(function (g) {
+        if (g.nom) h += '<h4 class="groupe">' + iconeCategorie(g.nom) + " " + esc(g.nom) + "</h4>";
+        h += g.docs.length ? '<ul class="docs">' + g.docs.map(docHtml).join("") + "</ul>" : '<p class="vide-cat">Aucun document pour le moment.</p>';
       });
     }
-    if (!r.pageDeclaree && !r.carte && !r.blocs.length && !r.documents.length && !r.erreur) h += '<div class="empty">Cette rubrique est encore vide.</div>';
+    if (!r.pageDeclaree && !r.carte && !r.blocs.length && !r.documents.length && !r.categories.length && !r.erreur) h += '<div class="empty">Cette rubrique est encore vide.</div>';
     $("viewRub").innerHTML = h;
     $("viewRub").scrollTop = 0;
 
@@ -380,10 +380,15 @@
             blocs.map(function (b) { return carte(Object.assign({}, b, { logos: [] }), "", false); }).join("") + "</div>";
         }
         if (o.docs && r.documents.length) {
-          h += "<h2>Documents</h2><ul class=\"p-docs\">" + r.documents.map(function (d) {
-            var u = new URL(d.url, location.href).href, nom = d.libelle || d.fichier.split("/").pop();
-            return "<li>" + esc(nom) + (numAnnexe[d.url] ? ' <b class="p-badge">annexe ' + numAnnexe[d.url] + "</b>" : "") + ' : <a href="' + esc(u) + '">' + esc(u) + "</a></li>";
-          }).join("") + "</ul>";
+          h += "<h2>" + esc(r.titreDocs || "Documents") + "</h2>";
+          groupesDocs(r).forEach(function (g) {
+            if (!g.docs.length) return;
+            if (g.nom) h += '<h3 class="p-cat">' + esc(g.nom) + "</h3>";
+            h += "<ul class=\"p-docs\">" + g.docs.map(function (d) {
+              var u = new URL(d.url, location.href).href, nom = d.libelle || d.fichier.split("/").pop();
+              return "<li>" + esc(nom) + (numAnnexe[d.url] ? ' <b class="p-badge">annexe ' + numAnnexe[d.url] + "</b>" : "") + ' : <a href="' + esc(u) + '">' + esc(u) + "</a></li>";
+            }).join("") + "</ul>";
+          });
         }
         h += "</section>";
       });
@@ -400,10 +405,30 @@
       setTimeout(function () { window.print(); }, 400);
     });
   }
+  /* Regroupe les documents : catégories déclarées (même vides), sinon sous-dossiers */
+  function groupesDocs(r) {
+    var out = [], idx = {};
+    function g(nom) { if (!(nom in idx)) { idx[nom] = out.length; out.push({ nom: nom, docs: [] }); } return out[idx[nom]]; }
+    if (r.categories.length) {
+      if (r.documents.some(function (d) { return !d.categorie; })) g("");
+      r.categories.forEach(g);
+      r.documents.forEach(function (d) { g(d.categorie).docs.push(d); });
+    } else {
+      r.documents.forEach(function (d) {
+        var parts = /^https?:/i.test(d.fichier) ? [d.fichier] : d.fichier.replace(/^documents\//i, "").split("/");
+        g(parts.length > 1 ? parts[0] : "").docs.push(d);
+      });
+    }
+    return out;
+  }
+  function iconeCategorie(n) {
+    return /vid[ée]o|capsule/i.test(n) ? "🎬" : /convention|contrat/i.test(n) ? "📝" : /communication|affiche|flyer/i.test(n) ? "📣" : /formulaire|fiche/i.test(n) ? "🗂️" : "📁";
+  }
   function docHtml(d) {
     var nom = d.fichier.split("/").pop(), ext = /^https?:/i.test(d.fichier) ? "lien" : (nom.split(".").pop() || "").toLowerCase();
     var lib = d.libelle || (ext === "lien" ? d.fichier.replace(/^https?:\/\//i, "").replace(/\/$/, "") : nom.replace(/\.[^.]+$/, "").replace(/_+/g, " "));
-    return '<li><a href="' + esc(d.url) + '" target="_blank" rel="noopener">' + (ext === "lien" ? "🔗" : ICO[ext] || "📄") + " " + esc(lib) + ' <small>' + esc(ext.toUpperCase()) + "</small></a></li>";
+    var video = /youtu\.?be|vimeo|dailymotion|peertube|\.mp4$/i.test(d.fichier);
+    return '<li><a href="' + esc(d.url) + '" target="_blank" rel="noopener">' + (video ? "🎬" : ext === "lien" ? "🔗" : ICO[ext] || "📄") + " " + esc(lib) + ' <small>' + esc(video ? "VIDÉO" : ext.toUpperCase()) + "</small></a></li>";
   }
 
   /* ---------- vue Recherche ---------- */

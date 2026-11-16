@@ -59,6 +59,16 @@ https://www.exemple.fr/guide</pre>
 <p>• <b>page.html</b> : chaque rubrique a sa page, affichée automatiquement sous l'introduction. On y met du texte mis en forme (intertitres, étapes, tableaux), des images ou une carte. Pour intégrer une carte uMap ou une vidéo, collez son code <code>&lt;iframe&gt;</code> dans la page (exemple dans <code>Liste MSS collectif/page.html</code>).<br>
 • <b>[Documents]</b> : un fichier par ligne. <code>Libellé | chemin</code> pour choisir le texte affiché. Un sous-dossier (ex. <code>documents/Modèles/</code>) crée un groupe. Les liens web sont acceptés.</p>
 
+<h3>Classer les documents par catégories</h3>
+<p>Dans la section <code>[Documents]</code>, une ligne <code>Catégorie : Nom</code> crée une sous-catégorie. Les documents listés en dessous lui appartiennent. Une catégorie sans document s'affiche quand même, avec la mention « Aucun document pour le moment ». Exemple (rubrique « Documents modèles ») :</p>
+<pre>[Documents]
+Catégorie : Conventions
+Convention type MSS / club | documents/Conventions/convention-club.docx
+
+Catégorie : Capsules vidéos
+Présentation d'une MSS | https://www.youtube.com/watch?v=...</pre>
+<p>Les liens YouTube, Vimeo ou Dailymotion s'affichent avec l'icône 🎬.</p>
+
 <h2>3. Un bloc : <code>rubriques/&lt;Rubrique&gt;/&lt;Bloc&gt;/config.txt</code></h2>
 <pre>Nom : MSS du Pays de Quimper
 Statut juridique : Association loi 1901

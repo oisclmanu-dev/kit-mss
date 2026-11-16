@@ -1,0 +1,2 @@
+Déposez ici les modèles de la catégorie « Capsules vidéos »,
+puis ajoutez une ligne sous « Catégorie : Capsules vidéos » dans le config.txt de la rubrique.
