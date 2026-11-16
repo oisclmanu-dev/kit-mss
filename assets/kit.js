@@ -254,6 +254,152 @@
     return base + (base.indexOf("?") >= 0 ? "&" : "?") + "scrollWheelZoom=false&fullscreenControl=true&captionBar=false" + hash;
   }
   var ICO = { pdf: "📕", doc: "📘", docx: "📘", odt: "📘", xls: "📗", xlsx: "📗", ods: "📗", csv: "📗", ppt: "📙", pptx: "📙", odp: "📙", png: "🖼️", jpg: "🖼️", jpeg: "🖼️", svg: "🖼️", mp4: "🎬", mp3: "🎧", zip: "🗜️" };
+
+  /* ---------- PDF : tout le kit dans un document imprimable (Enregistrer au format PDF) ---------- */
+  function pagePourPdf(r) {
+    if (!r.page) return Promise.resolve("");
+    return lireTexte(r.base + r.page).then(function (html) {
+      var doc = new DOMParser().parseFromString(html, "text/html");
+      doc.querySelectorAll("script,style").forEach(function (x) { x.remove(); });
+      doc.querySelectorAll("iframe").forEach(function (f) {
+        var src = f.getAttribute("src") || "", p = doc.createElement("p");
+        p.className = "p-lien";
+        p.innerHTML = "🗺️ " + esc(f.getAttribute("title") || "Contenu en ligne") + " : <a href=\"" + esc(src) + "\">" + esc(src.split("?")[0].split("#")[0]) + "</a>";
+        f.replaceWith(p);
+      });
+      doc.querySelectorAll("[href],[src]").forEach(function (el) {
+        ["href", "src"].forEach(function (a) { var v = el.getAttribute(a); if (v && !/^(https?:|mailto:|tel:|#|data:|\/)/i.test(v)) el.setAttribute(a, new URL(lien(r.base, v), location.href).href); });
+      });
+      return doc.body.innerHTML;
+    }).catch(function () { return ""; });
+  }
+  /* Fenêtre d'options */
+  function ouvrirOptionsPdf() {
+    $("pdfRubriques").innerHTML = S.rubriques.map(function (r, i) {
+      return '<label><input type="checkbox" name="pdfRub" value="' + i + '" checked> ' + esc(r.titre) + "</label>";
+    }).join("");
+    majNotePdf();
+    $("pdfRubriques").onchange = majNotePdf;
+    $("pdfModal").hidden = false;
+  }
+  function rubChoisies() { return Array.prototype.filter.call(document.querySelectorAll("input[name=pdfRub]"), function (c) { return c.checked; }).map(function (c) { return S.rubriques[+c.value]; }); }
+  function joignable(d) { return !/^https?:/i.test(d.fichier) && /\.(pdf|png|jpe?g)$/i.test(d.fichier); }
+  function majNotePdf() {
+    var docs = []; rubChoisies().forEach(function (r) { docs = docs.concat(r.documents); });
+    var loc = docs.filter(joignable).length, ext = docs.length - loc;
+    $("pdfNote").textContent = loc + " document" + (loc > 1 ? "s" : "") + " joignable" + (loc > 1 ? "s" : "") + " en annexe" +
+      (ext ? " · " + ext + " lien" + (ext > 1 ? "s" : "") + " vers des sites externes (non joignables, conservés comme liens)" : "") + ".";
+  }
+  $("pdfTout").onclick = function () {
+    var cs = document.querySelectorAll("input[name=pdfRub]"), tous = Array.prototype.every.call(cs, function (c) { return c.checked; });
+    cs.forEach(function (c) { c.checked = !tous; }); majNotePdf();
+  };
+  $("pdfAnnuler").onclick = function () { $("pdfModal").hidden = true; };
+  $("pdfForm").onsubmit = function (e) {
+    e.preventDefault();
+    var rubs = rubChoisies();
+    if (!rubs.length) { alerteModal("Cochez au moins une rubrique."); return; }
+    $("pdfModal").hidden = true;
+    genererPdf({ rubriques: rubs, couverture: $("pdfCouv").checked, textes: $("pdfTextes").checked, fiches: $("pdfFiches").checked, docs: $("pdfDocs").checked, annexes: $("pdfAnnexes").checked });
+  };
+  function alerteModal(t) { $("pdfNote").textContent = "⚠️ " + t; }
+
+  /* Annexes : vrais fichiers assemblés avec pdf-lib (assets/vendor/pdf-lib.min.js, licence MIT) */
+  function chargerPdfLib() {
+    if (window.PDFLib) return Promise.resolve(window.PDFLib);
+    return new Promise(function (ok, ko) { var sc = document.createElement("script"); sc.src = "assets/vendor/pdf-lib.min.js"; sc.onload = function () { ok(window.PDFLib); }; sc.onerror = ko; document.head.appendChild(sc); });
+  }
+  function winAnsi(t) { return String(t).replace(/[^\x20-\x7E\xA0-\xFF’‘“”–—…œŒ€]/g, ""); }
+  function construireAnnexes(rubs) {
+    var liste = [];
+    rubs.forEach(function (r) { r.documents.filter(joignable).forEach(function (d) { liste.push({ r: r, d: d }); }); });
+    if (!liste.length) return Promise.resolve(null);
+    return chargerPdfLib().then(function (L) {
+      return L.PDFDocument.create().then(function (out) {
+        return out.embedFont(L.StandardFonts.HelveticaBold).then(function (gras) {
+          return out.embedFont(L.StandardFonts.Helvetica).then(function (normal) {
+            var num = 0, joints = [];
+            var chaine = liste.reduce(function (p, it) {
+              return p.then(function () {
+                return fetch(it.d.url).then(function (rep) { if (!rep.ok) throw 0; return rep.arrayBuffer(); }).then(function (buf) {
+                  num++;
+                  var nom = it.d.libelle || it.d.fichier.split("/").pop(), pg = out.addPage([595.28, 841.89]);
+                  pg.drawText("Annexe " + num, { x: 60, y: 560, size: 34, font: gras, color: L.rgb(0.07, 0.31, 0.29) });
+                  pg.drawText(winAnsi(nom).slice(0, 70), { x: 60, y: 515, size: 16, font: gras });
+                  pg.drawText(winAnsi("Rubrique : " + it.r.titre).slice(0, 80), { x: 60, y: 488, size: 12, font: normal, color: L.rgb(0.35, 0.35, 0.35) });
+                  var fin;
+                  if (/\.pdf$/i.test(it.d.fichier)) {
+                    fin = L.PDFDocument.load(buf, { ignoreEncryption: true }).then(function (src) {
+                      return out.copyPages(src, src.getPageIndices()).then(function (pages) { pages.forEach(function (x) { out.addPage(x); }); });
+                    });
+                  } else {
+                    fin = (/\.png$/i.test(it.d.fichier) ? out.embedPng(buf) : out.embedJpg(buf)).then(function (img) {
+                      var p2 = out.addPage([595.28, 841.89]), s = Math.min(495 / img.width, 742 / img.height, 1);
+                      p2.drawImage(img, { x: (595.28 - img.width * s) / 2, y: (841.89 - img.height * s) / 2, width: img.width * s, height: img.height * s });
+                    });
+                  }
+                  return fin.then(function () { it.annexe = num; joints.push(it); });
+                }).catch(function () { /* fichier illisible : ignoré, le lien reste dans le document */ });
+              });
+            }, Promise.resolve());
+            return chaine.then(function () { return joints.length ? out.save().then(function (bytes) { return { bytes: bytes, joints: joints }; }) : null; });
+          });
+        });
+      });
+    });
+  }
+
+  function genererPdf(o) {
+    var btn = $("btnPdf"), R = S.reglages;
+    btn.disabled = true; btn.textContent = "⏳ Préparation du document…";
+    var date = new Date().toLocaleDateString("fr-FR", { day: "numeric", month: "long", year: "numeric" });
+    var pAnnexes = o.annexes ? construireAnnexes(o.rubriques).catch(function () { return null; }) : Promise.resolve(null);
+    Promise.all([Promise.all(o.rubriques.map(function (r) { return o.textes ? pagePourPdf(r) : ""; })), pAnnexes]).then(function (res) {
+      var pages = res[0], annexes = res[1], numAnnexe = {};
+      if (annexes) annexes.joints.forEach(function (it) { numAnnexe[it.d.url] = it.annexe; });
+      var h = "";
+      if (o.couverture) {
+        h += '<section class="p-couverture"><div class="p-titre">' + esc(R.titre) + "</div>" +
+          (R.soustitre ? '<div class="p-sous">' + esc(R.soustitre) + "</div>" : "") +
+          (R.accueil ? '<p class="p-accueil">' + esc(R.accueil) + "</p>" : "") +
+          '<div class="p-date">Édition du ' + esc(date) + '</div><div class="p-url">Version en ligne : ' + esc(location.href.split("#")[0]) + "</div></section>";
+        h += '<section class="p-sommaire"><h1>Sommaire</h1><ol>';
+        o.rubriques.forEach(function (r, i) {
+          var n = r.blocs.filter(function (b) { return !b.erreur; }).length;
+          h += '<li><a href="#p-sec-' + (i + 1) + '">' + esc(r.titre) + "</a>" + (o.fiches && n ? ' <span class="p-nb">' + n + " fiche" + (n > 1 ? "s" : "") + "</span>" : "") + "</li>";
+        });
+        h += "</ol>" + (annexes ? '<p class="p-annexes">📎 ' + annexes.joints.length + " document" + (annexes.joints.length > 1 ? "s" : "") + " joint" + (annexes.joints.length > 1 ? "s" : "") + " dans le fichier « " + esc(R.titre) + " - annexes.pdf ».</p>" : "") + "</section>";
+      }
+      o.rubriques.forEach(function (r, i) {
+        h += '<section class="p-section' + (i === 0 && !o.couverture ? " p-premiere" : "") + '" id="p-sec-' + (i + 1) + '"><h1><span class="p-num">' + (i + 1) + ".</span> " + esc(r.titre) + "</h1>";
+        if (r.intro) h += '<p class="p-intro">' + esc(r.intro).replace(/\n/g, "<br>") + "</p>";
+        if (pages[i]) h += '<div class="contenu">' + pages[i] + "</div>";
+        var blocs = r.blocs.filter(function (b) { return !b.erreur; });
+        if (o.fiches && blocs.length) {
+          h += "<h2>" + esc(r.titreBlocs || "Fiches") + "</h2><div class=\"cards\">" +
+            blocs.map(function (b) { return carte(Object.assign({}, b, { logos: [] }), "", false); }).join("") + "</div>";
+        }
+        if (o.docs && r.documents.length) {
+          h += "<h2>Documents</h2><ul class=\"p-docs\">" + r.documents.map(function (d) {
+            var u = new URL(d.url, location.href).href, nom = d.libelle || d.fichier.split("/").pop();
+            return "<li>" + esc(nom) + (numAnnexe[d.url] ? ' <b class="p-badge">annexe ' + numAnnexe[d.url] + "</b>" : "") + ' : <a href="' + esc(u) + '">' + esc(u) + "</a></li>";
+          }).join("") + "</ul>";
+        }
+        h += "</section>";
+      });
+      $("print").innerHTML = h;
+      if (annexes) {
+        var a = document.createElement("a");
+        a.href = URL.createObjectURL(new Blob([annexes.bytes], { type: "application/pdf" }));
+        a.download = R.titre + " - annexes.pdf"; document.body.appendChild(a); a.click(); a.remove();
+      }
+      var ancien = document.title;
+      document.title = R.titre + " - " + date;
+      var fin = function () { document.title = ancien; $("print").innerHTML = ""; btn.disabled = false; btn.textContent = "📄 Générer le PDF"; window.removeEventListener("afterprint", fin); };
+      window.addEventListener("afterprint", fin);
+      setTimeout(function () { window.print(); }, 400);
+    });
+  }
   function docHtml(d) {
     var nom = d.fichier.split("/").pop(), ext = /^https?:/i.test(d.fichier) ? "lien" : (nom.split(".").pop() || "").toLowerCase();
     var lib = d.libelle || (ext === "lien" ? d.fichier.replace(/^https?:\/\//i, "").replace(/\/$/, "") : nom.replace(/\.[^.]+$/, "").replace(/_+/g, " "));
@@ -322,6 +468,7 @@
       e.preventDefault(); remiseAZero(); $("q").value = $("quickQ").value; $("quickQ").value = "";
       if (location.hash === "#/recherche") rechercher(); else location.hash = "#/recherche";
     };
+    $("btnPdf").onclick = ouvrirOptionsPdf;
     construireMenu(); route();
     window.addEventListener("hashchange", route);
   }).catch(function () {

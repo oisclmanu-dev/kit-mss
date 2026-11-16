@@ -44,7 +44,7 @@
     </section>
 
     <section class="view" id="viewHome" hidden>
-      <div class="hero"><h2 id="heroTitle">Bienvenue</h2><p id="heroText"></p></div>
+      <div class="hero"><h2 id="heroTitle">Bienvenue</h2><p id="heroText"></p><button type="button" class="btn-pdf" id="btnPdf">📄 Générer le PDF</button></div>
       <div class="tiles" id="tiles"></div>
       <div class="stats" id="stats"></div>
     </section>
@@ -68,6 +68,23 @@
   </div>
 </div>
 <div class="overlay" id="overlay"></div>
+<div class="modal" id="pdfModal" hidden>
+  <form class="modal-box" id="pdfForm">
+    <h2>📄 Générer le PDF</h2>
+    <fieldset><legend>Rubriques à inclure <button type="button" class="lien-mini" id="pdfTout">tout cocher / décocher</button></legend><div id="pdfRubriques" class="pdf-liste"></div></fieldset>
+    <fieldset><legend>Contenu</legend>
+      <label><input type="checkbox" id="pdfCouv" checked> Couverture et sommaire</label>
+      <label><input type="checkbox" id="pdfTextes" checked> Textes des pages (étapes, tableaux…)</label>
+      <label><input type="checkbox" id="pdfFiches" checked> Fiches (MSS, partenaires, financements…)</label>
+      <label><input type="checkbox" id="pdfDocs" checked> Liste des documents référencés (liens)</label>
+      <label><input type="checkbox" id="pdfAnnexes"> Joindre les documents déposés dans le kit (PDF, images) dans un fichier « annexes »</label>
+      <p class="pdf-note" id="pdfNote"></p>
+    </fieldset>
+    <p class="pdf-aide">À l'étape suivante, choisissez « Enregistrer au format PDF » comme imprimante.</p>
+    <div class="modal-actions"><button type="button" class="btn-ghost" id="pdfAnnuler">Annuler</button><button type="submit" class="btn-primaire" id="pdfGo">Générer</button></div>
+  </form>
+</div>
+<div id="print" aria-hidden="true"></div>
 <script src="assets/kit.js"></script>
 </body>
 </html>
