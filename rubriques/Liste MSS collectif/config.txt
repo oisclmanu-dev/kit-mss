@@ -1,19 +1,58 @@
 # =====================================================================
 #  CONFIGURATION DE LA RUBRIQUE « Liste MSS collectif »
 #  • Introduction : texte affiché sous le titre
+#  • Carte : adresse d'une carte (uMap, Google My Maps…) affichée en haut
 #  • Page : page.html  → contenu libre (facultatif)
-#  • [Blocs] : une ligne par bloc = nom EXACT d'un sous-dossier de cette
-#    rubrique. Chaque bloc a son config.txt et son logo (logo.png…).
-#  • [Documents] : un fichier par ligne (chemin depuis ce dossier).
+#  • Section Blocs : une ligne par bloc = nom EXACT d'un sous-dossier de
+#    cette rubrique. Chaque bloc a son config.txt et son logo (logo.png…).
+#    L'ordre des lignes = l'ordre d'affichage.
+#  • Section Documents : un fichier par ligne (chemin depuis ce dossier).
 #    Pour un libellé personnalisé :  Mon libellé | documents/fichier.pdf
 # =====================================================================
 
-Introduction : Toutes les Maisons Sport-Santé membres du collectif. Filtrez par statut juridique ou par département.
+Introduction : Les Maisons Sport-Santé de Bretagne. Filtrez par statut juridique ou par département.
+Carte : https://umap.openstreetmap.fr/fr/map/maison-sport-sante-bretonnes_1378382#11/48.491810/-2.203445
+Hauteur de la carte : 480
+Titre des blocs : Les MSS
 
 [Blocs]
-MSS Exemple Centre-Ville
-MSS Exemple Hôpital
-MSS Exemple Intercommunale
-MSS Exemple Sport Adapté
+MSS d'Armor - MBSS
+MSS de Dinan - UFOLEP 22
+MSS de Guingamp
+MSS de l'Arguenon - MSP
+MSS du Centre Bretagne Loudéac-Pontivy (Loudéac)
+MSS du Kreiz Breizh - CPTS
+MSS du Pays de Du Guesclin - OISCL
+MSS de Cornouaille - CHIC
+MSS des Pays de Morlaix - CH
+MSS Ouessant - Sport Santé Ouessant
+MSS Pays de Brest - UFOLEP 29
+MSS Poher Menez Are
+MSS UBOuge de Brest
+MSS Breizh Activ Bain - OCAS
+MSS de Redon - Commune
+MSS de Rennes - CHU
+MSS de Rennes - UFOLEP 35
+MSS de St Jouan - Octopus Sport
+MSS de St Malo - Sports Mer Santé
+MSS du Pays de Brocéliande
+MSS du Pays de Romillé
+MSS du Poudouvre - Dinard Sport Santé
+MSS Fougères
+MSS Ker Sport Santé
+MSS Marches de Bretagne - CPTS
+MSS Patis F'orm
+MSS Roche aux Fées Communauté
+MSS Saint-Hélier
+MSS Vitré Communauté
+Maison Sport-Santé Questembert
+MSS Augus'Ti Sport Santé
+MSS Centre Morbihan
+MSS de Lorient
+MSS du Centre Bretagne Loudéac-Pontivy (Pontivy)
+MSS en Brocéliande
+MSS Pays de Guer
+MSS UFOLEP 56
+MSS Vannes Agglomération
 
 [Documents]

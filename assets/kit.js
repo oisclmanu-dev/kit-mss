@@ -9,7 +9,7 @@
 (function () {
   "use strict";
   var $ = function (id) { return document.getElementById(id); };
-  var LOGOS = ["logo.png", "logo.jpg", "logo.jpeg", "logo.svg", "logo.webp", "logo.gif"];
+  var LOGOS = ["logo.png", "logo.jpg", "logo.svg", "logo.webp"];
   var S = { reglages: {}, rubriques: [], blocs: [] };
 
   /* ---------- utilitaires ---------- */
@@ -81,6 +81,8 @@
       rub.intro = cfg.val("Introduction", "Intro", "Description");
       rub.titreBlocs = cfg.val("Titre des blocs");
       rub.page = cfg.val("Page");
+      rub.carte = cfg.val("Carte", "Intégration", "Integration");
+      rub.hauteurCarte = parseInt(cfg.val("Hauteur de la carte", "Hauteur carte"), 10) || 480;
       rub.documents = (cfg.listes.documents || []).map(function (d) {
         var p = d.split("|"), cible = (p[1] || p[0]).trim(), lib = p[1] ? p[0].trim() : "";
         return { libelle: lib, fichier: cible, url: lien(rub.base, cible) };
@@ -107,12 +109,18 @@
   window.__kitLogo = function (img) {
     var l = (img.getAttribute("data-suivants") || "").split("\n").filter(Boolean);
     if (l.length) { img.setAttribute("data-suivants", l.slice(1).join("\n")); img.src = l[0]; }
-    else { var d = document.createElement("div"); d.className = "logo logo-vide"; d.textContent = img.getAttribute("data-initiale") || ""; img.replaceWith(d); }
+    else img.remove();
+  };
+  window.__kitLogoOk = function (img) {
+    img.style.display = "";
+    var v = img.parentNode && img.parentNode.querySelector(".logo-vide"); if (v) v.remove();
   };
   function logoHtml(b) {
-    var ini = esc(String(b.nom).trim().charAt(0).toUpperCase());
-    if (!b.logos.length) return '<div class="logo logo-vide">' + ini + "</div>";
-    return '<img class="logo" alt="" src="' + esc(b.logos[0]) + '" data-initiale="' + ini + '" data-suivants="' + esc(b.logos.slice(1).join("\n")) + '" onerror="__kitLogo(this)">';
+    var court = String(b.nom).trim().replace(/^(maisons?\s+sport[-\s]?sant[ée]|mss)\s*/i, "").replace(/^(de\s+la|de\s+l['’]|d['’]|l['’]|du|des|de|en|la|le|les)\s*/i, "");
+    var ini = esc((court || String(b.nom).trim()).charAt(0).toUpperCase());
+    var vide = '<div class="logo logo-vide">' + ini + "</div>";
+    if (!b.logos.length) return vide;
+    return '<span class="logo-box">' + vide + '<img class="logo" alt="" style="display:none" src="' + esc(b.logos[0]) + '" data-suivants="' + esc(b.logos.slice(1).join("\n")) + '" onload="__kitLogoOk(this)" onerror="__kitLogo(this)"></span>';
   }
 
   /* ---------- carte d'un bloc ---------- */
@@ -127,8 +135,8 @@
     var l = [];
     if (b.ville || b.adresse) l.push("📍 " + esc([b.adresse, b.ville].filter(Boolean).join(", ")));
     if (b.contact) l.push("👤 " + esc(b.contact));
-    if (b.telephone) l.push('📞 <a href="tel:' + esc(String(b.telephone).replace(/\s/g, "")) + '">' + esc(b.telephone) + "</a>");
-    if (b.email) l.push('✉️ <a href="mailto:' + esc(b.email) + '">' + esc(b.email) + "</a>");
+    if (b.telephone) l.push("📞 " + esc(b.telephone).replace(/(?:\+33\s?|0)[1-9](?:[\s.]?\d{2}){4}/g, function (t) { return '<a href="tel:' + t.replace(/[\s.]/g, "") + '">' + t + "</a>"; }));
+    if (b.email) l.push("✉️ " + String(b.email).split(/[;,\s]+/).filter(function (e) { return e.indexOf("@") > 0; }).map(function (e) { return '<a href="mailto:' + esc(e) + '">' + esc(e) + "</a>"; }).join(", "));
     if (b.site) l.push('🌐 <a href="' + esc(/^https?:/i.test(b.site) ? b.site : "https://" + b.site) + '" target="_blank" rel="noopener">' + esc(String(b.site).replace(/^https?:\/\//, "")) + "</a>");
     if (b.document) l.push('📄 <a href="' + esc(lien(b.base, b.document)) + '" target="_blank">' + esc(b.document.split("/").pop()) + "</a>");
     b.autres.forEach(function (a) { l.push("<b>" + esc(a[0]) + "</b> : " + esc(a[1]).replace(/\n/g, "<br>")); });
@@ -176,6 +184,10 @@
   function afficherRubrique(r) {
     var h = '<div class="rub-head"><h2>' + esc(r.titre) + "</h2>" + (r.intro ? "<p>" + esc(r.intro).replace(/\n/g, "<br>") + "</p>" : "") + "</div>";
     if (r.erreur) h += '<div class="alerte">⚠️ Fichier <code>config.txt</code> introuvable dans <b>' + esc(r.base) + "</b>. Vérifiez que le dossier porte exactement le nom indiqué dans <code>menu.txt</code>.</div>";
+    if (r.carte && /^https?:\/\//i.test(r.carte)) {
+      h += '<div class="carte"><iframe src="' + esc(urlCarte(r.carte)) + '" style="height:' + r.hauteurCarte + 'px" loading="lazy" allowfullscreen title="Carte"></iframe>' +
+        '<a class="carte-lien" href="' + esc(r.carte) + '" target="_blank" rel="noopener">⤢ Ouvrir la carte en plein écran</a></div>';
+    }
     if (r.page) h += '<div class="contenu" id="rubPage"><div class="empty">Chargement…</div></div>';
     if (r.blocs.length) {
       h += r.titreBlocs ? "<h3 class=\"section\">" + esc(r.titreBlocs) + "</h3>" : "";
@@ -200,7 +212,7 @@
         h += '<ul class="docs">' + groupes[g].map(docHtml).join("") + "</ul>";
       });
     }
-    if (!r.page && !r.blocs.length && !r.documents.length && !r.erreur) h += '<div class="empty">Cette rubrique est encore vide.</div>';
+    if (!r.page && !r.carte && !r.blocs.length && !r.documents.length && !r.erreur) h += '<div class="empty">Cette rubrique est encore vide.</div>';
     $("viewRub").innerHTML = h;
     $("viewRub").scrollTop = 0;
 
@@ -227,6 +239,12 @@
       ["rq", "rs", "rd"].forEach(function (id) { if ($(id)) $(id).addEventListener(id === "rq" ? "input" : "change", rendu); });
       rendu();
     }
+  }
+  /* Carte : pour uMap, désactive le zoom à la molette (évite de bloquer le défilement de la page) */
+  function urlCarte(u) {
+    if (!/umap\.openstreetmap/i.test(u) || /[?&]scrollWheelZoom=/.test(u)) return u;
+    var i = u.indexOf("#"), base = i >= 0 ? u.slice(0, i) : u, hash = i >= 0 ? u.slice(i) : "";
+    return base + (base.indexOf("?") >= 0 ? "&" : "?") + "scrollWheelZoom=false&fullscreenControl=true&captionBar=false" + hash;
   }
   var ICO = { pdf: "📕", doc: "📘", docx: "📘", odt: "📘", xls: "📗", xlsx: "📗", ods: "📗", csv: "📗", ppt: "📙", pptx: "📙", odp: "📙", png: "🖼️", jpg: "🖼️", jpeg: "🖼️", svg: "🖼️", mp4: "🎬", mp3: "🎧", zip: "🗜️" };
   function docHtml(d) {
@@ -285,7 +303,7 @@
     $("heroText").textContent = R.accueil || "";
     if (R.couleur) document.documentElement.style.setProperty("--primaire", R.couleur);
     var logos = R.logo ? [lien("", R.logo)] : LOGOS.map(function (f) { return "logo/" + f; });
-    $("brandLogo").innerHTML = logoHtml({ nom: "♥", logos: logos }).replace('class="logo"', 'class="logo-site"');
+    $("brandLogo").innerHTML = logoHtml({ nom: "♥", logos: logos }).replace('class="logo" alt', 'class="logo-site" alt');
     remplir($("fStatut"), uniq(S.blocs, "statut"));
     remplir($("fDept"), uniq(S.blocs, "departement"));
     remplir($("fRub"), S.rubriques.filter(function (r) { return r.blocs.length; }).map(function (r) { return r.titre; }));

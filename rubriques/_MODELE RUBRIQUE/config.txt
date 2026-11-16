@@ -5,6 +5,8 @@
 
 Introduction : Phrase d'introduction de la rubrique.
 # Page : page.html
+# Carte : https://umap.openstreetmap.fr/fr/map/...
+# Hauteur de la carte : 480
 # Titre des blocs : Nos structures
 
 [Blocs]

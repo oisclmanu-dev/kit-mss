@@ -2,9 +2,9 @@
 #  CONFIGURATION DE LA RUBRIQUE « Partenaires »
 #  • Introduction : texte affiché sous le titre
 #  • Page : page.html  → contenu libre (facultatif)
-#  • [Blocs] : une ligne par bloc = nom EXACT d'un sous-dossier de cette
+#  • Section Blocs : une ligne par bloc = nom EXACT d'un sous-dossier de cette
 #    rubrique. Chaque bloc a son config.txt et son logo (logo.png…).
-#  • [Documents] : un fichier par ligne (chemin depuis ce dossier).
+#  • Section Documents : un fichier par ligne (chemin depuis ce dossier).
 #    Pour un libellé personnalisé :  Mon libellé | documents/fichier.pdf
 # =====================================================================
 
