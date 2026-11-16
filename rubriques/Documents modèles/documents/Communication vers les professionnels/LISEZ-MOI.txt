@@ -1,0 +1,2 @@
+Déposez ici les modèles de la catégorie « Communication vers les professionnels »,
+puis ajoutez une ligne sous « Catégorie : Communication vers les professionnels » dans le config.txt de la rubrique.
