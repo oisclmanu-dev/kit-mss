@@ -1,0 +1,11 @@
+# Fiche d'une structure identifiée — logo : logo.png dans ce dossier
+# Type d'offre : Sport Santé, APA, ou « Sport Santé, APA » si les deux
+
+Nom : Exemple - Créneau APA cardio-respiratoire
+Type d'offre : APA
+Statut juridique : Association loi 1901
+Département : 35 - Ille-et-Vilaine
+Ville : 
+Description : Exemple fictif à remplacer. Programme d'activité physique adaptée sur prescription, pour des personnes atteintes de maladies cardio-respiratoires.
+Encadrement : enseignant en APA (licence STAPS APA-S)
+Limitations accueillies : minimes et modérées

@@ -1,0 +1,22 @@
+# =====================================================================
+#  CONFIGURATION DE LA RUBRIQUE « Identification SS »
+#  • Introduction : texte affiché sous le titre
+#  • page.html (dans ce dossier) → démarche + tableaux Sport-Santé / APA
+#  • Filtres : nom d'un champ des fiches → crée un filtre dans la rubrique
+#    (ici « Type d'offre » : Sport Santé, APA, ou les deux séparés par une virgule)
+#  • Section Blocs : une ligne par structure identifiée = nom EXACT de son
+#    sous-dossier (avec config.txt et logo). Modèle : rubriques/_MODELE BLOC
+# =====================================================================
+
+Introduction : Comment identifier une structure, un club ou une activité sport-santé, et bien distinguer le Sport-Santé de l'Activité Physique Adaptée (APA).
+Filtres : Type d'offre
+Titre des blocs : Structures et offres identifiées
+
+[Blocs]
+Exemple - Club de marche nordique
+Exemple - Créneau APA cardio-respiratoire
+
+[Documents]
+Prescription de l'activité physique adaptée (site gouvernemental) | https://www.pour-les-personnes-agees.gouv.fr/preserver-son-autonomie/preserver-son-autonomie-et-sa-sante/prescription-de-l-activite-physique-adaptee
+Décrets de mars 2023 sur l'APA : ce qui change (Vidal) | https://www.vidal.fr/actualites/30175-activite-physique-adaptee-parutions-des-decrets-relatifs-aux-prescripteurs-et-aux-patients.html
+Arrêté du 28 décembre 2023 (formulaire de prescription d'APA) | https://www.ffaviron.fr/wp-content/uploads/2025/04/JO_Arrete_formulaire-prescription-APA_28-12-2023.pdf

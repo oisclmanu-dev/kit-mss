@@ -1,0 +1,17 @@
+# Bloc issu du référentiel des partenariats 2025 du collectif MSS Bretagne.
+# Chaque ligne = type de partenaire, puis nombre total de citations et détail par département.
+
+Nom : Secteur Institutions
+Département : Toute la Bretagne
+Description : Services de l'État, organismes de protection sociale et institutions. Nombre de citations par les 15 MSS ayant répondu, par département.
+
+ARS : 15 citations (56 → 4, 29 → 2, 35 → 5, 22 → 4)
+DRAJES : 14 citations (56 → 4, 29 → 2, 35 → 5, 22 → 3)
+CPAM : 10 citations (56 → 2, 29 → 2, 35 → 3, 22 → 3)
+SDJES : 7 citations (56 → 0, 29 → 2, 35 → 3, 22 → 2)
+CARSAT : 6 citations (56 → 2, 29 → 1, 35 → 1, 22 → 2)
+Éducation nationale : 5 citations (56 → 1, 29 → 2, 35 → 2, 22 → 0)
+CAF : 3 citations (56 → 0, 29 → 1, 35 → 2, 22 → 0)
+DREETS : 2 citations (56 → 0, 29 → 1, 35 → 1, 22 → 0)
+IREPS : 1 citation (56 → 0, 29 → 0, 35 → 1, 22 → 0)
+CDG : 1 citation (56 → 0, 29 → 0, 35 → 0, 22 → 1)

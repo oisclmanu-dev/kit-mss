@@ -1,0 +1,23 @@
+# =====================================================================
+#  CONFIGURATION DE LA RUBRIQUE « Partenaires »
+#  • Introduction : texte affiché sous le titre
+#  • page.html (dans ce dossier) → contenu libre affiché sous l'introduction
+#  • Section Blocs : une ligne par bloc = nom EXACT d'un sous-dossier de cette
+#    rubrique. Chaque bloc a son config.txt et son logo (logo.png…).
+#  • Section Documents : un fichier par ligne (chemin depuis ce dossier).
+#    Pour un libellé personnalisé :  Mon libellé | documents/fichier.pdf
+# =====================================================================
+
+Introduction : Les partenariats des Maisons Sport-Santé bretonnes, d'après l'état des lieux 2025 du collectif. Pour connaître le détail d'un partenariat, contactez la MSS concernée.
+Titre des blocs : Partenaires cités, par secteur
+
+[Blocs]
+Secteur Sport
+Secteur Santé
+Secteur Social
+Secteur Institutions
+Secteur Collectivités
+Secteur Emploi et formation
+Autres partenaires
+
+[Documents]
