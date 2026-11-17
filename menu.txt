@@ -8,16 +8,18 @@
 
 Titre : Kit collectif MSS BZH
 Sous-titre : Maisons Sport-Santé
-Message d'accueil : Retrouvez ici les procédures, la liste des MSS du collectif, les partenaires, les financements, les contacts, les formations et des documents modèles.
+Message d'accueil : Retrouvez ici le rôle des MSS, les procédures, la liste des MSS du collectif, les partenaires, les financements, les contacts, les formations, des documents modèles et le livret d'accueil des nouvelles MSS.
 Couleur : #0f766e
 
 
 [Menu]
+Présentation du rôle des MSS
 Procédure Habilitation & extension MSS
-Référencement SS
+Identification SS
 Liste MSS collectif
 Partenaires
 Financements
 Contacts
 Formations
 Documents modèles
+Livret d'accueil

@@ -59,6 +59,9 @@ https://www.exemple.fr/guide</pre>
 <p>• <b>page.html</b> : chaque rubrique a sa page, affichée automatiquement sous l'introduction. On y met du texte mis en forme (intertitres, étapes, tableaux), des images ou une carte. Pour intégrer une carte uMap ou une vidéo, collez son code <code>&lt;iframe&gt;</code> dans la page (exemple dans <code>Liste MSS collectif/page.html</code>).<br>
 • <b>[Documents]</b> : un fichier par ligne. <code>Libellé | chemin</code> pour choisir le texte affiché. Un sous-dossier (ex. <code>documents/Modèles/</code>) crée un groupe. Les liens web sont acceptés.</p>
 
+<h3>Ajouter un filtre personnalisé</h3>
+<p>Dans le <code>config.txt</code> d'une rubrique, la ligne <code>Filtres : Type d'offre</code> crée un filtre à partir du champ « Type d'offre » des fiches. Dans chaque fiche, écrivez par exemple <code>Type d'offre : APA</code> ou <code>Type d'offre : Sport Santé, APA</code>. La valeur s'affiche aussi en badge violet. Plusieurs filtres sont possibles, séparés par des virgules.</p>
+
 <h3>Classer les documents par catégories</h3>
 <p>Dans la section <code>[Documents]</code>, une ligne <code>Catégorie : Nom</code> crée une sous-catégorie. Les documents listés en dessous lui appartiennent. Une catégorie sans document s'affiche quand même, avec la mention « Aucun document pour le moment ». Exemple (rubrique « Documents modèles ») :</p>
 <pre>[Documents]
@@ -100,6 +103,15 @@ Document : plaquette.pdf</pre>
   <p>Sur la page d'accueil, le bouton <b>📄 Générer le PDF</b> rassemble le kit dans un document : couverture, sommaire cliquable, puis une section par rubrique. Une fenêtre permet de choisir les rubriques et le contenu (textes, fiches, liste des documents).</p>
   <p>À l'étape suivante, choisissez <b>« Enregistrer au format PDF »</b> comme imprimante. Les cartes intégrées (uMap) sont remplacées par leur lien.</p>
   <p><b>Joindre les documents :</b> les fichiers PDF et les images déposés dans les dossiers <code>documents</code> du kit sont rassemblés dans un second fichier, « … - annexes.pdf », téléchargé automatiquement. Chaque document y est précédé d'une page « Annexe n° ». Les documents qui sont de simples liens vers d'autres sites ne peuvent pas être joints : ils restent cités avec leur adresse.</p>
+</div>
+
+<h2>Le livret d'accueil</h2>
+<div class="bloc">
+  <p>La rubrique <b>Livret d'accueil</b> affiche un aperçu du livret et le bouton <b>📘 Générer le livret PDF</b> : couverture avec le logo du collectif, puis 10 pages A4 numérotées.</p>
+  <p><b>Logo de la couverture :</b> déposez <code>logo.png</code> (ou .jpg, .svg) dans le dossier <code>rubriques/Livret d'accueil</code>. À défaut, le logo du site (dossier <code>logo</code>) est utilisé.</p>
+  <p><b>Textes de la couverture :</b> lignes <code>Titre du livret</code>, <code>Sous-titre du livret</code> et <code>Mention du livret</code> du <code>config.txt</code>.</p>
+  <p><b>Contenu des pages :</b> dans <code>page.html</code>, chaque bloc <code>&lt;section class="livret-page" data-titre="…"&gt;</code> correspond à une page A4. Les pages qui ont un <code>data-titre</code> figurent dans le sommaire, dont les numéros sont calculés automatiquement. Le tableau des financements se remplit à partir des fiches de la rubrique Financements. Gardez des textes courts : une page ne peut pas dépasser une feuille A4.</p>
+  <p>Les éléments visuels du livret (frise, barres, niveaux, cercles, tableaux) peuvent servir dans n'importe quelle <code>page.html</code>, comme dans la rubrique « Présentation du rôle des MSS ».</p>
 </div>
 
 <h2>Bon à savoir</h2>

@@ -82,6 +82,8 @@
       rub.intro = cfg.val("Introduction", "Intro", "Description");
       rub.titreBlocs = cfg.val("Titre des blocs");
       rub.titreDocs = cfg.val("Titre des documents");
+      rub.cfg = cfg;
+      rub.filtres = (cfg.val("Filtres", "Filtre") || "").split(",").map(function (x) { return x.trim(); }).filter(Boolean);
       rub.pageDeclaree = !!cfg.val("Page");
       rub.page = cfg.val("Page") || "page.html";
       rub.carte = cfg.val("Carte", "Intégration", "Integration");
@@ -138,7 +140,12 @@
     while ((idx = n.indexOf(q, i)) >= 0) { out += t.slice(i, idx) + "<mark>" + t.slice(idx, idx + q.length) + "</mark>"; i = idx + q.length; }
     return out + t.slice(i);
   }
-  function carte(b, q, avecRubrique) {
+  function valeursChamp(b, nom) {
+    var k = ALIAS[cle(nom)], v = k ? b[k] : valeurAutre(b, nom);
+    return String(v || "").split(/\s*[,;\/]\s*|\s+et\s+/).map(function (x) { return x.trim(); }).filter(Boolean);
+  }
+  function carte(b, q, avecRubrique, champsBadges) {
+    champsBadges = champsBadges || [];
     if (b.erreur) return '<article class="card card-erreur"><h3>⚠️ ' + esc(b.dossier) + '</h3><p>Fichier <code>config.txt</code> introuvable dans le dossier <b>' + esc(b.base) + "</b>. Vérifiez que le nom du dossier correspond exactement à la ligne du fichier de la rubrique.</p></article>";
     var l = [];
     if (b.ville || b.adresse) l.push("📍 " + esc([b.adresse, b.ville].filter(Boolean).join(", ")));
@@ -147,9 +154,10 @@
     if (b.email) l.push("✉️ " + String(b.email).split(/[;,\s]+/).filter(function (e) { return e.indexOf("@") > 0; }).map(function (e) { return '<a href="mailto:' + esc(e) + '">' + esc(e) + "</a>"; }).join(", "));
     if (b.site) l.push('🌐 <a href="' + esc(/^https?:/i.test(b.site) ? b.site : "https://" + b.site) + '" target="_blank" rel="noopener">' + esc(String(b.site).replace(/^https?:\/\//, "")) + "</a>");
     if (b.document) l.push('📄 <a href="' + esc(lien(b.base, b.document)) + '" target="_blank">' + esc(b.document.split("/").pop()) + "</a>");
-    var x = b.autres.map(function (a) { return "<b>" + esc(a[0]) + "</b> : " + liens(esc(a[1])).replace(/\n/g, "<br>"); });
+    var x = b.autres.filter(function (a) { return !champsBadges.some(function (c) { return cle(c) === cle(a[0]); }); }).map(function (a) { return "<b>" + esc(a[0]) + "</b> : " + liens(esc(a[1])).replace(/\n/g, "<br>"); });
     return '<article class="card"><div class="card-head">' + logoHtml(b) + "<div><h3>" + surligner(b.nom, q) + '</h3><div class="badges">' +
       (avecRubrique ? '<span class="badge type">' + esc(b.type || b.rubrique) + "</span>" : "") +
+      champsBadges.map(function (c) { return valeursChamp(b, c).map(function (v) { return '<span class="badge filtre">' + esc(v) + "</span>"; }).join(""); }).join("") +
       (b.emetteur ? '<span class="badge emetteur">🏛️ ' + esc(b.emetteur) + "</span>" : "") +
       (b.statut ? '<span class="badge">' + esc(b.statut) + "</span>" : "") +
       (b.departement ? '<span class="badge">' + esc(b.departement) + "</span>" : "") +
@@ -175,7 +183,7 @@
   }
 
   /* ---------- menu & accueil ---------- */
-  var ICONES = [[/habilit|proc[eé]dure/i, "📋"], [/r[eé]f[eé]renc/i, "🏷️"], [/liste|annuaire|collectif|mss/i, "📍"], [/partenaire/i, "🤝"], [/financ/i, "💶"], [/contact/i, "☎️"], [/formation/i, "🎓"], [/actu/i, "📰"], [/agenda|calendrier|[eé]v[eé]nement/i, "📅"], [/document|ressource|outil/i, "📂"], [/faq|question/i, "❓"], [/club/i, "🏃"]];
+  var ICONES = [[/livret/i, "📘"], [/identif/i, "🏷️"], [/r[ôo]le|pr[ée]sentation/i, "🧭"], [/habilit|proc[eé]dure/i, "📋"], [/r[eé]f[eé]renc/i, "🏷️"], [/liste|annuaire|collectif|mss/i, "📍"], [/partenaire/i, "🤝"], [/financ/i, "💶"], [/contact/i, "☎️"], [/formation/i, "🎓"], [/actu/i, "📰"], [/agenda|calendrier|[eé]v[eé]nement/i, "📅"], [/document|ressource|outil/i, "📂"], [/faq|question/i, "❓"], [/club/i, "🏃"]];
   function icone(n) { for (var i = 0; i < ICONES.length; i++) if (ICONES[i][0].test(n)) return ICONES[i][1]; return "📁"; }
   function construireMenu() {
     var h = '<a href="#/accueil" data-route="accueil"><span class="ico">🏠</span>Accueil</a>', t = "";
@@ -204,8 +212,10 @@
     if (r.blocs.length) {
       h += r.titreBlocs ? "<h3 class=\"section\">" + esc(r.titreBlocs) + "</h3>" : "";
       var st = uniq(r.blocs, "statut"), dp = uniq(r.blocs, "departement"), em = uniq(r.blocs, "emetteur");
-      if (r.blocs.length > 3 || st.length > 1 || dp.length > 1 || em.length > 1) {
+      var fx = r.filtres.map(function (f) { var s0 = {}; r.blocs.forEach(function (b) { valeursChamp(b, f).forEach(function (v) { s0[v] = 1; }); }); return { nom: f, vals: Object.keys(s0).sort(trier) }; });
+      if (r.blocs.length > 3 || st.length > 1 || dp.length > 1 || em.length > 1 || r.filtres.length) {
         h += '<div class="rub-filtres"><input type="search" id="rq" placeholder="Filtrer…">' +
+          fx.map(function (f, i) { return '<select id="rx' + i + '" data-champ="' + esc(f.nom) + '"><option value="">' + esc(f.nom) + " : tous</option>" + f.vals.map(function (x) { return "<option>" + esc(x) + "</option>"; }).join("") + "</select>"; }).join("") +
           (em.length > 1 ? '<select id="re"><option value="">Tous organismes</option>' + em.map(function (x) { return "<option>" + esc(x) + "</option>"; }).join("") + "</select>" : "") +
           (st.length > 1 ? '<select id="rs"><option value="">Tous statuts juridiques</option>' + st.map(function (x) { return "<option>" + esc(x) + "</option>"; }).join("") + "</select>" : "") +
           (dp.length > 1 ? '<select id="rd"><option value="">Tous départements</option>' + dp.map(function (x) { return "<option>" + esc(x) + "</option>"; }).join("") + "</select>" : "") + "</div>";
@@ -235,15 +245,20 @@
         if (el.tagName === "A" && !/^#/.test(el.getAttribute("href") || "")) el.setAttribute("target", "_blank");
       });
       box.innerHTML = doc.body.innerHTML;
+      preparerContenu(box, r);
     }).catch(function () { var box = $("rubPage"); if (!box) return; if (r.pageDeclaree) box.innerHTML = '<div class="alerte">⚠️ Fichier <b>' + esc(r.base + r.page) + "</b> introuvable.</div>"; else box.remove(); });
 
     if (r.blocs.length) {
       var rendu = function () {
         var res = filtrer(r.blocs, $("rq") ? $("rq").value : "", $("rs") ? $("rs").value : "", $("rd") ? $("rd").value : "", "", $("re") ? $("re").value : "");
+        document.querySelectorAll("#viewRub select[data-champ]").forEach(function (sel) {
+          if (sel.value) res = res.filter(function (b) { return valeursChamp(b, sel.getAttribute("data-champ")).indexOf(sel.value) >= 0; });
+        });
         $("rc").textContent = r.blocs.length > 3 ? res.length + " sur " + r.blocs.length : "";
-        $("rcards").innerHTML = res.length ? res.map(function (b) { return carte(b, "", false); }).join("") : '<div class="empty">Aucun résultat.</div>';
+        $("rcards").innerHTML = res.length ? res.map(function (b) { return carte(b, "", false, r.filtres); }).join("") : '<div class="empty">Aucun résultat.</div>';
       };
       ["rq", "rs", "rd", "re"].forEach(function (id) { if ($(id)) $(id).addEventListener(id === "rq" ? "input" : "change", rendu); });
+      document.querySelectorAll("#viewRub select[data-champ]").forEach(function (sel) { sel.addEventListener("change", rendu); });
       rendu();
     }
   }
@@ -405,6 +420,65 @@
       setTimeout(function () { window.print(); }, 400);
     });
   }
+  /* ---------- Contenus automatiques et livret PDF ---------- */
+  function valeurAutre(b, cle0) { var a = b.autres.filter(function (x) { return cle(x[0]) === cle(cle0); })[0]; return a ? a[1] : ""; }
+  function tableFinancements() {
+    var rub = S.rubriques.filter(function (x) { return /financ/i.test(x.titre); })[0];
+    var bl = rub ? rub.blocs.filter(function (b) { return !b.erreur; }) : [];
+    if (!bl.length) return '<p class="vide-cat">Aucune fiche dans la rubrique Financements.</p>';
+    return '<table class="lv-table"><tr><th>Émetteur</th><th>Dispositif</th><th>Montant</th></tr>' + bl.map(function (b) {
+      return "<tr><td><b>" + esc(b.emetteur || "") + "</b></td><td>" + esc(b.nom) + "</td><td>" + esc(valeurAutre(b, "Montant") || "—") + "</td></tr>";
+    }).join("") + "</table>";
+  }
+  function preparerContenu(box, r) {
+    box.querySelectorAll('[data-auto="financements"]').forEach(function (x) { x.innerHTML = tableFinancements(); });
+    var lv = box.querySelector("[data-livret]");
+    if (!lv) return;
+    var pages = lv.querySelectorAll(".livret-page");
+    pages.forEach(function (p, i) { p.setAttribute("data-num", "Page " + (i + 1)); });
+    var som = "<ol class=\"lv-sommaire\">";
+    pages.forEach(function (p, i) { var t = p.getAttribute("data-titre"); if (t && i > 0) som += "<li><span>" + esc(t) + "</span><i></i><b>" + (i + 1) + "</b></li>"; });
+    som += "</ol>";
+    lv.querySelectorAll('[data-auto="sommaire"]').forEach(function (x) { x.innerHTML = som; });
+    var barre = document.createElement("div");
+    barre.className = "lv-barre";
+    barre.innerHTML = '<button type="button" class="btn-primaire" id="btnLivret">📘 Générer le livret PDF</button><span>Couverture + ' + pages.length + " pages A4 · choisissez ensuite « Enregistrer au format PDF ».</span>";
+    lv.parentNode.insertBefore(barre, lv);
+    $("btnLivret").onclick = function () { genererLivret(r, lv, this); };
+  }
+  function trouverImage(cands) {
+    return cands.reduce(function (p, u) {
+      return p.then(function (ok) { return ok || fetch(chemin(u), { method: "HEAD", cache: "no-store" }).then(function (x) { return x.ok ? chemin(u) : null; }).catch(function () { return null; }); });
+    }, Promise.resolve(null));
+  }
+  function genererLivret(r, lv, btn) {
+    var R = S.reglages, c = r.cfg;
+    btn.disabled = true; btn.textContent = "⏳ Préparation…";
+    var cands = LOGOS.map(function (f) { return r.base + f; }).concat(R.logo ? [R.logo] : LOGOS.map(function (f) { return "logo/" + f; }));
+    trouverImage(cands).then(function (logo) {
+      var titre = c.val("Titre du livret") || r.titre, sous = c.val("Sous-titre du livret"), mention = c.val("Mention du livret") || R.titre;
+      var annee = new Date().getFullYear();
+      var h = '<section class="lv-cover">' +
+        (logo ? '<img class="lv-logo" src="' + esc(logo) + '" alt="">' : '<div class="lv-logo lv-logo-vide">MSS<br>BZH</div>') +
+        '<div class="lv-cover-titre">' + esc(titre) + "</div>" + (sous ? '<div class="lv-cover-sous">' + esc(sous) + "</div>" : "") +
+        '<div class="lv-cover-pied"><b>' + esc(mention) + "</b><br>Édition " + annee + "</div></section>";
+      var pages = lv.querySelectorAll(".livret-page");
+      pages.forEach(function (p, i) {
+        h += '<section class="lv-page">' + p.innerHTML + '<div class="lv-pied"><span>' + esc(sous || titre) + "</span><span>" + (i + 1) + "</span></div></section>";
+      });
+      $("print").className = "livret-print";
+      $("print").innerHTML = h;
+      var imgs = $("print").querySelectorAll("img");
+      return Promise.all(Array.prototype.map.call(imgs, function (im) { return im.complete ? 1 : new Promise(function (ok) { im.onload = im.onerror = ok; setTimeout(ok, 4000); }); }));
+    }).then(function () {
+      var ancien = document.title;
+      document.title = (c.val("Titre du livret") || r.titre).replace(/[\\/:*?"<>|]/g, "") + " - livret";
+      var fin = function () { document.title = ancien; $("print").innerHTML = ""; $("print").className = ""; btn.disabled = false; btn.textContent = "📘 Générer le livret PDF"; window.removeEventListener("afterprint", fin); };
+      window.addEventListener("afterprint", fin);
+      setTimeout(function () { window.print(); }, 300);
+    });
+  }
+
   /* Regroupe les documents : catégories déclarées (même vides), sinon sous-dossiers */
   function groupesDocs(r) {
     var out = [], idx = {};

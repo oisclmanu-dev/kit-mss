@@ -215,3 +215,124 @@ h4.groupe{margin:16px 0 6px;font-size:15px}
 .vide-cat{color:var(--texte-doux);font-size:13.5px;font-style:italic;margin:2px 0 10px 4px}
 h4.groupe{margin:20px 0 8px;font-size:15.5px;color:var(--primaire-fonce)}
 @media print{#print h3.p-cat{font-size:11.5pt;margin:4mm 0 1mm;color:#333}}
+
+/* ===== Composants « livret » (utilisables dans toute page.html) ===== */
+.lv-barre{display:flex;align-items:center;gap:14px;flex-wrap:wrap;background:var(--carte);border:1px solid var(--bord);border-radius:12px;padding:12px 16px;margin-bottom:18px}
+.lv-barre span{color:var(--texte-doux);font-size:13.5px}
+.livret{display:grid;gap:22px}
+.livret-page{background:#fff;border:1px solid var(--bord);border-radius:12px;padding:28px 34px 38px;box-shadow:var(--ombre);position:relative}
+.livret-page[data-num]::after{content:attr(data-num);position:absolute;bottom:10px;right:16px;font-size:12px;color:#9ca3af}
+.lv-titre{font-size:22px;color:var(--primaire-fonce);margin:0 0 10px;padding-bottom:8px;border-bottom:3px solid var(--primaire)}
+.contenu .lv-titre:first-child{margin-top:0}
+.lv-chapo{font-size:15px;color:#374151;font-weight:500;margin:0 0 14px}
+.lv-sous{font-size:16px;color:var(--primaire-fonce);margin:20px 0 10px}
+.lv-note{font-size:13px;color:var(--texte-doux);font-style:italic;margin-top:14px}
+.lv-encart{background:var(--primaire-clair);border-radius:12px;padding:12px 16px;margin-top:16px}
+.lv-encart p{margin:4px 0}
+.lv-citation{border-left:4px solid var(--accent);background:#fffbeb;margin:14px 0;padding:10px 16px;font-style:italic;border-radius:0 10px 10px 0}
+.lv-citation span{display:block;font-style:normal;font-size:12.5px;color:var(--texte-doux);margin-top:4px}
+.lv-signature{text-align:right;font-weight:700;color:var(--primaire-fonce);margin-top:16px}
+.lv-sommaire{list-style:none;padding:0;margin:8px 0 16px;counter-reset:s}
+.lv-sommaire li{display:flex;align-items:baseline;gap:8px;padding:9px 0;font-size:16px;font-weight:600;counter-increment:s}
+.lv-sommaire li::before{content:counter(s);display:inline-grid;place-items:center;width:26px;height:26px;border-radius:50%;background:var(--primaire);color:#fff;font-size:13px;flex:none}
+.lv-sommaire i{flex:1;border-bottom:2px dotted #cbd5e1;transform:translateY(-4px)}
+.lv-sommaire b{color:var(--primaire)}
+/* frise */
+.frise{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;position:relative;margin:18px 0 8px}
+.frise::before{content:"";position:absolute;left:6%;right:6%;top:17px;height:4px;background:linear-gradient(90deg,var(--primaire),#f59e0b,#7c3aed);border-radius:4px}
+.phase{position:relative;background:#fff;border:1px solid var(--bord);border-top:5px solid var(--c);border-radius:12px;padding:44px 14px 12px;--c:var(--primaire)}
+.phase-2{--c:#f59e0b}.phase-3{--c:#7c3aed}
+.phase-num{position:absolute;top:-1px;left:50%;transform:translate(-50%,-50%);width:36px;height:36px;border-radius:50%;background:var(--c);color:#fff;display:grid;place-items:center;font-weight:800;font-size:17px;border:3px solid #fff}
+.phase-tete{font-weight:800;color:#111;font-size:15px;text-align:center}
+.phase-prio{text-align:center;font-size:12px;font-weight:700;color:var(--c);text-transform:uppercase;letter-spacing:.03em;margin:4px 0 8px}
+.phase ul{margin:0;padding-left:18px;font-size:13.5px}
+.phase li{margin:5px 0}
+/* barres */
+.barres{display:grid;gap:8px;margin:6px 0}
+.barre{display:grid;grid-template-columns:42% 1fr 56px;align-items:center;gap:10px;font-size:14px}
+.barre-fond{height:14px;background:#eef2f1;border-radius:8px;overflow:hidden}
+.barre-fond span{display:block;height:100%;background:linear-gradient(90deg,var(--primaire),#14b8a6);border-radius:8px}
+.barre b{color:var(--primaire-fonce);text-align:right}
+/* cartes, niveaux, cercles, tableaux */
+.lv-deux{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.lv-carte{background:#fff;border:1px solid var(--bord);border-radius:12px;padding:12px 14px;font-size:14px}
+.lv-carte h4{margin:0 0 6px;color:var(--primaire-fonce)}
+.lv-carte ul{margin:0;padding-left:18px}
+.lv-vert{background:var(--primaire-clair);border-color:transparent}
+.lv-gris{background:#f3f4f6;border-color:transparent}
+.lv-conseils{padding-left:20px}.lv-conseils li{margin:10px 0}
+.niveaux{display:grid;gap:10px;margin:8px 0}
+.niveau{display:flex;gap:12px;align-items:flex-start;background:#fff;border:1px solid var(--bord);border-left:6px solid var(--c);border-radius:10px;padding:10px 14px;--c:var(--primaire)}
+.niveau.n2{--c:#14b8a6}.niveau.n3{--c:#f59e0b}.niveau.n4{--c:#94a3b8}
+.niveau em{font-style:normal;font-weight:800;color:var(--c);margin-left:4px}
+.niv-num{width:28px;height:28px;border-radius:50%;background:var(--c);color:#fff;display:grid;place-items:center;font-weight:800;flex:none}
+.cercles{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:8px 0 14px}
+.cercle{border-radius:14px;padding:12px;font-size:13.5px;background:var(--c);--c:#ccfbf1}
+.cercle.c2{--c:#fef3c7}.cercle.c3{--c:#ede9fe}
+.lv-table{width:100%;border-collapse:collapse;font-size:13.5px;background:#fff;border:1px solid var(--bord);border-radius:10px;overflow:hidden}
+.lv-table th{background:var(--primaire);color:#fff;text-align:left;padding:8px 10px}
+.lv-table td{padding:8px 10px;border-bottom:1px solid var(--bord);vertical-align:top}
+.lv-acompleter{color:#b45309;font-style:italic}
+@media (max-width:760px){.frise,.cercles,.lv-deux{grid-template-columns:1fr}.frise::before{display:none}.barre{grid-template-columns:1fr 60px}.barre-fond{grid-column:1/-1;grid-row:2}}
+
+/* ===== Livret imprimé : couverture + pages A4 numérotées ===== */
+@media print{
+  #print.livret-print{font-size:10pt}
+  .livret-print .lv-cover,.livret-print .lv-page{height:266mm;box-sizing:border-box;position:relative;overflow:hidden;break-after:page}
+  .livret-print .lv-cover{display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;background:linear-gradient(160deg,var(--primaire-fonce),var(--primaire) 60%,#14b8a6);color:#fff;border-radius:6mm;padding:20mm}
+  .livret-print .lv-logo{width:60mm;height:60mm;object-fit:contain;background:#fff;border-radius:10mm;padding:6mm;box-sizing:border-box;margin-bottom:14mm}
+  .livret-print .lv-logo-vide{display:grid;place-items:center;color:var(--primaire-fonce);font-size:24pt;font-weight:900;line-height:1.1}
+  .livret-print .lv-cover-titre{font-size:26pt;font-weight:800;line-height:1.2;max-width:150mm}
+  .livret-print .lv-cover-sous{font-size:15pt;margin-top:6mm;opacity:.95}
+  .livret-print .lv-cover-pied{position:absolute;bottom:16mm;left:0;right:0;font-size:11pt}
+  .livret-print .lv-page{padding:4mm 6mm 14mm}
+  .livret-print .lv-pied{position:absolute;bottom:3mm;left:6mm;right:6mm;display:flex;justify-content:space-between;border-top:1px solid #ccc;padding-top:2mm;font-size:8.5pt;color:#777}
+  .livret-print .lv-titre{font-size:18pt;border-bottom:none;padding-bottom:0;margin-bottom:5mm}
+  .livret-print .lv-titre::after{content:"";display:block;width:22mm;height:1.2mm;background:var(--primaire);margin-top:2mm;border-radius:1mm}
+  .livret-print .phase ul,.livret-print .lv-carte,.livret-print .lv-table,.livret-print .cercle{font-size:9.5pt}
+  .livret-print .lv-sommaire li{font-size:12.5pt}
+  .livret-print .barre{font-size:10pt}
+  .livret-print .frise{gap:4mm}
+}
+/* Livret imprimé : tailles agrandies pour remplir la page A4 */
+@media print{
+  #print.livret-print{font-size:12pt;line-height:1.5}
+  .livret-print .lv-page{padding:6mm 8mm 16mm}
+  .livret-print .lv-titre{font-size:24pt;margin-bottom:7mm}
+  .livret-print .lv-chapo{font-size:13.5pt;margin-bottom:7mm}
+  .livret-print .lv-sous{font-size:15pt;margin:9mm 0 4mm}
+  .livret-print p,.livret-print li{font-size:12pt}
+  .livret-print .lv-sommaire li{font-size:15pt;padding:4.5mm 0}
+  .livret-print .lv-sommaire li::before{width:9mm;height:9mm;font-size:12pt}
+  .livret-print .lv-encart{margin-top:10mm;padding:5mm 6mm}
+  .livret-print .lv-citation{margin:7mm 0;padding:4mm 6mm}
+  .livret-print .frise{margin:12mm 0 8mm;gap:5mm}
+  .livret-print .frise::before{top:6mm}
+  .livret-print .phase{padding:14mm 4mm 5mm}
+  .livret-print .phase-num{width:12mm;height:12mm;font-size:15pt}
+  .livret-print .phase-tete{font-size:13pt}
+  .livret-print .phase-prio{font-size:9pt}
+  .livret-print .phase ul,.livret-print .phase li{font-size:11pt}
+  .livret-print .phase li{margin:3mm 0}
+  .livret-print .lv-conseils li{margin:6mm 0}
+  .livret-print .barres{gap:4.5mm;margin:4mm 0}
+  .livret-print .barre{font-size:11.5pt}
+  .livret-print .barre-fond{height:5mm}
+  .livret-print .lv-carte,.livret-print .lv-carte li{font-size:11pt}
+  .livret-print .lv-carte{padding:5mm}
+  .livret-print .lv-table{font-size:11pt}
+  .livret-print .lv-table th,.livret-print .lv-table td{padding:3mm 3.5mm}
+  .livret-print .niveaux{gap:5mm;margin:6mm 0}
+  .livret-print .niveau{padding:4.5mm 5mm;font-size:12pt}
+  .livret-print .niveau small{font-size:10.5pt}
+  .livret-print .cercle{font-size:11pt;padding:5mm}
+  .livret-print .cercles{margin:5mm 0 8mm}
+  .livret-print .lv-note{font-size:10.5pt;margin-top:8mm}
+}
+@media print{
+  #print.livret-print h2.lv-titre{font-size:24pt;border-bottom:none;padding-bottom:0;margin:0 0 7mm;color:var(--primaire-fonce)}
+}
+.badge.filtre{background:#ede9fe;border-color:#c4b5fd;color:#5b21b6;font-weight:700}
+.tableau-limitations td:not(:first-child),.tableau-limitations th:not(:first-child){text-align:center;white-space:nowrap}
+.tableau-limitations td:not(:first-child){font-weight:700;color:var(--primaire)}
+.tableau-limitations small{display:block;font-weight:400;color:var(--texte-doux);white-space:normal;font-size:11px}
