@@ -13,13 +13,13 @@ Couleur : #0f766e
 
 
 [Menu]
-Présentation du rôle des MSS
-Procédure Habilitation & extension MSS
-Identification structures Sport Santé
+Presentation du role des MSS
+Procedure Habilitation & extension MSS
+Identification structures Sport Sante
 Liste MSS collectif
 Partenaires
 Financements
 Contacts
 Formations
-Documents modèles
+Documents modeles
 Livret d'accueil
