@@ -1,0 +1,11 @@
+# Bloc issu du référentiel des partenariats 2025 du collectif MSS Bretagne.
+# Chaque ligne = type de partenaire, puis nombre total de citations et détail par département.
+
+Nom : Secteur Sport
+Département : Toute la Bretagne
+Description : Associations sportives, salles de sport et éducateurs libéraux. Nombre de citations par les 15 MSS ayant répondu, par département.
+
+Associations sportives : 16 citations (56 → 4, 29 → 2, 35 → 6, 22 → 4)
+Enseignants APA libéraux : 14 citations (56 → 4, 29 → 2, 35 → 4, 22 → 4)
+Éducateurs sportifs libéraux (E3S) : 11 citations (56 → 3, 29 → 2, 35 → 3, 22 → 3)
+Salles de sport : 8 citations (56 → 3, 29 → 1, 35 → 3, 22 → 1)

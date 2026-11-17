@@ -1,0 +1,23 @@
+# =====================================================================
+#  CONFIGURATION DE LA RUBRIQUE « Financements »
+#  • Introduction : texte affiché sous le titre
+#  • page.html (dans ce dossier) → contenu libre affiché sous l'introduction
+#  • Section Blocs : une ligne par bloc = nom EXACT d'un sous-dossier de cette
+#    rubrique. Chaque bloc a son config.txt et son logo (logo.png…).
+#  • Section Documents : un fichier par ligne (chemin depuis ce dossier).
+#    Pour un libellé personnalisé :  Mon libellé | documents/fichier.pdf
+# =====================================================================
+
+Introduction : Les financements mobilisables par les Maisons Sport-Santé, classés par émetteur : ARS Bretagne, DRAJES Bretagne, Conférence des financeurs…
+Titre des blocs : Dispositifs de financement
+
+[Blocs]
+ARS - Financement des MSS (socle, demarrage, forfaits)
+ARS - Subvention APA et obesite
+ARS - Subvention APA et sante mentale
+ARS - AAP Panier de soins prevention des chutes
+ARS - AAP Parcours soins oncologiques de support
+DRAJES - Subvention Maisons Sport-Sante
+CFPPA 22 - Conference des financeurs des Cotes-d'Armor
+
+[Documents]
