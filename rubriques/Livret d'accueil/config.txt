@@ -7,10 +7,11 @@
 #  • Le contenu des 10 pages est dans page.html : chaque bloc
 #    <section class="livret-page" data-titre="…"> = une page A4.
 #    Les pages avec data-titre apparaissent dans le sommaire.
-#  • Le bouton « Générer le livret PDF » apparaît automatiquement.
+#  • Le bouton « Générer le livret d'accueil » apparaît automatiquement
+#    (ici et sur la page d'accueil du kit).
 # =====================================================================
 
-Introduction : Le livret d'accueil des nouvelles Maisons Sport-Santé bretonnes, construit à partir de l'analyse du questionnaire du groupe de travail communication. Cliquez sur « Générer le livret PDF » pour obtenir la version imprimable.
+Introduction : Le livret d'accueil des nouvelles Maisons Sport-Santé bretonnes, construit à partir de l'analyse du questionnaire du groupe de travail communication. Cliquez sur « Générer le livret d'accueil » pour obtenir la version imprimable.
 Titre du livret : Bienvenue dans le réseau des Maisons Sport-Santé de Bretagne
 Sous-titre du livret : Livret d'accueil des nouvelles MSS
 Mention du livret : Collectif des Maisons Sport-Santé de Bretagne
