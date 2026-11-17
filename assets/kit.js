@@ -415,7 +415,7 @@
       }
       var ancien = document.title;
       document.title = R.titre + " - " + date;
-      var fin = function () { document.title = ancien; $("print").innerHTML = ""; btn.disabled = false; btn.textContent = "📄 Générer le PDF"; window.removeEventListener("afterprint", fin); };
+      var fin = function () { document.title = ancien; $("print").innerHTML = ""; btn.disabled = false; btn.textContent = "📄 Exporter tout le kit en PDF"; window.removeEventListener("afterprint", fin); };
       window.addEventListener("afterprint", fin);
       setTimeout(function () { window.print(); }, 400);
     });
@@ -434,18 +434,42 @@
     box.querySelectorAll('[data-auto="financements"]').forEach(function (x) { x.innerHTML = tableFinancements(); });
     var lv = box.querySelector("[data-livret]");
     if (!lv) return;
+    var pages = remplirLivret(lv);
+    var barre = document.createElement("div");
+    barre.className = "lv-barre";
+    barre.innerHTML = '<button type="button" class="btn-primaire" id="btnLivret">📘 Générer le livret d\'accueil</button><span>Couverture + ' + pages.length + " pages A4 · choisissez ensuite « Enregistrer au format PDF ».</span>";
+    lv.parentNode.insertBefore(barre, lv);
+    $("btnLivret").onclick = function () { genererLivret(r, lv, this); };
+  }
+  function remplirLivret(lv) {
+    lv.querySelectorAll('[data-auto="financements"]').forEach(function (x) { x.innerHTML = tableFinancements(); });
     var pages = lv.querySelectorAll(".livret-page");
     pages.forEach(function (p, i) { p.setAttribute("data-num", "Page " + (i + 1)); });
     var som = "<ol class=\"lv-sommaire\">";
     pages.forEach(function (p, i) { var t = p.getAttribute("data-titre"); if (t && i > 0) som += "<li><span>" + esc(t) + "</span><i></i><b>" + (i + 1) + "</b></li>"; });
     som += "</ol>";
     lv.querySelectorAll('[data-auto="sommaire"]').forEach(function (x) { x.innerHTML = som; });
-    var barre = document.createElement("div");
-    barre.className = "lv-barre";
-    barre.innerHTML = '<button type="button" class="btn-primaire" id="btnLivret">📘 Générer le livret PDF</button><span>Couverture + ' + pages.length + " pages A4 · choisissez ensuite « Enregistrer au format PDF ».</span>";
-    lv.parentNode.insertBefore(barre, lv);
-    $("btnLivret").onclick = function () { genererLivret(r, lv, this); };
+    return pages;
   }
+  /* Bouton de la page d'accueil : charge la rubrique qui contient le livret, puis le génère */
+  function livretDepuisAccueil(btn) {
+    var cands = S.rubriques.filter(function (r) { return r.page; });
+    cands.sort(function (a, b) { return (/livret/i.test(b.titre) ? 1 : 0) - (/livret/i.test(a.titre) ? 1 : 0); });
+    btn.disabled = true; btn.textContent = "⏳ Préparation…";
+    var essai = function (i) {
+      if (i >= cands.length) { btn.disabled = false; btn.textContent = "📘 Générer le livret d'accueil"; return; }
+      var r = cands[i];
+      lireTexte(r.base + r.page).then(function (html) {
+        var doc = new DOMParser().parseFromString(html, "text/html"), lv = doc.querySelector("[data-livret]");
+        if (!lv) return essai(i + 1);
+        lv.querySelectorAll("[src]").forEach(function (el) { var v = el.getAttribute("src"); if (v && !/^(https?:|data:|\/)/i.test(v)) el.setAttribute("src", lien(r.base, v)); });
+        var tmp = document.createElement("div"); tmp.appendChild(document.importNode(lv, true));
+        genererLivret(r, remplirLivretEtRendre(tmp.firstChild), btn);
+      }).catch(function () { essai(i + 1); });
+    };
+    essai(0);
+  }
+  function remplirLivretEtRendre(lv) { remplirLivret(lv); return lv; }
   function trouverImage(cands) {
     return cands.reduce(function (p, u) {
       return p.then(function (ok) { return ok || fetch(chemin(u), { method: "HEAD", cache: "no-store" }).then(function (x) { return x.ok ? chemin(u) : null; }).catch(function () { return null; }); });
@@ -473,7 +497,7 @@
     }).then(function () {
       var ancien = document.title;
       document.title = (c.val("Titre du livret") || r.titre).replace(/[\\/:*?"<>|]/g, "") + " - livret";
-      var fin = function () { document.title = ancien; $("print").innerHTML = ""; $("print").className = ""; btn.disabled = false; btn.textContent = "📘 Générer le livret PDF"; window.removeEventListener("afterprint", fin); };
+      var fin = function () { document.title = ancien; $("print").innerHTML = ""; $("print").className = ""; btn.disabled = false; btn.textContent = "📘 Générer le livret d'accueil"; window.removeEventListener("afterprint", fin); };
       window.addEventListener("afterprint", fin);
       setTimeout(function () { window.print(); }, 300);
     });
@@ -568,6 +592,7 @@
       if (location.hash === "#/recherche") rechercher(); else location.hash = "#/recherche";
     };
     $("btnPdf").onclick = ouvrirOptionsPdf;
+    $("btnLivretAccueil").onclick = function () { livretDepuisAccueil(this); };
     construireMenu(); route();
     window.addEventListener("hashchange", route);
   }).catch(function () {

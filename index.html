@@ -44,7 +44,7 @@
     </section>
 
     <section class="view" id="viewHome" hidden>
-      <div class="hero"><h2 id="heroTitle">Bienvenue</h2><p id="heroText"></p><button type="button" class="btn-pdf" id="btnPdf">📄 Générer le PDF</button></div>
+      <div class="hero"><h2 id="heroTitle">Bienvenue</h2><p id="heroText"></p><div class="hero-actions"><button type="button" class="btn-pdf" id="btnLivretAccueil">📘 Générer le livret d'accueil</button><button type="button" class="lien-export" id="btnPdf">📄 Exporter tout le kit en PDF</button></div></div>
       <div class="tiles" id="tiles"></div>
       <div class="stats" id="stats"></div>
     </section>
@@ -70,7 +70,7 @@
 <div class="overlay" id="overlay"></div>
 <div class="modal" id="pdfModal" hidden>
   <form class="modal-box" id="pdfForm">
-    <h2>📄 Générer le PDF</h2>
+    <h2>📄 Exporter tout le kit en PDF</h2>
     <fieldset><legend>Rubriques à inclure <button type="button" class="lien-mini" id="pdfTout">tout cocher / décocher</button></legend><div id="pdfRubriques" class="pdf-liste"></div></fieldset>
     <fieldset><legend>Contenu</legend>
       <label><input type="checkbox" id="pdfCouv" checked> Couverture et sommaire</label>

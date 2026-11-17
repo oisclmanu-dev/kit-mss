@@ -336,3 +336,8 @@ h4.groupe{margin:20px 0 8px;font-size:15.5px;color:var(--primaire-fonce)}
 .tableau-limitations td:not(:first-child),.tableau-limitations th:not(:first-child){text-align:center;white-space:nowrap}
 .tableau-limitations td:not(:first-child){font-weight:700;color:var(--primaire)}
 .tableau-limitations small{display:block;font-weight:400;color:var(--texte-doux);white-space:normal;font-size:11px}
+.hero-actions{display:flex;flex-wrap:wrap;align-items:center;gap:16px;margin-top:16px}
+.hero-actions .btn-pdf{margin-top:0}
+.lien-export{border:0;background:none;color:#fff;opacity:.9;text-decoration:underline;font:inherit;font-size:14px;cursor:pointer;padding:0}
+.lien-export:hover{opacity:1}
+.lien-export:disabled{opacity:.6;cursor:wait}
