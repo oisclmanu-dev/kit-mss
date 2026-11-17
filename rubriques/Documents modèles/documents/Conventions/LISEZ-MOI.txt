@@ -1,2 +1,0 @@
-Déposez ici les modèles de la catégorie « Conventions »,
-puis ajoutez une ligne sous « Catégorie : Conventions » dans le config.txt de la rubrique.
