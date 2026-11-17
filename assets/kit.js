@@ -415,7 +415,7 @@
       }
       var ancien = document.title;
       document.title = R.titre + " - " + date;
-      var fin = function () { document.title = ancien; $("print").innerHTML = ""; btn.disabled = false; btn.textContent = "📄 Exporter tout le kit en PDF"; window.removeEventListener("afterprint", fin); };
+      var fin = function () { document.title = ancien; $("print").innerHTML = ""; btn.disabled = false; btn.textContent = "📄 Générer le kit en format PDF"; window.removeEventListener("afterprint", fin); };
       window.addEventListener("afterprint", fin);
       setTimeout(function () { window.print(); }, 400);
     });

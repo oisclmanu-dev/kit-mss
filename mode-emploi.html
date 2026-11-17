@@ -61,6 +61,7 @@ https://www.exemple.fr/guide</pre>
 
 <h3>Ajouter un filtre personnalisé</h3>
 <p>Dans le <code>config.txt</code> d'une rubrique, la ligne <code>Filtres : Type d'offre</code> crée un filtre à partir du champ « Type d'offre » des fiches. Dans chaque fiche, écrivez par exemple <code>Type d'offre : APA</code> ou <code>Type d'offre : Sport Santé, APA</code>. La valeur s'affiche aussi en badge violet. Plusieurs filtres sont possibles, séparés par des virgules.</p>
+<p>La rubrique « Identification structures Sport Santé » contient les 267 structures relevées le 17/11/2026 sur l'annuaire <a href="https://bretagne-sport-sante.fr/trouver-une-activite/" target="_blank">Bretagne Sport Santé</a>. Les activités « Forme Santé » sont classées <b>Sport Santé</b>, les activités « Maladies chroniques » <b>APA</b>. Chaque fiche contient la ligne <code>Logo : logo.png</code> : déposez simplement un fichier <code>logo.png</code> dans le dossier de la structure pour afficher son logo.</p>
 
 <h3>Classer les documents par catégories</h3>
 <p>Dans la section <code>[Documents]</code>, une ligne <code>Catégorie : Nom</code> crée une sous-catégorie. Les documents listés en dessous lui appartiennent. Une catégorie sans document s'affiche quand même, avec la mention « Aucun document pour le moment ». Exemple (rubrique « Documents modèles ») :</p>
@@ -100,7 +101,7 @@ Document : plaquette.pdf</pre>
 
 <h2>Générer le PDF</h2>
 <div class="bloc">
-  <p>Sur la page d'accueil, le lien <b>📄 Exporter tout le kit en PDF</b> rassemble le kit dans un document : couverture, sommaire cliquable, puis une section par rubrique. Une fenêtre permet de choisir les rubriques et le contenu (textes, fiches, liste des documents).</p>
+  <p>Sur la page d'accueil, le bouton <b>📄 Générer le kit en format PDF</b> rassemble le kit dans un document : couverture, sommaire cliquable, puis une section par rubrique. Une fenêtre permet de choisir les rubriques et le contenu (textes, fiches, liste des documents).</p>
   <p>À l'étape suivante, choisissez <b>« Enregistrer au format PDF »</b> comme imprimante. Les cartes intégrées (uMap) sont remplacées par leur lien.</p>
   <p><b>Joindre les documents :</b> les fichiers PDF et les images déposés dans les dossiers <code>documents</code> du kit sont rassemblés dans un second fichier, « … - annexes.pdf », téléchargé automatiquement. Chaque document y est précédé d'une page « Annexe n° ». Les documents qui sont de simples liens vers d'autres sites ne peuvent pas être joints : ils restent cités avec leur adresse.</p>
 </div>
