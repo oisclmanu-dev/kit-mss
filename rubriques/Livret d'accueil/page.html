@@ -1,0 +1,184 @@
+<!-- ============================================================
+     LIVRET D'ACCUEIL — une <section class="livret-page"> = une page A4.
+     • data-titre="…" : titre repris dans le sommaire (pages sans
+       data-titre = suite de la page précédente).
+     • <div data-auto="sommaire"></div> : sommaire calculé automatiquement.
+     • Blocs remplis automatiquement à partir des fiches du kit :
+         data-auto="financements" (rubrique Financements, avec liens)
+         data-auto="referents"    (fiches ayant un champ « Type de contact »
+                                   : Partenaires et Contacts)
+         data-auto="mss"          (rubrique Liste MSS collectif)
+         data-auto="formations"   (rubrique Formations)
+         data-auto="outils-com"   (rubrique Documents modèles)
+       Ils tiennent compte des filtres choisis à la génération
+       (département, statut juridique).
+     • Gardez des textes courts : chaque page a la hauteur d'une feuille A4.
+     Source : synthèse de l'analyse du questionnaire du GT communication.
+     ============================================================ -->
+<div class="livret" data-livret>
+
+<!-- PAGE 1 : SOMMAIRE ET MOT DU COLLECTIF -->
+<section class="livret-page" data-titre="Sommaire">
+  <h2 class="lv-titre">Sommaire</h2>
+  <div data-auto="sommaire"></div>
+  <h3 class="lv-sous">Le mot du collectif</h3>
+  <p class="lv-chapo">Bienvenue dans le réseau des Maisons Sport-Santé de Bretagne !</p>
+  <p>L'habilitation de votre MSS marque le début d'une belle aventure : faire de votre structure le trait d'union entre le monde de la santé et celui de l'activité physique, au service des habitants de votre territoire.</p>
+  <p>Les premiers mois sont décisifs, et les MSS déjà installées le disent toutes : on gagne beaucoup à ne pas rester isolé. C'est tout le sens du collectif : partager nos expériences, nos outils et nos contacts pour que chaque nouvelle MSS démarre plus sereinement. Ce livret est né des réponses de nos membres au questionnaire du groupe de travail communication.</p>
+  <blockquote class="lv-citation">« Ce qui m'a beaucoup aidé quand nous avons débuté, c'est d'avoir rencontré le collectif lors d'une plénière et de pouvoir échanger entre MSS nouvelles et anciennes. »<span>Une MSS du collectif</span></blockquote>
+  <p class="lv-signature">Le Collectif des Maisons Sport-Santé de Bretagne</p>
+</section>
+
+<!-- PAGE 2 : FRISE ET CONSEILS -->
+<section class="livret-page" data-titre="Les 3 phases du démarrage et nos conseils">
+  <h2 class="lv-titre">Les 3 phases du démarrage</h2>
+  <p class="lv-chapo">L'accueil et les partenariats d'abord, l'ingénierie ensuite, la visibilité enfin.</p>
+  <div class="frise">
+    <div class="phase phase-1">
+      <div class="phase-tete"><span class="phase-num">1</span>Consolider le cœur de métier</div>
+      <div class="phase-prio">Priorité forte · premiers mois</div>
+      <ul>
+        <li><b>Accueillir, informer, orienter</b> les publics.</li>
+        <li><b>Développer le réseau de partenaires</b> : prescripteurs et structures d'accueil.</li>
+        <li><b>Développer les missions spécifiques</b> du territoire.</li>
+      </ul>
+    </div>
+    <div class="phase phase-2">
+      <div class="phase-tete"><span class="phase-num">2</span>Structurer et outiller</div>
+      <div class="phase-prio">Priorité moyenne</div>
+      <ul>
+        <li><b>Répondre aux appels à projets.</b></li>
+        <li><b>Développer et programmer les activités.</b></li>
+        <li><b>Organiser le calendrier des interventions.</b></li>
+      </ul>
+    </div>
+    <div class="phase phase-3">
+      <div class="phase-tete"><span class="phase-num">3</span>Gagner en visibilité</div>
+      <div class="phase-prio">Développement</div>
+      <ul>
+        <li><b>Créer des supports de présentation.</b></li>
+        <li><b>Créer des outils de suivi</b> pour piloter l'activité.</li>
+      </ul>
+    </div>
+  </div>
+  <h3 class="lv-sous">Nos conseils pour bien démarrer</h3>
+  <ol class="lv-conseils">
+    <li><b>Sécuriser l'appui institutionnel.</b> Sollicitez vos référents ARS et SDJES pour valider vos supports et leur conformité avec le cahier des charges national.</li>
+    <li><b>Bien connaître le logiciel de suivi.</b> Avoir une bonne connaissance du logiciel de suivi, car il sera utilisé au quotidien et permettra de remonter les statistiques attendues par les financeurs.</li>
+    <li><b>Ne pas rester isolé.</b> Participez aux plénières du collectif et demandez un parrainage par une MSS expérimentée.</li>
+    <li><b>Clarifier Sport-Santé et APA.</b> Les publics avec limitations fonctionnelles relèvent de l'APA, encadrée par des intervenants qualifiés (voir page 4).</li>
+  </ol>
+</section>
+
+<!-- PAGE 3 : PRIORITÉS ET ATTENTES -->
+<section class="livret-page" data-titre="Priorités et attentes institutionnelles">
+  <h2 class="lv-titre">Ce dont les MSS ont besoin en priorité</h2>
+  <p class="lv-chapo">Part des MSS du collectif ayant cité chaque besoin dès l'annonce de leur habilitation.</p>
+  <div class="barres">
+    <div class="barre"><span class="barre-lib">Connaître les sources de financement</span><span class="barre-fond"><span style="width:65.4%"></span></span><b>65,4 %</b></div>
+    <div class="barre"><span class="barre-lib">Listing et coordonnées des partenaires</span><span class="barre-fond"><span style="width:53.8%"></span></span><b>53,8 %</b></div>
+    <div class="barre"><span class="barre-lib">Frise chronologique des missions</span><span class="barre-fond"><span style="width:50%"></span></span><b>50 %</b></div>
+    <div class="barre"><span class="barre-lib">Attentes institutionnelles</span><span class="barre-fond"><span style="width:50%"></span></span><b>50 %</b></div>
+    <div class="barre"><span class="barre-lib">Comprendre l'écosystème global</span><span class="barre-fond"><span style="width:46.2%"></span></span><b>46,2 %</b></div>
+    <div class="barre"><span class="barre-lib">Modèles de convention de partenariat</span><span class="barre-fond"><span style="width:34.6%"></span></span><b>34,6 %</b></div>
+    <div class="barre"><span class="barre-lib">Supports de communication clés en main</span><span class="barre-fond"><span style="width:34.6%"></span></span><b>34,6 %</b></div>
+  </div>
+  <h3 class="lv-sous">Les attentes institutionnelles</h3>
+  <p>Le respect du cahier des charges national conditionne le maintien de l'habilitation. Il est piloté par l'ARS et la DRAJES.</p>
+  <div class="lv-deux">
+    <div class="lv-carte">
+      <h4>Le cahier des charges impose</h4>
+      <ul>
+        <li>Un <b>rapport annuel d'activité</b> détaillé.</li>
+        <li>Le <b>cahier des charges des tests</b> pour évaluer les bénéficiaires.</li>
+        <li>La <b>remontée de données fiables</b> via le logiciel de suivi.</li>
+      </ul>
+    </div>
+    <div class="lv-carte">
+      <h4>Les bons réflexes</h4>
+      <ul>
+        <li>Faire valider vos supports par vos référents ARS et SDJES.</li>
+        <li>Connaître le tableau des compétences des intervenants.</li>
+        <li>Orienter vers les clubs formés au sport-santé.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- PAGE 4 : SPORT-SANTÉ OU APA -->
+<section class="livret-page" data-titre="Sport-Santé ou APA : qui fait quoi ?">
+  <h2 class="lv-titre">Sport-Santé ou APA : qui fait quoi ?</h2>
+  <table class="lv-table lv-sa">
+    <tr><th></th><th>Sport-Santé</th><th>Activité Physique Adaptée (APA)</th></tr>
+    <tr><td><b>Définition</b></td><td>Activités physiques ou sportives qui contribuent au bien-être et à la santé.</td><td>Mise en mouvement des personnes qui ne peuvent pas pratiquer dans les conditions ordinaires (art. L. 1172-1 du code de la santé publique). Distincte de la rééducation.</td></tr>
+    <tr><td><b>Public</b></td><td>Sédentaires, seniors, personnes sans limitation fonctionnelle ou avec des limitations minimes.</td><td>Personnes en ALD ou atteintes d'une maladie chronique, avec facteurs de risque ou en perte d'autonomie.</td></tr>
+    <tr><td><b>Prescription</b></td><td>Non obligatoire ; conditions d'accès selon la structure et la fédération.</td><td>Par tout médecin, sur le formulaire officiel, pour 3 à 6 mois renouvelables.</td></tr>
+    <tr><td><b>Encadrement</b></td><td>Éducateurs et bénévoles formés au sport-santé (SSBE « Forme santé », certifications fédérales).</td><td>Selon les limitations : professionnels de santé, enseignants APA, éducateurs formés « Maladies chroniques » (tableau ci-dessous).</td></tr>
+    <tr><td><b>Suivi</b></td><td>Tests ou questionnaire selon la structure ; bilans du cahier des charges en MSS.</td><td>Bilan initial et final, compte rendu au prescripteur, saisie dans le logiciel de suivi.</td></tr>
+    <tr><td><b>Coût pour la personne</b></td><td>Adhésion ou licence au club.</td><td>Pas de remboursement de droit commun par l'Assurance maladie ; aides possibles (mutuelles, collectivités, dispositifs ARS).</td></tr>
+    <tr><td><b>En Bretagne</b></td><td>Charte SSBE et activités « Forme Santé » sur bretagne-sport-sante.fr.</td><td>Charte SSBE et activités « Maladies chroniques » sur bretagne-sport-sante.fr.</td></tr>
+    <tr><td><b>Exemples</b></td><td>Marche nordique santé, gym douce, aquagym, tennis ou rugby santé.</td><td>Réentraînement après un cancer, APA diabète ou obésité, gym pour insuffisants respiratoires.</td></tr>
+  </table>
+  <h3 class="lv-sous">Qui peut encadrer l'APA, selon les limitations fonctionnelles ?</h3>
+  <table class="lv-table lv-sa tableau-limitations">
+    <tr><th>Intervenant</th><th>Aucune</th><th>Minimes</th><th>Modérées</th><th>Sévères</th></tr>
+    <tr><td><b>Professionnels de santé</b> (kinés, ergothérapeutes, psychomotriciens)</td><td>✔</td><td>✔</td><td>✔</td><td>✔</td></tr>
+    <tr><td><b>Enseignants en APA</b> (STAPS APA-S)</td><td>✔</td><td>✔</td><td>✔</td><td>—</td></tr>
+    <tr><td><b>Éducateurs sportifs diplômés d'État</b> (BPJEPS, DEJEPS…)</td><td>✔</td><td>✔</td><td>✔ en équipe pluridisciplinaire</td><td>—</td></tr>
+    <tr><td><b>CQP, titres professionnels, certifications fédérales</b></td><td>✔</td><td>✔</td><td>—</td><td>—</td></tr>
+  </table>
+</section>
+
+<!-- PAGE 5 : FINANCEMENTS ET FORMATIONS -->
+<section class="livret-page" data-titre="Financements et formations">
+  <h2 class="lv-titre">Les sources de financement</h2>
+  <p class="lv-filtre" data-filtre-livret></p>
+  <div data-auto="financements"></div>
+  <h3 class="lv-sous">Se former et former son équipe</h3>
+  <div data-auto="formations"></div>
+</section>
+
+<!-- PAGE 6 : OUTILS DE COMMUNICATION -->
+<section class="livret-page" data-titre="Outils de communication">
+  <h2 class="lv-titre">Les outils de communication disponibles</h2>
+  <p class="lv-chapo">Les supports existants à utiliser ou à relayer, avant de créer les vôtres.</p>
+  <table class="lv-table lv-compact">
+    <tr><th>Outil</th><th>À quoi il sert</th><th>Où le trouver</th></tr>
+    <tr><td><b>Logo officiel et charte graphique « Maisons Sport-Santé »</b> (mai 2026)</td><td>Apposer le label sur tous vos supports, dans le respect de la charte de l'État.</td><td><a href="https://www.sports.gouv.fr/sites/default/files/2026-06/charte-graphique-maison-sport-sant--8103.pdf">sports.gouv.fr – charte graphique</a></td></tr>
+    <tr><td><b>Carte nationale des MSS</b></td><td>Être trouvé par le public et les prescripteurs : vérifiez que votre fiche est à jour.</td><td><a href="https://www.sports.gouv.fr/maisons-sport-sante">sports.gouv.fr/maisons-sport-sante</a></td></tr>
+    <tr><td><b>Site Bretagne Sport Santé</b></td><td>Référencer l'offre de la MSS et orienter vers les activités « Forme Santé » et « Maladies chroniques » proches du domicile.</td><td><a href="https://bretagne-sport-sante.fr">bretagne-sport-sante.fr</a></td></tr>
+    <tr><td><b>Carte des MSS bretonnes du collectif</b></td><td>Présenter le réseau régional et repérer les MSS voisines.</td><td><a href="https://umap.openstreetmap.fr/fr/map/maison-sport-sante-bretonnes_1378382">umap.openstreetmap.fr</a></td></tr>
+    <tr><td><b>Plaquette ARS « Les Maisons sport-santé : un acteur ressource… »</b></td><td>Convaincre les collectivités et les élus de s'appuyer sur la MSS.</td><td><a href="https://www.bretagne.ars.sante.fr/index.php/media/144425/download">bretagne.ars.sante.fr (PDF)</a></td></tr>
+    <tr><td><b>Formulaire officiel de prescription d'APA</b></td><td>À diffuser aux médecins prescripteurs de votre territoire.</td><td><a href="https://www.ffaviron.fr/wp-content/uploads/2025/04/JO_Arrete_formulaire-prescription-APA_28-12-2023.pdf">Arrêté du 28/12/2023 (PDF)</a></td></tr>
+    <tr><td><b>Médicosport-santé</b> (CNOSF – Vidal)</td><td>Outil d'aide à la prescription d'activité physique par pathologie ou par sport, pour les médecins et les encadrants.</td><td><a href="https://www.vidal.fr/infos-sport-medicosport-sante/">vidal.fr</a></td></tr>
+  </table>
+  <h3 class="lv-sous">Les modèles partagés par le collectif</h3>
+  <div data-auto="outils-com"></div>
+</section>
+
+<!-- PAGE 7 : INTERLOCUTEURS -->
+<section class="livret-page" data-titre="Vos interlocuteurs">
+  <h2 class="lv-titre">Vos interlocuteurs</h2>
+  <p class="lv-chapo">Une MSS isolée est une MSS vulnérable : voici vos tutelles et vos référents de proximité.</p>
+  <p class="lv-filtre" data-filtre-livret></p>
+  <div data-auto="referents"></div>
+</section>
+
+<!-- PAGE 8 : AUTRES CONTACTS ET MSS -->
+<section class="livret-page" data-titre="Autres contacts et MSS du collectif">
+  <h2 class="lv-titre">Les autres contacts utiles</h2>
+  <table class="lv-table lv-compact">
+    <tr><th>Interlocuteur</th><th>Pourquoi le contacter</th><th>Où le trouver</th></tr>
+    <tr><td><b>CPTS, maisons de santé, médecins</b></td><td>Orientation des patients, prescription</td><td>CPTS de votre territoire</td></tr>
+    <tr><td><b>Collectivités (EPCI, mairies, CCAS, CLS)</b></td><td>Soutien local, locaux, publics fragiles</td><td>Mairie et EPCI de votre territoire</td></tr>
+    <tr><td><b>CDOS, offices des sports, clubs</b></td><td>Offre sportive locale, formations SSBE</td><td>Comité départemental olympique et sportif</td></tr>
+    <tr><td><b>Structures et clubs sport-santé</b></td><td>Orienter vers une pratique durable</td><td>bretagne-sport-sante.fr</td></tr>
+    <tr><td><b>ONAPS</b></td><td>Observation, ressources nationales</td><td>onaps.fr</td></tr>
+    <tr><td><b>Éditeur du logiciel de suivi</b></td><td>Prise en main, remontée des indicateurs</td><td>Support de l'éditeur (Dénéo : deneo.fr)</td></tr>
+  </table>
+  <h3 class="lv-sous">Les MSS du collectif</h3>
+  <p class="lv-filtre">Pour trouver une MSS « marraine », choisissez une MSS proche ou de même statut juridique.</p>
+  <div data-auto="mss"></div>
+</section>
+
+</div>
