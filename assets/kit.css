@@ -375,3 +375,35 @@ h4.groupe{margin:20px 0 8px;font-size:15.5px;color:var(--primaire-fonce)}
 .lv-outils a{word-break:normal}
 @media print{.livret-print .lv-outils .lv-carte{padding:2.2mm 3mm}.livret-print .lv-outils ul{margin-top:1mm}.livret-print .lv-outils + p,.livret-print h3.lv-sous{margin-top:5mm}}
 .lv-outils a,.lv-outils li{word-break:normal!important;overflow-wrap:normal!important}
+/* Livret compact (moins de 10 pages) */
+@media print{
+  #print.livret-print{font-size:10pt;line-height:1.38}
+  .livret-print .lv-page{padding:3mm 6mm 13mm}
+  #print.livret-print h2.lv-titre{font-size:17pt;margin:0 0 3mm}
+  .livret-print .lv-titre::after{margin-top:1.5mm}
+  .livret-print .lv-chapo{font-size:10.5pt;margin-bottom:3mm}
+  .livret-print .lv-sous{font-size:12pt;margin:5mm 0 2mm}
+  .livret-print p,.livret-print li{font-size:10pt}
+  .livret-print .lv-sommaire li{font-size:11pt;padding:1.6mm 0}
+  .livret-print .lv-sommaire li::before{width:6.5mm;height:6.5mm;font-size:9.5pt}
+  .livret-print .lv-encart{margin-top:4mm;padding:3mm 4mm}
+  .livret-print .lv-citation{margin:3mm 0;padding:2.5mm 4mm;font-size:10pt}
+  .livret-print .frise{margin:6mm 0 3mm;gap:3mm}
+  .livret-print .frise::before{top:4.5mm}
+  .livret-print .phase{padding:10mm 3mm 3mm}
+  .livret-print .phase-num{width:9mm;height:9mm;font-size:12pt}
+  .livret-print .phase-tete{font-size:11pt}
+  .livret-print .phase-prio{font-size:8pt}
+  .livret-print .phase ul,.livret-print .phase li{font-size:9.5pt}
+  .livret-print .phase li{margin:1.2mm 0}
+  .livret-print .lv-conseils li{margin:2mm 0}
+  .livret-print .barres{gap:2mm;margin:2mm 0}
+  .livret-print .barre{font-size:10pt}
+  .livret-print .barre-fond{height:3.5mm}
+  .livret-print .lv-carte,.livret-print .lv-carte li{font-size:9.5pt}
+  .livret-print .lv-carte{padding:3mm}
+  .livret-print .lv-note{font-size:9pt;margin-top:3mm}
+  .livret-print .lv-dep td{width:25%}
+}
+@media print{.livret-print .lv-mss3{columns:3;column-gap:4mm}.livret-print .lv-mss3 li{font-size:8.5pt;padding:.8mm 0}}
+.lv-mss3{columns:3}

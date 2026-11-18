@@ -446,40 +446,52 @@
     }).join("") + "</table>";
   }
   var ORDRE_CONTACTS = ["collectifmss", "ars", "delegationdepartementalears", "drajes", "sdjes", "referentcollectif"];
-  function tableReferents(x) {
-    var part = x && x.getAttribute("data-depts") ? x.getAttribute("data-depts").split(",") : null;
-    var bl = S.blocs.filter(function (b) {
-      if (b.erreur || !valeurAutre(b, "Type de contact") || !deptOk(b)) return false;
-      if (!part) return true;
-      if (LV.dept) return part.indexOf("regional") >= 0;
-      return estRegional(b) ? part.indexOf("regional") >= 0 : part.indexOf(String(b.departement).slice(0, 2)) >= 0;
-    });
-    if (!bl.length && part && part.indexOf("regional") < 0) return "";
+  function typeContact(b) { return cle(valeurAutre(b, "Type de contact")); }
+  function coordsLv(b, court) {
+    return [!court && b.adresse ? esc(b.adresse) : "", b.telephone ? "☎ " + esc(b.telephone) : "", b.email ? "✉ " + esc(b.email) : ""].filter(Boolean).join("<br>");
+  }
+  function tableReferents() {
+    var bl = S.blocs.filter(function (b) { return !b.erreur && valeurAutre(b, "Type de contact") && deptOk(b); });
     if (!bl.length) return '<p class="vide-cat">Aucun contact pour ce département.</p>';
-    function rang(b) { var i = ORDRE_CONTACTS.indexOf(cle(valeurAutre(b, "Type de contact"))); return i < 0 ? 9 : i; }
+    function rang(b) { var i = ORDRE_CONTACTS.indexOf(typeContact(b)); return i < 0 ? 9 : i; }
     bl.sort(function (x, y) { return (estRegional(y) - estRegional(x)) || trier(x.departement || "", y.departement || "") || rang(x) - rang(y); });
-    return '<table class="lv-table lv-compact"><tr><th>Interlocuteur</th><th>Coordonnées</th><th>Référent</th></tr>' + bl.map(function (b) {
-      var co = [b.adresse ? esc(b.adresse) : "", b.telephone ? "☎ " + esc(b.telephone) : "", b.email ? "✉ " + esc(b.email) : ""].filter(Boolean).join("<br>");
-      var ref = b.contact || valeurAutre(b, "Référent sport-santé") || "";
-      return "<tr><td><b>" + esc(b.nom) + "</b><br><small>" + esc(valeurAutre(b, "Type de contact")) + "</small></td><td>" + (co || "—") + "</td><td>" + aCompleter(ref) + "</td></tr>";
-    }).join("") + "</table>";
+    function ligne(b, court) {
+      var ref = b.contact || "";
+      return "<tr><td><b>" + esc(b.nom) + "</b><br><small>" + esc(valeurAutre(b, "Type de contact")) + "</small></td><td>" + (coordsLv(b, court) || "—") + "</td><td>" + aCompleter(ref) + "</td></tr>";
+    }
+    var tete = '<table class="lv-table lv-compact"><tr><th>Interlocuteur</th><th>Coordonnées</th><th>Référent</th></tr>';
+    if (LV.dept) return tete + bl.map(function (b) { return ligne(b); }).join("") + "</table>";
+    // Sans filtre : institutions régionales, puis un tableau par département
+    var reg = bl.filter(estRegional), dep = bl.filter(function (b) { return !estRegional(b); });
+    var h = tete + reg.map(function (b) { return ligne(b); }).join("") + "</table>";
+    var deps = {}; dep.forEach(function (b) { (deps[b.departement] = deps[b.departement] || {})[typeContact(b)] = b; });
+    var cols = [["delegationdepartementalears", "Délégation ARS"], ["sdjes", "SDJES"], ["referentcollectif", "Référent du collectif"]];
+    h += '<h3 class="lv-sous">Dans chaque département</h3><table class="lv-table lv-compact lv-dep"><tr><th>Département</th>' + cols.map(function (c) { return "<th>" + c[1] + "</th>"; }).join("") + "</tr>";
+    Object.keys(deps).sort(trier).forEach(function (d) {
+      h += "<tr><td><b>" + esc(d) + "</b></td>" + cols.map(function (c) {
+        var b = deps[d][c[0]];
+        if (!b) return "<td>—</td>";
+        return "<td>" + (c[0] === "referentcollectif" && b.contact ? "<b>" + esc(b.contact) + "</b><br>" : "") + (coordsLv(b, true) || "—") + "</td>";
+      }).join("") + "</tr>";
+    });
+    return h + "</table>";
   }
   function listeMSS() {
     var bl = blocsDe(/liste\s*mss|mss\s*collectif/i).filter(function (b) {
       return (!LV.dept || String(b.departement || "").trim() === LV.dept) && (!LV.statut || String(b.statut || "").trim() === LV.statut);
     }).sort(function (x, y) { return trier(x.departement || "", y.departement || "") || trier(x.nom, y.nom); });
     if (!bl.length) return '<p class="vide-cat">Aucune MSS ne correspond à ce département et à ce statut juridique.</p>';
-    return '<ul class="lv-mss">' + bl.map(function (b) {
+    return '<ul class="lv-mss' + (LV.dept ? "" : " lv-mss3") + '">' + bl.map(function (b) {
       var c = LV.dept ? [b.telephone, b.email].filter(Boolean).map(esc).join(" · ") : "";
-      return "<li><b>" + esc(b.nom) + "</b> — " + esc(b.ville || "") + (LV.dept ? "" : " (" + esc(String(b.departement || "").slice(0, 2)) + ")") + (LV.statut ? "" : " · <i>" + esc(b.statut || "") + "</i>") + (c ? "<br><small>" + c + "</small>" : "") + "</li>";
+      return "<li><b>" + esc(b.nom) + "</b> — " + esc(b.ville || "") + (LV.dept ? "" : " (" + esc(String(b.departement || "").slice(0, 2)) + ")") + (LV.statut || !LV.dept ? "" : " · <i>" + esc(b.statut || "") + "</i>") + (c ? "<br><small>" + c + "</small>" : "") + "</li>";
     }).join("") + "</ul>";
   }
   function tableFormations() {
     var bl = blocsDe(/formation/i);
     if (!bl.length) return '<p class="vide-cat">Aucune fiche dans la rubrique Formations.</p>';
     function dom(u) { if (!u) return "—"; u = String(u).split(/\s+/)[0]; return '<a href="' + esc(u) + '" target="_blank" rel="noopener">' + esc(u.replace(/^https?:\/\/(www\.)?/i, "").split("/")[0]) + "</a>"; }
-    return '<table class="lv-table lv-compact lv-form"><tr><th>Formation</th><th>Organisme et lieu</th><th>Public</th><th>Durée / format</th><th>Lien</th></tr>' + bl.map(function (b) {
-      return "<tr><td><b>" + esc(b.nom) + "</b></td><td>" + esc(b.emetteur || "—") + "<br><small>" + esc(b.ville || b.departement || "") + "</small></td><td>" + esc(valeurAutre(b, "Public") || "—") + "</td><td>" + esc(valeurAutre(b, "Durée") || "—") + "</td><td>" + dom(b.site) + "</td></tr>";
+    return '<table class="lv-table lv-compact lv-form"><tr><th>Formation</th><th>Organisme et lieu</th><th>Durée / format</th><th>Lien</th></tr>' + bl.map(function (b) {
+      return "<tr><td><b>" + esc(b.nom) + "</b></td><td>" + esc(b.emetteur || "—") + (b.ville || b.departement ? " · " + esc(b.ville || b.departement) : "") + "</td><td>" + esc(valeurAutre(b, "Durée") || "—") + "</td><td>" + dom(b.site) + "</td></tr>";
     }).join("") + "</table>";
   }
   function outilsCom() {
