@@ -1,0 +1,15 @@
+# Fiche du bloc — déposez le logo de l'émetteur dans ce dossier sous le nom logo.png (ou .jpg, .svg, .webp)
+# Attention : dans les lignes de suite d'un texte, n'utilisez pas le caractère deux-points.
+
+Nom : Appel à projets « Panier de soins » pour la prévention des chutes
+Émetteur : ARS Bretagne
+Département : Toute la Bretagne
+Description : Dans le cadre du plan national antichute des personnes âgées (axe 4, activité physique), prise en charge coordonnée d'une personne de 65 ans et plus à haut risque de chute par trois professionnels.
+Intervenants : un intervenant en activité physique adaptée, un diététicien et un ergothérapeute
+Porteurs éligibles : structures d'exercice coordonné (CPTS, MSP, SISA…) et Maisons Sport-Santé
+Démarche : dépôt du projet sur la plateforme Démarches numériques. Un renouvellement pour une année peut être demandé.
+Date limite : 28 août 2026, minuit (campagne 2026 close)
+Bon à savoir : en cas de refus de l'ARS, une demande peut être présentée à la Conférence des financeurs (CFPPA).
+Contact : Direction de la santé publique, prévention et promotion de la santé
+Email : 
+Site : https://www.bretagne.ars.sante.fr/appel-projets-panier-de-soins-pour-la-prevention-des-chutes

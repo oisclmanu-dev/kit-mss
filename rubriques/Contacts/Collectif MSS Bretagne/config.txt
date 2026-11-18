@@ -1,0 +1,9 @@
+# Coordonnées du collectif : renseignez l'adresse, le téléphone et l'email ci-dessous.
+Nom : Collectif des Maisons Sport-Santé de Bretagne
+Type de contact : Collectif MSS
+Département : Toute la Bretagne
+Adresse : 
+Téléphone : 
+Email : 
+Rôle : réseau des MSS bretonnes : accueil des nouvelles MSS, plénières, partage d'outils et parrainage.
+Logo : logo.png

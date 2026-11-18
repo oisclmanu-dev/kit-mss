@@ -1,0 +1,14 @@
+# Fiche du bloc — déposez le logo de l'émetteur dans ce dossier sous le nom logo.png (ou .jpg, .svg, .webp)
+# Attention : dans les lignes de suite d'un texte, n'utilisez pas le caractère deux-points.
+
+Nom : Appel à projets « Parcours en soins oncologiques de support »
+Émetteur : ARS Bretagne
+Département : Toute la Bretagne
+Description : Sélection des structures qui mettront en œuvre, à partir du 1er janvier 2027, le parcours de soins oncologiques de support sur prescription médicale (activité physique adaptée, diététique, soutien psychologique), pour les personnes recevant ou ayant reçu un traitement pour un cancer.
+Volets : volet 1 obligatoire, parcours socle ; volet 2 optionnel, expérimentation bretonne d'un programme complet d'APA (jusqu'à 12 séances collectives, renouvelable une fois).
+Porteurs éligibles : tout type de structure capable d'organiser les prestations, seule ou en partenariat. Les structures déjà labellisées doivent candidater à nouveau.
+Démarche : cahier des charges sur le site de l'ARS Bretagne, candidature sur la plateforme Démarches numériques.
+Date limite : 13 novembre 2026, 12 h (campagne close)
+Contact : Direction de la santé publique, prévention et promotion de la santé
+Email : 
+Site : https://www.bretagne.ars.sante.fr/appel-projets-parcours-en-soins-oncologiques-de-support-pour-les-personnes-recevant-ou-ayant-recu
