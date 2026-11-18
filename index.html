@@ -84,6 +84,18 @@
     <div class="modal-actions"><button type="button" class="btn-ghost" id="pdfAnnuler">Annuler</button><button type="submit" class="btn-primaire" id="pdfGo">Générer</button></div>
   </form>
 </div>
+<div class="modal" id="livretModal" hidden>
+  <form class="modal-box" id="livretForm">
+    <h2>📘 Générer le livret d'accueil</h2>
+    <fieldset><legend>Filtres</legend>
+      <label class="lv-champ">Département<select id="lvDept"></select></label>
+      <label class="lv-champ">Statut juridique<select id="lvStatut"></select></label>
+      <p class="pdf-note">Le département sélectionne les référents (DD ARS, SDJES, référent du collectif), les MSS et les financements locaux. Le statut juridique filtre la liste des MSS (utile pour trouver une MSS « marraine » de même statut) et les financements qui précisent des statuts éligibles.</p>
+    </fieldset>
+    <p class="pdf-aide">À l'étape suivante, choisissez « Enregistrer au format PDF » comme imprimante.</p>
+    <div class="modal-actions"><button type="button" class="btn-ghost" id="lvAnnuler">Annuler</button><button type="submit" class="btn-primaire">Générer</button></div>
+  </form>
+</div>
 <div id="print" aria-hidden="true"></div>
 <script src="assets/kit.js"></script>
 </body>

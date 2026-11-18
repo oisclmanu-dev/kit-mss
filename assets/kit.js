@@ -422,28 +422,109 @@
   }
   /* ---------- Contenus automatiques et livret PDF ---------- */
   function valeurAutre(b, cle0) { var a = b.autres.filter(function (x) { return cle(x[0]) === cle(cle0); })[0]; return a ? a[1] : ""; }
+  /* Filtres du livret (département, statut juridique) */
+  var LV = { dept: "", statut: "" };
+  function estRegional(b) { var d = String(b.departement || ""); return !d || /toute|bretagne|r[ée]gion/i.test(d); }
+  function deptOk(b) { return !LV.dept || estRegional(b) || String(b.departement).trim() === LV.dept; }
+  function blocsDe(re) { var r = S.rubriques.filter(function (x) { return re.test(x.titre); })[0]; return r ? r.blocs.filter(function (b) { return !b.erreur; }) : []; }
+  function aCompleter(v) { return v && !/^[àa] compl[ée]ter/i.test(v) ? esc(v) : "—"; }
+  function lienLv(u) {
+    if (!u) return "—";
+    u = String(u).split(/\s+/)[0];
+    var txt = u.replace(/^https?:\/\/(www\.)?/i, "").replace(/\/$/, "");
+    if (txt.length > 42) txt = txt.slice(0, 40) + "…";
+    return '<a href="' + esc(u) + '" target="_blank" rel="noopener">' + esc(txt) + "</a>";
+  }
   function tableFinancements() {
-    var rub = S.rubriques.filter(function (x) { return /financ/i.test(x.titre); })[0];
-    var bl = rub ? rub.blocs.filter(function (b) { return !b.erreur; }) : [];
+    var bl = blocsDe(/financ/i).filter(deptOk).filter(function (b) {
+      var el = valeurAutre(b, "Statuts éligibles");
+      return !LV.statut || !el || norm(el).indexOf(norm(LV.statut)) >= 0;
+    });
     if (!bl.length) return '<p class="vide-cat">Aucune fiche dans la rubrique Financements.</p>';
-    return '<table class="lv-table"><tr><th>Émetteur</th><th>Dispositif</th><th>Montant</th></tr>' + bl.map(function (b) {
-      return "<tr><td><b>" + esc(b.emetteur || "") + "</b></td><td>" + esc(b.nom) + "</td><td>" + esc(valeurAutre(b, "Montant") || "—") + "</td></tr>";
+    return '<table class="lv-table lv-compact"><tr><th>Émetteur</th><th>Dispositif</th><th>Montant</th><th>Lien</th></tr>' + bl.map(function (b) {
+      return "<tr><td><b>" + esc(b.emetteur || "") + "</b></td><td>" + esc(b.nom) + "</td><td>" + esc(valeurAutre(b, "Montant") || "—") + "</td><td>" + lienLv(b.site) + "</td></tr>";
     }).join("") + "</table>";
   }
+  var ORDRE_CONTACTS = ["collectifmss", "ars", "delegationdepartementalears", "drajes", "sdjes", "referentcollectif"];
+  function tableReferents(x) {
+    var part = x && x.getAttribute("data-depts") ? x.getAttribute("data-depts").split(",") : null;
+    var bl = S.blocs.filter(function (b) {
+      if (b.erreur || !valeurAutre(b, "Type de contact") || !deptOk(b)) return false;
+      if (!part) return true;
+      if (LV.dept) return part.indexOf("regional") >= 0;
+      return estRegional(b) ? part.indexOf("regional") >= 0 : part.indexOf(String(b.departement).slice(0, 2)) >= 0;
+    });
+    if (!bl.length && part && part.indexOf("regional") < 0) return "";
+    if (!bl.length) return '<p class="vide-cat">Aucun contact pour ce département.</p>';
+    function rang(b) { var i = ORDRE_CONTACTS.indexOf(cle(valeurAutre(b, "Type de contact"))); return i < 0 ? 9 : i; }
+    bl.sort(function (x, y) { return (estRegional(y) - estRegional(x)) || trier(x.departement || "", y.departement || "") || rang(x) - rang(y); });
+    return '<table class="lv-table lv-compact"><tr><th>Interlocuteur</th><th>Coordonnées</th><th>Référent</th></tr>' + bl.map(function (b) {
+      var co = [b.adresse ? esc(b.adresse) : "", b.telephone ? "☎ " + esc(b.telephone) : "", b.email ? "✉ " + esc(b.email) : ""].filter(Boolean).join("<br>");
+      var ref = b.contact || valeurAutre(b, "Référent sport-santé") || "";
+      return "<tr><td><b>" + esc(b.nom) + "</b><br><small>" + esc(valeurAutre(b, "Type de contact")) + "</small></td><td>" + (co || "—") + "</td><td>" + aCompleter(ref) + "</td></tr>";
+    }).join("") + "</table>";
+  }
+  function listeMSS() {
+    var bl = blocsDe(/liste\s*mss|mss\s*collectif/i).filter(function (b) {
+      return (!LV.dept || String(b.departement || "").trim() === LV.dept) && (!LV.statut || String(b.statut || "").trim() === LV.statut);
+    }).sort(function (x, y) { return trier(x.departement || "", y.departement || "") || trier(x.nom, y.nom); });
+    if (!bl.length) return '<p class="vide-cat">Aucune MSS ne correspond à ce département et à ce statut juridique.</p>';
+    return '<ul class="lv-mss">' + bl.map(function (b) {
+      var c = LV.dept ? [b.telephone, b.email].filter(Boolean).map(esc).join(" · ") : "";
+      return "<li><b>" + esc(b.nom) + "</b> — " + esc(b.ville || "") + (LV.dept ? "" : " (" + esc(String(b.departement || "").slice(0, 2)) + ")") + (LV.statut ? "" : " · <i>" + esc(b.statut || "") + "</i>") + (c ? "<br><small>" + c + "</small>" : "") + "</li>";
+    }).join("") + "</ul>";
+  }
+  function tableFormations() {
+    var bl = blocsDe(/formation/i);
+    if (!bl.length) return '<p class="vide-cat">Aucune fiche dans la rubrique Formations.</p>';
+    function dom(u) { if (!u) return "—"; u = String(u).split(/\s+/)[0]; return '<a href="' + esc(u) + '" target="_blank" rel="noopener">' + esc(u.replace(/^https?:\/\/(www\.)?/i, "").split("/")[0]) + "</a>"; }
+    return '<table class="lv-table lv-compact lv-form"><tr><th>Formation</th><th>Organisme et lieu</th><th>Public</th><th>Durée / format</th><th>Lien</th></tr>' + bl.map(function (b) {
+      return "<tr><td><b>" + esc(b.nom) + "</b></td><td>" + esc(b.emetteur || "—") + "<br><small>" + esc(b.ville || b.departement || "") + "</small></td><td>" + esc(valeurAutre(b, "Public") || "—") + "</td><td>" + esc(valeurAutre(b, "Durée") || "—") + "</td><td>" + dom(b.site) + "</td></tr>";
+    }).join("") + "</table>";
+  }
+  function outilsCom() {
+    var r = S.rubriques.filter(function (x) { return /document|mod[eè]le/i.test(x.titre) && (x.categories.length || x.documents.length); })[0];
+    if (!r) return "";
+    return '<div class="lv-outils">' + groupesDocs(r).map(function (g) {
+      return '<div class="lv-carte"><b>' + iconeCategorie(g.nom) + " " + esc(g.nom || "Documents") + "</b>" +
+        (g.docs.length ? "<ul>" + g.docs.map(function (d) { return "<li>" + lienLv(d.url).replace(/>[^<]*<\/a>$/, ">" + esc(d.libelle || d.fichier.split("/").pop()) + "</a>") + "</li>"; }).join("") + "</ul>" : '<br><small>Modèles à venir.</small>') + "</div>";
+    }).join("") + "</div>";
+  }
+  var AUTO = { financements: tableFinancements, referents: tableReferents, mss: listeMSS, formations: tableFormations, "outils-com": outilsCom };
+  function remplirAuto(box) {
+    Object.keys(AUTO).forEach(function (k) { box.querySelectorAll('[data-auto="' + k + '"]').forEach(function (x) { x.innerHTML = AUTO[k](x); }); });
+    box.querySelectorAll("[data-filtre-livret]").forEach(function (x) {
+      x.textContent = (LV.dept || LV.statut) ? "Édition filtrée : " + [LV.dept ? LV.dept.replace(/^\d+\s*-\s*/, "") : "", LV.statut].filter(Boolean).join(" · ") : "Toute la Bretagne, tous statuts juridiques";
+    });
+  }
   function preparerContenu(box, r) {
-    box.querySelectorAll('[data-auto="financements"]').forEach(function (x) { x.innerHTML = tableFinancements(); });
+    remplirAuto(box);
     var lv = box.querySelector("[data-livret]");
     if (!lv) return;
     var pages = remplirLivret(lv);
     var barre = document.createElement("div");
     barre.className = "lv-barre";
-    barre.innerHTML = '<button type="button" class="btn-primaire" id="btnLivret">📘 Générer le livret d\'accueil</button><span>Couverture + ' + pages.length + " pages A4 · choisissez ensuite « Enregistrer au format PDF ».</span>";
+    barre.innerHTML = '<button type="button" class="btn-primaire" id="btnLivret">📘 Générer le livret d\'accueil</button><span>Couverture + ' + pages.length + " pages A4 · filtres département et statut juridique proposés à l'étape suivante.</span>";
     lv.parentNode.insertBefore(barre, lv);
-    $("btnLivret").onclick = function () { genererLivret(r, lv, this); };
+    $("btnLivret").onclick = function () { var btn = this; ouvrirOptionsLivret(function () { remplirLivret(lv); genererLivret(r, lv, btn); }); };
+  }
+  function ouvrirOptionsLivret(suite) {
+    var dps = uniq(blocsDe(/liste\s*mss|mss\s*collectif/i), "departement");
+    var sts = uniq(blocsDe(/liste\s*mss|mss\s*collectif/i), "statut");
+    function opts(sel, v, tous) { sel.innerHTML = '<option value="">' + tous + "</option>"; remplir(sel, v); }
+    opts($("lvDept"), dps, "Toute la Bretagne"); opts($("lvStatut"), sts, "Tous les statuts juridiques");
+    $("lvDept").value = LV.dept; $("lvStatut").value = LV.statut;
+    $("livretModal").hidden = false;
+    $("lvAnnuler").onclick = function () { $("livretModal").hidden = true; };
+    $("livretForm").onsubmit = function (e) { e.preventDefault(); LV.dept = $("lvDept").value; LV.statut = $("lvStatut").value; $("livretModal").hidden = true; suite(); };
   }
   function remplirLivret(lv) {
-    lv.querySelectorAll('[data-auto="financements"]').forEach(function (x) { x.innerHTML = tableFinancements(); });
-    var pages = lv.querySelectorAll(".livret-page");
+    remplirAuto(lv);
+    lv.querySelectorAll(".livret-page[data-optionnel]").forEach(function (p) {
+      var vide = !Array.prototype.some.call(p.querySelectorAll("[data-auto]"), function (x) { return x.innerHTML.trim(); });
+      p.classList.toggle("lv-vide", vide);
+    });
+    var pages = lv.querySelectorAll(".livret-page:not(.lv-vide)");
     pages.forEach(function (p, i) { p.setAttribute("data-num", "Page " + (i + 1)); });
     var som = "<ol class=\"lv-sommaire\">";
     pages.forEach(function (p, i) { var t = p.getAttribute("data-titre"); if (t && i > 0) som += "<li><span>" + esc(t) + "</span><i></i><b>" + (i + 1) + "</b></li>"; });
@@ -485,8 +566,8 @@
       var h = '<section class="lv-cover">' +
         (logo ? '<img class="lv-logo" src="' + esc(logo) + '" alt="">' : '<div class="lv-logo lv-logo-vide">MSS<br>BZH</div>') +
         '<div class="lv-cover-titre">' + esc(titre) + "</div>" + (sous ? '<div class="lv-cover-sous">' + esc(sous) + "</div>" : "") +
-        '<div class="lv-cover-pied"><b>' + esc(mention) + "</b><br>Édition " + annee + "</div></section>";
-      var pages = lv.querySelectorAll(".livret-page");
+        '<div class="lv-cover-pied"><b>' + esc(mention) + "</b><br>Édition " + annee + ((LV.dept || LV.statut) ? "<br>" + esc([LV.dept ? LV.dept.replace(/^\d+\s*-\s*/, "") : "", LV.statut].filter(Boolean).join(" · ")) : "") + "</div></section>";
+      var pages = lv.querySelectorAll(".livret-page:not(.lv-vide)");
       pages.forEach(function (p, i) {
         h += '<section class="lv-page">' + p.innerHTML + '<div class="lv-pied"><span>' + esc(sous || titre) + "</span><span>" + (i + 1) + "</span></div></section>";
       });
@@ -497,7 +578,7 @@
     }).then(function () {
       var ancien = document.title;
       document.title = (c.val("Titre du livret") || r.titre).replace(/[\\/:*?"<>|]/g, "") + " - livret";
-      var fin = function () { document.title = ancien; $("print").innerHTML = ""; $("print").className = ""; btn.disabled = false; btn.textContent = "📘 Générer le livret d'accueil"; window.removeEventListener("afterprint", fin); };
+      var fin = function () { document.title = ancien; $("print").innerHTML = ""; $("print").className = ""; btn.disabled = false; btn.textContent = "📘 Générer le livret d'accueil"; window.removeEventListener("afterprint", fin); LV.dept = ""; LV.statut = ""; if (document.body.contains(lv)) remplirLivret(lv); };
       window.addEventListener("afterprint", fin);
       setTimeout(function () { window.print(); }, 300);
     });
@@ -592,7 +673,7 @@
       if (location.hash === "#/recherche") rechercher(); else location.hash = "#/recherche";
     };
     $("btnPdf").onclick = ouvrirOptionsPdf;
-    $("btnLivretAccueil").onclick = function () { livretDepuisAccueil(this); };
+    $("btnLivretAccueil").onclick = function () { var btn = this; ouvrirOptionsLivret(function () { livretDepuisAccueil(btn); }); };
     construireMenu(); route();
     window.addEventListener("hashchange", route);
   }).catch(function () {
