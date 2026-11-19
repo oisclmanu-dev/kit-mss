@@ -6,8 +6,11 @@
 <meta name="robots" content="noindex, nofollow">
 <title>Kit collectif MSS BZH – Maisons Sport-Santé</title>
 <link rel="stylesheet" href="assets/kit.css">
-<script>/* aperçu des designs : ajoutez ?design=1, 2 ou 3 à l'adresse du site */
-(function(){var m=/[?&]design=([123])/.exec(location.search),f={"1":"design-1-officiel","2":"design-2-bretagne","3":"design-3-energie"};if(m){var l=document.createElement("link");l.rel="stylesheet";l.href="assets/themes/"+f[m[1]]+".css";document.head.appendChild(l);}})();</script>
+<script>/* design du site : liste déroulante en bas du menu (mémorisée sur cet ordinateur) ou ?design=0 à 3 dans l'adresse */
+(function(){var F={"1":"modele-1-portail","2":"modele-2-editorial","3":"modele-3-tableau"},m=/[?&]design=([0-3])/.exec(location.search),d=m?m[1]:null;
+if(d===null){try{d=localStorage.getItem("kit-design");}catch(e){}}
+window.kitDesign=function(n,memo){var l=document.getElementById("kitTheme");if(l)l.remove();if(F[n]){l=document.createElement("link");l.id="kitTheme";l.rel="stylesheet";l.href="assets/themes/"+F[n]+".css";document.head.appendChild(l);}window.kitDesignActuel=F[n]?n:"0";if(memo){try{localStorage.setItem("kit-design",window.kitDesignActuel);}catch(e){}}};
+window.kitDesign(d||"0",false);})();</script>
 </head>
 <body>
 <!-- Ce fichier ne se modifie pas. Le contenu vient de menu.txt et du dossier rubriques (voir mode-emploi.html). -->
@@ -21,7 +24,8 @@
       </div>
     </div>
     <nav class="nav" id="nav" aria-label="Menu principal"></nav>
-    <div class="sidebar-foot"><a href="mode-emploi.html" target="_blank">📘 Mode d'emploi</a></div>
+    <div class="sidebar-foot"><a href="mode-emploi.html" target="_blank">📘 Mode d'emploi</a>
+      <label class="choix-design">🎨 Design <select id="choixDesign" aria-label="Choisir le design du site"><option value="0">Standard</option><option value="1">Portail</option><option value="2">Éditorial</option><option value="3">Tableau de bord</option></select></label></div>
   </aside>
 
   <div class="main">

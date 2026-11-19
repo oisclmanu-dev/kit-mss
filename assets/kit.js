@@ -203,7 +203,14 @@
     var box = $("infos"); if (!box) return;
     var items = (S.infos || []).map(function (l) { return l.split("|").map(function (x) { return x.trim(); }); }).filter(function (p) { return p[0]; });
     if (!items.length) { box.hidden = true; return; }
-    box.innerHTML = '<div class="infos-titre"><span class="infos-puce">⚡</span> Dernières informations</div><ul>' + items.map(function (p) {
+    /* les liens YouTube s'affichent en miniatures cliquables au-dessus de la liste */
+    var idYt = function (u) { var m = /(?:youtu\.be\/|[?&]v=|\/embed\/)([\w-]{11})/.exec(u || ""); return m ? m[1] : null; };
+    var videos = items.filter(function (p) { return idYt(p[1]); }); items = items.filter(function (p) { return !idYt(p[1]); });
+    var vh = videos.length ? '<div class="infos-videos">' + videos.map(function (p) {
+      var id = idYt(p[1]);
+      return '<a class="infos-video" href="https://www.youtube.com/watch?v=' + id + '" target="_blank" rel="noopener"><span class="infos-vignette"><img src="https://i.ytimg.com/vi/' + id + '/mqdefault.jpg" alt="" loading="lazy" onerror="this.style.visibility=\'hidden\'"><span class="infos-play">▶</span></span><span class="infos-vtitre">' + esc(p[0]) + "</span>" + (p[2] ? '<span class="infos-date">' + esc(p[2]) + "</span>" : "") + "</a>";
+    }).join("") + "</div>" : "";
+    box.innerHTML = '<div class="infos-titre"><span class="infos-puce">⚡</span> Dernières informations</div>' + vh + '<ul>' + items.map(function (p) {
       var u = p[1] || "", ext = /^(https?:|#|mailto:)/i.test(u), href = ext ? u : encodeURI(u);
       var nouv = /\.(docx?|pptx?|pdf|xlsx?)$/i.exec(u);
       return "<li>" + (p[2] ? '<span class="infos-date">' + esc(p[2]) + "</span>" : "") + (u ? '<a href="' + esc(href) + '"' + (u.charAt(0) === "#" ? "" : ' target="_blank" rel="noopener"') + ">" + esc(p[0]) + "</a>" : "<b>" + esc(p[0]) + "</b>") +
@@ -281,7 +288,8 @@
       /* les éléments marqués class="apres-fiches" s'affichent sous la liste des fiches */
       var rc = $("rcards");
       if (rc) Array.prototype.slice.call(box.querySelectorAll(".apres-fiches")).reverse().forEach(function (el) { rc.parentNode.insertBefore(el, rc.nextSibling); });
-      if (fl && !cm && r.cfg && /^oui/i.test(String(r.cfg.val("Filtres en haut") || "").trim())) {
+      if (fl && r.cfg && /^oui/i.test(String(r.cfg.val("Filtres en haut") || "").trim())) {
+        if (cm) { var ent0 = document.createElement("div"); ent0.className = "filtres-carte-titre"; ent0.textContent = "Filtrer les MSS (carte et liste)"; box.parentNode.insertBefore(ent0, box); }
         box.parentNode.insertBefore(fl, box); fl.classList.add("filtres-carte");
       } else if (cm && fl) {
         var ancre = cm.previousElementSibling && /^H[23]$/.test(cm.previousElementSibling.tagName) ? cm.previousElementSibling : cm;
@@ -816,6 +824,8 @@
     $("heroTitle").textContent = "Bienvenue sur le " + R.titre;
     $("heroText").textContent = R.accueil || "";
     afficherInfos();
+    var cd = $("choixDesign");
+    if (cd) { cd.value = window.kitDesignActuel || "0"; cd.onchange = function () { window.kitDesign(cd.value, true); }; }
     if (R.couleur) document.documentElement.style.setProperty("--primaire", R.couleur);
     var logos = R.logo ? [lien("", R.logo)] : LOGOS.map(function (f) { return "logo/" + f; });
     $("brandLogo").innerHTML = logoHtml({ nom: "♥", logos: logos }).replace('class="logo" alt', 'class="logo-site" alt');

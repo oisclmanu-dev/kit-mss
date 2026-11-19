@@ -16,9 +16,12 @@ Couleur : #0f766e
 #  [Dernières informations] : le flash affiché sur la page d'accueil.
 #  Une ligne par information : Libellé | lien | date | courte description
 #  Le lien peut être une adresse internet, un fichier du kit ou une rubrique (#/r/...).
+#  Un lien YouTube s'affiche en miniature (vignette de la vidéo).
 #  Laissez la section vide pour masquer le flash.
 # ---------------------------------------------------------------------
 [Dernières informations]
+Webinaire « Activité physique & santé mentale » | https://www.youtube.com/watch?v=6pcoCGn-q_o | Collectif MSS Bzh
+Webinaire « Activité physique & oncologie » | https://www.youtube.com/watch?v=R-DGAMxUrPU | Collectif MSS Bzh
 Le livret d'accueil des nouvelles MSS | #/r/livret-d-accueil | Novembre 2026 | Kit d'accueil à générer en PDF, filtrable par département et statut juridique
 Livre blanc des Maisons Sport-Santé bretonnes – synthèse stratégique | rubriques/Outils/documents/Livre-blanc-MSS-bretonnes-synthese-strategique.docx | Novembre 2026
 Plaidoyer pour les Maisons Sport-Santé bretonnes | rubriques/Documents modeles/documents/Plaidoyer et livre blanc/Plaidoyer-MSS-bretonnes.docx | Novembre 2026 | Investir dans la prévention, c'est investir dans les territoires

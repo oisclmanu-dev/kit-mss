@@ -8,7 +8,6 @@
 #    Pour un libellé personnalisé :  Mon libellé | documents/fichier.pdf
 # =====================================================================
 
-Introduction : Les partenariats des Maisons Sport-Santé bretonnes, d'après l'état des lieux 2025 du collectif. Pour connaître le détail d'un partenariat, contactez la MSS concernée.
 Titre des blocs : Coordonnées des institutions
 Filtres : Type de contact
 

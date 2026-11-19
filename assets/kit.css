@@ -413,15 +413,15 @@ h4.groupe{margin:20px 0 8px;font-size:15.5px;color:var(--primaire-fonce)}
 .cmss-zone{position:relative;border:1px solid var(--bord);border-radius:12px;overflow:hidden;background:#fff}
 .cmss-zone img{display:block;width:100%;height:auto;transition:opacity .2s}
 .cmss-zone.filtree img{opacity:.35}
-.cmss-pt{position:absolute;transform:translate(-50%,-50%);min-width:24px;height:24px;padding:0 4px;border-radius:12px;border:2px solid #fff;background:var(--primaire);color:#fff;font-weight:700;font-size:11.5px;line-height:20px;cursor:pointer;box-shadow:0 1px 4px rgba(0,0,0,.45);z-index:2}
-.cmss-pt:hover,.cmss-pt:focus{background:#f59e0b;outline:none;z-index:3}
+.cmss-pt{position:absolute;transform:translate(-50%,-50%);min-width:32px;height:32px;padding:0 5px;border-radius:16px;border:2.5px solid #1f2937;background:#facc15;color:#111827;font-weight:800;font-size:14px;line-height:27px;cursor:pointer;box-shadow:0 1px 4px rgba(0,0,0,.45);z-index:2}
+.cmss-pt:hover,.cmss-pt:focus{background:#fb923c;outline:none;z-index:3}
 .cmss-pop{position:absolute;transform:translate(-50%,calc(-100% - 16px));background:#fff;border:1px solid var(--bord);border-radius:10px;padding:8px 11px;font-size:13px;line-height:1.45;box-shadow:0 6px 18px rgba(0,0,0,.18);min-width:190px;max-width:260px;z-index:4}
 .cmss-pop.a-gauche{transform:translate(calc(-100% + 20px),calc(-100% - 16px))}
 .cmss-pop a{color:var(--primaire-fonce);font-weight:600}
 .cmss-info{font-size:13px;color:#555;margin-top:6px}
 .badge.carte-num{background:#fff7e6;color:#92400e}
 .card.flash{outline:3px solid #f59e0b;outline-offset:2px}
-@media (max-width:700px){.cmss-pt{min-width:18px;height:18px;line-height:14px;font-size:9px;padding:0 2px;border-width:1.5px}}
+@media (max-width:700px){.cmss-pt{min-width:22px;height:22px;line-height:18px;font-size:11px;padding:0 3px;border-width:2px}}
 /* ---------- recherche améliorée ---------- */
 .search-aide{font-size:12.5px;color:var(--texte-doux);margin-top:8px}
 .rub-chips{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 14px}
@@ -472,3 +472,27 @@ mark{background:#fde68a;color:inherit;border-radius:3px;padding:0 1px}
 .infos-type{font-size:11px;color:var(--texte-doux);border:1px solid var(--bord);border-radius:4px;padding:0 5px}
 .infos-desc{flex-basis:100%;font-size:13px;color:var(--texte-doux)}
 @media print{.infos{display:none}}
+
+.filtres-carte-titre{font-weight:700;color:var(--primaire-fonce);margin:4px 0 6px;font-size:14px}
+.rub-filtres.filtres-carte{margin-bottom:18px}
+
+/* choix du design (bas du menu) */
+.choix-design{display:flex;align-items:center;gap:8px;font-size:12.5px;opacity:.9;margin-top:6px}
+.choix-design select{flex:1;font:inherit;font-size:12.5px;padding:4px 6px;border-radius:6px;border:1px solid rgba(127,127,127,.4);background:rgba(255,255,255,.95);color:#1f2937}
+@media print{.choix-design{display:none}}
+/* cadre unique en deux colonnes (Partenaires) */
+.cadre-unique{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.4fr);gap:8px 28px}
+.cadre-unique h3{margin:0 0 6px;font-size:15px;color:var(--primaire-fonce)}
+.cadre-unique p{margin:0 0 8px;font-size:13.5px}
+.cadre-unique .col + .col{border-left:1px solid var(--bord);padding-left:28px}
+@media (max-width:900px){.cadre-unique{grid-template-columns:1fr}.cadre-unique .col + .col{border-left:0;padding-left:0}}
+
+/* miniatures vidéo du flash */
+.infos-videos{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:14px;margin:4px 0 12px}
+.infos-video{display:flex;flex-direction:column;gap:6px;text-decoration:none;color:var(--texte)}
+.infos-vignette{position:relative;display:block;border-radius:10px;overflow:hidden;aspect-ratio:16/9;background:#000;box-shadow:var(--ombre)}
+.infos-vignette img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .2s}
+.infos-video:hover img{transform:scale(1.04)}
+.infos-play{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:46px;height:46px;border-radius:50%;background:rgba(220,38,38,.92);color:#fff;display:grid;place-items:center;font-size:18px;padding-left:3px}
+.infos-vtitre{font-weight:600;font-size:14px;line-height:1.3}
+.infos-video .infos-date{align-self:flex-start}
