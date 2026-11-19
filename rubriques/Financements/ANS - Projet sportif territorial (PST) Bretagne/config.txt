@@ -1,0 +1,13 @@
+# Fiche du bloc — logo de l'émetteur possible dans ce dossier (logo.png, .jpg, .svg, .webp)
+# Attention : dans les lignes de suite d'un texte, n'utilisez pas le caractère deux-points.
+
+Nom : Projet sportif territorial (PST) – part territoriale de l'Agence nationale du sport
+Type de financement : Subvention
+Émetteur : ANS / DRAJES Bretagne
+Département : Toute la Bretagne
+Description : Campagne annuelle de l'ANS en région, instruite par la DRAJES Bretagne, qui soutient les projets des associations sportives (ligues, comités, clubs). La promotion du sport-santé bien-être fait partie des priorités régionales.
+Porteurs éligibles : associations sportives affiliées (clubs, comités, ligues) ; une MSS associative peut porter un projet avec ses clubs partenaires.
+Démarche : note de cadrage régionale publiée au printemps par la DRAJES, demande sur Le Compte Asso.
+Calendrier : campagne de printemps (note nationale 2026 du 10 avril 2026).
+Site : https://www.agencedusport.fr/documentations/le-compte-asso
+Plus d'infos : https://www.ac-rennes.fr/drajes-bretagne

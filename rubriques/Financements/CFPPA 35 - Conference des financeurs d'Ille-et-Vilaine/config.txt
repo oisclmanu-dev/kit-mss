@@ -1,0 +1,11 @@
+# Fiche du bloc — logo de l'émetteur possible dans ce dossier (logo.png, .jpg, .svg, .webp)
+# Attention : dans les lignes de suite d'un texte, n'utilisez pas le caractère deux-points.
+
+Nom : Appel à projets de la Conférence des financeurs (CFPPA 35)
+Type de financement : Appel à projets
+Émetteur : Conférence des financeurs 35
+Département : 35 - Ille-et-Vilaine
+Description : Appel à projets de la Conférence des financeurs de la prévention de la perte d'autonomie d'Ille-et-Vilaine, dans le cadre du programme coordonné 2026-2028, avec le soutien des caisses de retraite via Pour bien vieillir Bretagne.
+Projets éligibles : actions de prévention de la perte d'autonomie des 60 ans et plus, dont l'activité physique.
+Démarche : appel à projets publié par le Département d'Ille-et-Vilaine et sur le site de Pour bien vieillir Bretagne.
+Site : https://www.pourbienvieillirbretagne.fr/appel-a-projets/

@@ -1,0 +1,13 @@
+# Fiche du bloc — déposez le logo dans ce dossier sous le nom logo.png (ou .jpg, .svg, .webp)
+
+Nom : MSS de Rennes / CHU
+Statut juridique : Établissement de santé
+Département : 35 - Ille-et-Vilaine
+Ville : Rennes
+Adresse : 6 avenue du Professeur Léon Bernard
+Contact : LEMAIRE Charline
+Téléphone : 06 78 20 46 29
+Email : charline.lemaire@chu-rennes.fr
+Site : https://maisonsportsante.chu-rennes.fr/maison-sport-sante-mss-1660.html
+Description : 
+Carte : 15 | 77.7 | 45.8

@@ -1,0 +1,13 @@
+# Fiche du bloc — déposez le logo dans ce dossier sous le nom logo.png (ou .jpg, .svg, .webp)
+
+Nom : MSS Breizh Activ Bain / OCAS
+Statut juridique : Association loi 1901
+Département : 35 - Ille-et-Vilaine
+Ville : Bain-de-Bretagne
+Adresse : 19 rue Charles Menardais
+Contact : Pierre Redou
+Téléphone : 06 98 46 96 45
+Email : sportsante@breizhactiv.bzh
+Site : https://breizhactiv.bzh
+Description : 
+Carte : 12 | 79.3 | 63.6
