@@ -1,6 +1,0 @@
-Nom : Tester son niveau d'activité physique et bouger plus
-Type d'outil : Évaluation & suivi
-Public : Bénéficiaires, grand public
-Émetteur : Azur Sport Santé (boîte à outils)
-Description : Autotest du niveau d'activité physique, catalogue d'activités et recommandations pour bouger plus.
-Site : https://azursportsante.fr/fr/outils/id-115-tester-son-niveau-d-ap-catalogue-d-activites-et-recos-pour-bouger-plus

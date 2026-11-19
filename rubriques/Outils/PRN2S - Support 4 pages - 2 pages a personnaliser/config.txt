@@ -1,7 +1,0 @@
-# Source : Flash info MSS n°47 spécial communication du PRN2S (relevé du 19/11/2026)
-Nom : Support de présentation 4 pages (2 pages à personnaliser)
-Type d'outil : Communication MSS
-Public : MSS habilitées
-Émetteur : PRN2S – CREPS de Vichy
-Description : Version de la plaquette avec deux pages personnalisables sur Canva.
-Site : https://www.canva.com/design/DAHNfMYhG98/WHyeZ4BAdgMWeTb1HfmM0A/view

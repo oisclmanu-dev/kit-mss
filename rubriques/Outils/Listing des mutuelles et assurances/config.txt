@@ -1,6 +1,0 @@
-Nom : Listing des mutuelles et assurances
-Type d'outil : Fonctionnement de la MSS
-Public : MSS, bénéficiaires
-Émetteur : Azur Sport Santé (boîte à outils)
-Description : Liste des mutuelles et assurances qui prennent en charge l'activité physique (mise à jour septembre 2026).
-Site : https://azursportsante.fr/fr/outils/id-10-listing-des-mutuelles-et-assurances

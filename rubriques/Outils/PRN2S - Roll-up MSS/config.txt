@@ -1,7 +1,0 @@
-# Source : Flash info MSS n°47 spécial communication du PRN2S (relevé du 19/11/2026)
-Nom : Roll-up MSS (85 × 200 cm)
-Type d'outil : Communication MSS
-Public : MSS habilitées
-Émetteur : PRN2S – CREPS de Vichy
-Description : Roll-up personnalisable sur Canva : logo, site web, QR code, coordonnées, adresse, photo.
-Site : https://www.canva.com/design/DAHP65xkb50/TemOUqFlP1pHKw_3yoLfSA/view

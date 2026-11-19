@@ -1,6 +1,0 @@
-Nom : Diag'ACT : diagnostic pour faire bouger votre territoire
-Type d'outil : Collectivités & entreprises
-Public : Collectivités
-Émetteur : Azur Sport Santé (boîte à outils)
-Description : Outil de diagnostic territorial de l'activité physique.
-Site : https://azursportsante.fr/fr/outils/id-76-diag-act-un-diagnostic-pour-faire-bouger-votre-territoire

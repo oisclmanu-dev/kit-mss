@@ -1,6 +1,0 @@
-Nom : Recommandations de l'ANSES : plus d'activité physique, moins de sédentarité
-Type d'outil : Sensibilisation
-Public : Grand public, professionnels
-Émetteur : Azur Sport Santé (boîte à outils)
-Description : Synthèse des recommandations officielles d'activité physique et de réduction de la sédentarité.
-Site : https://azursportsante.fr/fr/outils/id-116-recommandations-de-l-anses-plus-d-ap-et-moins-de-sedentarite

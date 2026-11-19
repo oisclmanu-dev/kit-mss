@@ -1,6 +1,0 @@
-Nom : Kit d'aide à la prescription d'activité physique
-Type d'outil : Prescription
-Public : Médecins, professionnels de santé
-Émetteur : Azur Sport Santé (boîte à outils)
-Description : Ensemble d'outils pour accompagner le médecin dans la prescription d'activité physique.
-Site : https://azursportsante.fr/fr/outils/id-29-kit-daide-a-la-prescription

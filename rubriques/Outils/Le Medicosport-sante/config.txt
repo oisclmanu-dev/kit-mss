@@ -1,6 +1,0 @@
-Nom : Le Médicosport-santé
-Type d'outil : Prescription
-Public : Médecins, encadrants sportifs
-Émetteur : Azur Sport Santé (boîte à outils)
-Description : Dictionnaire des disciplines sportives adaptées selon les pathologies, élaboré par le mouvement sportif.
-Site : https://azursportsante.fr/fr/outils/id-50-le-medicosport-sante
