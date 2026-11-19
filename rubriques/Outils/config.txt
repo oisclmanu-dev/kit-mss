@@ -6,6 +6,8 @@
 Titre : Outils
 Introduction : Outils pratiques pour les MSS : évaluation et suivi des bénéficiaires, prescription, supports de sensibilisation, guides thématiques, vidéos du collectif et outils pour le fonctionnement de la MSS.
 Filtres : Type d'outil
+# Filtres en haut : oui = la barre de filtres s'affiche en début de page, avant le texte
+Filtres en haut : oui
 Titre des blocs : Boîte à outils
 
 [Blocs]
