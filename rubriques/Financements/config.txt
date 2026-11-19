@@ -8,7 +8,8 @@
 #    Pour un libellé personnalisé :  Mon libellé | documents/fichier.pdf
 # =====================================================================
 
-Introduction : Les financements mobilisables par les Maisons Sport-Santé, classés par émetteur : ARS Bretagne, DRAJES Bretagne, Conférence des financeurs…
+Introduction : Les financements mobilisables par les Maisons Sport-Santé : subventions (ARS, DRAJES, ANS), appels à projets santé et sport-santé, fondations, et la liste des mutuelles qui remboursent l'activité physique adaptée.
+Filtres : Type de financement
 Titre des blocs : Dispositifs de financement
 
 [Blocs]
@@ -19,5 +20,14 @@ ARS - AAP Panier de soins prevention des chutes
 ARS - AAP Parcours soins oncologiques de support
 DRAJES - Subvention Maisons Sport-Sante
 CFPPA 22 - Conference des financeurs des Cotes-d'Armor
+CFPPA 29 - Commission des financeurs du Finistere
+CFPPA 35 - Conference des financeurs d'Ille-et-Vilaine
+CFPPA 56 - Commission des financeurs du Morbihan
+ANS - Projet sportif territorial (PST) Bretagne
+ANS - Appel a projets Impact
+Ministere des Sports - AAP APS et sedentarite en milieu professionnel
+Fondation Harmonie Mutuelle - En mouvement face a la sedentarite
 
 [Documents]
+Listing des mutuelles et assurances (Azur Sport Santé, sept. 2026) | https://azursportsante.fr/_0/upload/outils/Listing-des-mutuelles/Listing-mutuelles-et-assurances-2026.pdf
+Guide de recherche de financements pour les MSS (Azur Sport Santé) | https://azursportsante.fr/fr/outils/id-140-guide-d-accompagnement-a-la-recherche-de-financements-pour-les-maisons-sport-sante

@@ -1,7 +1,8 @@
-# Fiche du bloc — déposez le logo de l'émetteur dans ce dossier sous le nom logo.png (ou .jpg, .svg, .webp)
+# Fiche du bloc — logo de l'émetteur possible dans ce dossier (logo.png, .jpg, .svg, .webp)
 # Attention : dans les lignes de suite d'un texte, n'utilisez pas le caractère deux-points.
 
 Nom : Financement des Maisons Sport-Santé
+Type de financement : Subvention
 Émetteur : ARS Bretagne
 Département : Toute la Bretagne
 Description : Soutien financier de l'ARS aux MSS pour la mise en œuvre de leurs missions, dans le cadre de déploiement et de financement défini par l'ARS Bretagne.

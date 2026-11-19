@@ -1,7 +1,8 @@
-# Fiche du bloc — déposez le logo de l'émetteur dans ce dossier sous le nom logo.png (ou .jpg, .svg, .webp)
+# Fiche du bloc — logo de l'émetteur possible dans ce dossier (logo.png, .jpg, .svg, .webp)
 # Attention : dans les lignes de suite d'un texte, n'utilisez pas le caractère deux-points.
 
 Nom : Appel à projets « Parcours en soins oncologiques de support »
+Type de financement : Appel à projets
 Émetteur : ARS Bretagne
 Département : Toute la Bretagne
 Description : Sélection des structures qui mettront en œuvre, à partir du 1er janvier 2027, le parcours de soins oncologiques de support sur prescription médicale (activité physique adaptée, diététique, soutien psychologique), pour les personnes recevant ou ayant reçu un traitement pour un cancer.

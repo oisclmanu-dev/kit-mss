@@ -1,7 +1,8 @@
-# Fiche du bloc — déposez le logo de l'émetteur dans ce dossier sous le nom logo.png (ou .jpg, .svg, .webp)
+# Fiche du bloc — logo de l'émetteur possible dans ce dossier (logo.png, .jpg, .svg, .webp)
 # Attention : dans les lignes de suite d'un texte, n'utilisez pas le caractère deux-points.
 
 Nom : Subvention aux Maisons Sport-Santé
+Type de financement : Subvention
 Émetteur : DRAJES Bretagne
 Département : Toute la Bretagne
 Description : Subvention annuelle de la Délégation régionale académique à la jeunesse, à l'engagement et aux sports (crédits Jeunesse et Sports) en faveur des MSS.

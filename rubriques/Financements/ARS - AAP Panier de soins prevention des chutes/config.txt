@@ -1,7 +1,8 @@
-# Fiche du bloc — déposez le logo de l'émetteur dans ce dossier sous le nom logo.png (ou .jpg, .svg, .webp)
+# Fiche du bloc — logo de l'émetteur possible dans ce dossier (logo.png, .jpg, .svg, .webp)
 # Attention : dans les lignes de suite d'un texte, n'utilisez pas le caractère deux-points.
 
 Nom : Appel à projets « Panier de soins » pour la prévention des chutes
+Type de financement : Appel à projets
 Émetteur : ARS Bretagne
 Département : Toute la Bretagne
 Description : Dans le cadre du plan national antichute des personnes âgées (axe 4, activité physique), prise en charge coordonnée d'une personne de 65 ans et plus à haut risque de chute par trois professionnels.

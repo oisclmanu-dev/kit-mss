@@ -19,6 +19,19 @@ Titre des documents : Modèles à télécharger
 [Blocs]
 
 [Documents]
+Catégorie : Plaidoyer du collectif
+Plaidoyer pour les Maisons Sport-Santé bretonnes | documents/Plaidoyer et livre blanc/Plaidoyer-MSS-bretonnes.docx
+
+Catégorie : Cahiers de présentation par secteur
+Cahier A – Les MSS bretonnes et… Santé | documents/Plaidoyer et livre blanc/Cahiers par secteur/Cahier-A-Sante.pptx
+Cahier B – Les MSS bretonnes et… Social, insertion & emploi | documents/Plaidoyer et livre blanc/Cahiers par secteur/Cahier-B-Social-insertion-emploi.pptx
+Cahier C – Les MSS bretonnes et… Médico-social & handicap | documents/Plaidoyer et livre blanc/Cahiers par secteur/Cahier-C-Medico-social-handicap.pptx
+Cahier D – Les MSS bretonnes et… Collectivités territoriales | documents/Plaidoyer et livre blanc/Cahiers par secteur/Cahier-D-Collectivites.pptx
+Cahier E – Les MSS bretonnes et… Éducation & jeunesse | documents/Plaidoyer et livre blanc/Cahiers par secteur/Cahier-E-Education-jeunesse.pptx
+Cahier F – Les MSS bretonnes et… Entreprises & employeurs | documents/Plaidoyer et livre blanc/Cahiers par secteur/Cahier-F-Entreprises.pptx
+Cahier G – Les MSS bretonnes et… Mouvement sportif | documents/Plaidoyer et livre blanc/Cahiers par secteur/Cahier-G-Mouvement-sportif.pptx
+Cahier H – Les MSS bretonnes et… Financeurs publics & privés | documents/Plaidoyer et livre blanc/Cahiers par secteur/Cahier-H-Financeurs.pptx
+
 Catégorie : Conventions
 Modèle de convention de partenariat avec une association | documents/Conventions/Modele-convention-association.docx
 Modèle de convention de mise à disposition d'une salle municipale | documents/Conventions/Modele-convention-salle-mairie.docx
@@ -31,4 +44,13 @@ Catégorie : Communication vers les associations
 Catégorie : Communication vers les collectivités
 Modèle de plaquette pour les mairies | documents/Communication vers les collectivites/Modele-plaquette-mairie.docx
 
+Catégorie : Charte et outils de communication MSS
+Flash info MSS n°47 – spécial communication (PRN2S) | documents/Charte et outils de communication/Flash-info-MSS-47-special-communication.pdf
+Charte d'utilisation et valise du logo MSS (PRN2S) | https://fichiers.numerique.gouv.fr/explorer/items/d6ed3708-6ae1-4099-bb92-55dc19808d66
+Infographie du parcours sport-santé (PRN2S) | https://pole-sante.creps-vichy.sports.gouv.fr/wp-content/uploads/2026/06/MSS_Infographie_Parcours_beneficiaires_v5-GP.pdf
+Boîte à outils des MSS du PRN2S | https://pole-sante.creps-vichy.sports.gouv.fr/?page_id=17951
+
 Catégorie : Capsules vidéos
+Webinaire « Activité physique & santé mentale » (Collectif MSS Bzh) | https://www.youtube.com/watch?v=6pcoCGn-q_o
+Webinaire « Activité physique & oncologie » (Collectif MSS Bzh) | https://www.youtube.com/watch?v=R-DGAMxUrPU
+Mon parcours au sein d'une Maison Sport-Santé en Bretagne (CROS Bretagne) | https://www.youtube.com/watch?v=52TIkLBwvtM
