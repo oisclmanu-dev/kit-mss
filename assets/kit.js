@@ -276,6 +276,18 @@
       });
       box.innerHTML = doc.body.innerHTML;
       preparerContenu(box, r);
+      /* la barre de filtres remonte au-dessus de la première carte : elle filtre la carte et la liste */
+      var cm = box.querySelector(".carte-mss"), fl = box.parentNode.querySelector(".rub-filtres");
+      /* les éléments marqués class="apres-fiches" s'affichent sous la liste des fiches */
+      var rc = $("rcards");
+      if (rc) Array.prototype.slice.call(box.querySelectorAll(".apres-fiches")).reverse().forEach(function (el) { rc.parentNode.insertBefore(el, rc.nextSibling); });
+      if (fl && !cm && r.cfg && /^oui/i.test(String(r.cfg.val("Filtres en haut") || "").trim())) {
+        box.parentNode.insertBefore(fl, box); fl.classList.add("filtres-carte");
+      } else if (cm && fl) {
+        var ancre = cm.previousElementSibling && /^H[23]$/.test(cm.previousElementSibling.tagName) ? cm.previousElementSibling : cm;
+        var ent = document.createElement("div"); ent.className = "filtres-carte-titre"; ent.textContent = "Filtrer les MSS (carte et liste)";
+        ancre.parentNode.insertBefore(ent, ancre); ancre.parentNode.insertBefore(fl, ancre); fl.classList.add("filtres-carte");
+      }
       majCarte(r);
     }).catch(function () { var box = $("rubPage"); if (!box) return; if (r.pageDeclaree) box.innerHTML = '<div class="alerte">⚠️ Fichier <b>' + esc(r.base + r.page) + "</b> introuvable.</div>"; else box.remove(); });
 
@@ -315,7 +327,7 @@
       return '<button type="button" class="cmss-pt" style="left:' + p.x + "%;top:" + p.y + '%" data-i="' + r.blocs.indexOf(b) + '" title="' + esc(b.nom) + '">' + esc(p.num) + "</button>";
     }).join("");
     zone.classList.toggle("filtree", !!r._filtre);
-    box.querySelector(".cmss-info").textContent = r._filtre ? n + " MSS affichée" + (n > 1 ? "s" : "") + " sur " + tot + " selon les filtres ci-dessous · cliquez sur un numéro pour voir la fiche" : tot + " MSS sur la carte · utilisez les filtres ci-dessous pour n'afficher que certaines MSS · cliquez sur un numéro pour voir la fiche";
+    box.querySelector(".cmss-info").textContent = r._filtre ? n + " MSS affichée" + (n > 1 ? "s" : "") + " sur " + tot + " selon les filtres ci-dessus · cliquez sur un numéro pour voir la fiche" : tot + " MSS sur la carte · utilisez les filtres ci-dessus pour n'afficher que certaines MSS · cliquez sur un numéro pour voir la fiche";
     pop.hidden = true;
     pts.querySelectorAll(".cmss-pt").forEach(function (bt) {
       bt.addEventListener("click", function (e) {
