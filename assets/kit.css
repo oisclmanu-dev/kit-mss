@@ -476,10 +476,10 @@ mark{background:#fde68a;color:inherit;border-radius:3px;padding:0 1px}
 .filtres-carte-titre{font-weight:700;color:var(--primaire-fonce);margin:4px 0 6px;font-size:14px}
 .rub-filtres.filtres-carte{margin-bottom:18px}
 
-/* choix du design (bas du menu) */
-.choix-design{display:flex;align-items:center;gap:8px;font-size:12.5px;opacity:.9;margin-top:6px}
-.choix-design select{flex:1;font:inherit;font-size:12.5px;padding:4px 6px;border-radius:6px;border:1px solid rgba(127,127,127,.4);background:rgba(255,255,255,.95);color:#1f2937}
-@media print{.choix-design{display:none}}
+/* choix du design : bouton flottant toujours visible, quel que soit le design */
+.choix-design{position:fixed!important;right:16px;bottom:16px;z-index:9999!important;display:flex!important;align-items:center;gap:6px;background:#fff!important;color:#1f2937!important;border:1px solid #d1d5db!important;border-radius:999px!important;padding:5px 8px 5px 12px!important;box-shadow:0 4px 16px rgba(0,0,0,.18)!important;font:14px system-ui,"Segoe UI",Arial,sans-serif!important;visibility:visible!important;opacity:1!important}
+.choix-design select{font:13px system-ui,"Segoe UI",Arial,sans-serif!important;border:0!important;background:transparent!important;color:#1f2937!important;padding:4px 2px!important;cursor:pointer;outline:none}
+@media print{.choix-design{display:none!important}}
 /* cadre unique en deux colonnes (Partenaires) */
 .cadre-unique{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.4fr);gap:8px 28px}
 .cadre-unique h3{margin:0 0 6px;font-size:15px;color:var(--primaire-fonce)}
