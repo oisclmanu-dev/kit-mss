@@ -1,2 +1,0 @@
-Déposez ici les modèles de la catégorie « Communication vers les associations »,
-puis ajoutez une ligne sous « Catégorie : Communication vers les associations » dans le config.txt de la rubrique.
