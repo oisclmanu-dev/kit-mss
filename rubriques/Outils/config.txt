@@ -1,0 +1,78 @@
+# =====================================================================
+#  CONFIGURATION DE LA RUBRIQUE « Outils »
+#  • Section Blocs : une ligne par bloc = nom EXACT d'un sous-dossier
+# =====================================================================
+
+Titre : Outils
+Introduction : Outils pratiques pour les MSS : évaluation et suivi des bénéficiaires, prescription, supports de sensibilisation, guides thématiques, vidéos du collectif et outils pour le fonctionnement de la MSS.
+Filtres : Type d'outil
+Titre des blocs : Boîte à outils
+
+[Blocs]
+PRN2S - Charte d utilisation et valise du logo MSS
+PRN2S - Test d application de la charte logo MSS
+PRN2S - Support 4 pages - 1 page a personnaliser
+PRN2S - Support 4 pages - 2 pages a personnaliser
+PRN2S - Infographie du parcours sport-sante
+PRN2S - Affiche missions des MSS
+PRN2S - Roll-up MSS
+PRN2S - Oriflamme MSS
+PRN2S - Nappe MSS
+PRN2S - Banque d images sport-sante
+PRN2S - Visuels reseaux sociaux MSS
+PRN2S - Videos de promotion des MSS
+PRN2S - Promotion du sport-sante tout public
+PRN2S - Strategie de communication du programme MSS
+Webinaire Activite Physique et Sante Mentale
+Webinaire Activite Physique et Oncologie
+Video Mon parcours au sein d'une MSS en Bretagne
+Outils d evaluation de la condition physique
+Questionnaire sur l aptitude a l activite physique pour tous Q-AAP+
+Evaluation de la motivation au changement Prochaska DiClemente
+Compte rendu periodique d activite physique adaptee APA
+Planificateur d activite physique
+Carnet Vitalite
+Tester son niveau d activite physique et bouger plus
+Ordonnancier pour prescription d activite physique
+Kit d aide a la prescription d activite physique
+Guide de la HAS prescription medicale d activite physique
+Formulaire de renouvellement de prescription APA kinesitherapeutes
+Le Medicosport-sante
+Affiches de sensibilisation le kit complet
+Affiches Bouger plus, oui mais pourquoi
+Affiches Es-tu assise depuis trop longtemps
+Affiches Pourquoi choisir les escaliers
+Affiches activite physique et cancer du sein
+Recommandations de l ANSES plus d activite physique, moins de sedentar
+Video d inspiration et si le mouvement devenait la norme
+Guide de l intervenant en APA
+Guide Sante mentale et activite physique
+Guide Activite physique, sedentarite et menopause
+Guide activite physique et endometriose
+Activite physique et prevention des chutes
+Guide Activite physique et maternite
+Guide Vieux et alors
+Le kit Vacances actives
+Guide de recherche de financements pour les Maisons Sport-Sante
+Boite a outils accueil d une personne en situation de handicap en MSS
+Guide accueil, prise en charge et orientation des personnes en situati
+Rapport IGAS IGESR sur les Maisons Sport-Sante
+Listing des mutuelles et assurances
+Methodologie evaluer vos actions sante et social en 7 etapes
+Guide pour inviter le sport-sante en milieu professionnel
+Videos de pauses actives au travail
+Dynamiques territoriales de sante argumentaire pour les elus
+Diag ACT diagnostic pour faire bouger votre territoire
+Design actif guide pour un amenagement urbain qui encourage l activite
+Livret Agir pour les jeunes
+Methodologie ICAPS activite physique et sedentarite chez les jeunes
+
+[Documents]
+Livre blanc des Maisons Sport-Santé bretonnes – synthèse stratégique (collectif MSS Bzh) | documents/Livre-blanc-MSS-bretonnes-synthese-strategique.docx
+Flash info MSS n°47 – spécial communication (PRN2S) | documents/Flash-info-MSS-47-special-communication.pdf
+Boîte à outils des MSS du PRN2S | https://pole-sante.creps-vichy.sports.gouv.fr/?page_id=17951
+Boîte à outils complète d'Azur Sport Santé | https://azursportsante.fr/fr/outils
+Ressources d'Azur Sport Santé | https://azursportsante.fr/fr/ressources
+Agir pour les jeunes (Azur Sport Santé) | https://azursportsante.fr/fr/agir-pour-les-jeunes
+Lexique du sport-santé (Azur Sport Santé) | https://azursportsante.fr/fr/le-sport-sante/lexique
+Cadre législatif du sport-santé (Azur Sport Santé) | https://azursportsante.fr/fr/le-sport-sante/cadre-legislatif

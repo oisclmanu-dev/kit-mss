@@ -1,0 +1,7 @@
+# Source : Flash info MSS n°47 spécial communication du PRN2S (relevé du 19/11/2026)
+Nom : Charte d'utilisation et valise du logo MSS
+Type d'outil : Communication MSS
+Public : MSS habilitées
+Émetteur : PRN2S – CREPS de Vichy
+Description : Charte d'utilisation du nouveau logo des Maisons Sport-Santé (mention « République française », versions sur fond blanc) et valise contenant tous les logos. Adoption progressive par les MSS existantes, application immédiate pour les nouvelles.
+Site : https://fichiers.numerique.gouv.fr/explorer/items/d6ed3708-6ae1-4099-bb92-55dc19808d66

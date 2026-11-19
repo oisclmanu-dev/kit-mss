@@ -1,0 +1,7 @@
+# Source : Flash info MSS n°47 spécial communication du PRN2S (relevé du 19/11/2026)
+Nom : Stratégie de communication du programme des MSS
+Type d'outil : Communication MSS
+Public : MSS habilitées
+Émetteur : PRN2S – CREPS de Vichy
+Description : Stratégie élaborée en octobre 2025 ; les outils ci-dessus relèvent de son action 1 « Outiller et accompagner les MSS dans leur communication ».
+Site : https://fichiers.numerique.gouv.fr/explorer/items/files/b1cc95fd-2469-4a0d-9f5a-e90b0a7dd76b

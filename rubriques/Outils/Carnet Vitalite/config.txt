@@ -1,0 +1,6 @@
+Nom : Carnet Vitalité
+Type d'outil : Évaluation & suivi
+Public : Bénéficiaires
+Émetteur : Azur Sport Santé (boîte à outils)
+Description : Carnet de suivi personnel de la pratique d'activité physique.
+Site : https://azursportsante.fr/fr/outils/id-9-carnet-vitalite

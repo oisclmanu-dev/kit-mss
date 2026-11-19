@@ -1,0 +1,7 @@
+# Source : Flash info MSS n°47 spécial communication du PRN2S (relevé du 19/11/2026)
+Nom : Infographie du parcours sport-santé
+Type d'outil : Communication MSS
+Public : MSS habilitées
+Émetteur : PRN2S – CREPS de Vichy
+Description : Infographie pour présenter le parcours aux futurs bénéficiaires : affichage, web ou intégration dans vos supports.
+Site : https://pole-sante.creps-vichy.sports.gouv.fr/wp-content/uploads/2026/06/MSS_Infographie_Parcours_beneficiaires_v5-GP.pdf
