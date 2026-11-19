@@ -476,9 +476,11 @@ mark{background:#fde68a;color:inherit;border-radius:3px;padding:0 1px}
 .filtres-carte-titre{font-weight:700;color:var(--primaire-fonce);margin:4px 0 6px;font-size:14px}
 .rub-filtres.filtres-carte{margin-bottom:18px}
 
-/* choix du design : bouton flottant toujours visible, quel que soit le design */
-.choix-design{position:fixed!important;right:16px;bottom:16px;z-index:9999!important;display:flex!important;align-items:center;gap:6px;background:#fff!important;color:#1f2937!important;border:1px solid #d1d5db!important;border-radius:999px!important;padding:5px 8px 5px 12px!important;box-shadow:0 4px 16px rgba(0,0,0,.18)!important;font:14px system-ui,"Segoe UI",Arial,sans-serif!important;visibility:visible!important;opacity:1!important}
-.choix-design select{font:13px system-ui,"Segoe UI",Arial,sans-serif!important;border:0!important;background:transparent!important;color:#1f2937!important;padding:4px 2px!important;cursor:pointer;outline:none}
+/* choix du design : petite liste discrète sous le titre du kit */
+.choix-design{display:inline-flex;align-items:center;gap:4px;margin-top:5px;font-size:12px;opacity:.7;cursor:pointer;transition:opacity .15s}
+.choix-design:hover,.choix-design:focus-within{opacity:1}
+.choix-design select{font:inherit;font-size:12px;color:inherit;background:transparent;border:0;border-bottom:1px dotted currentColor;padding:0 2px;cursor:pointer;outline:none}
+.choix-design select option{color:#1f2937;background:#fff}
 @media print{.choix-design{display:none!important}}
 /* cadre unique en deux colonnes (Partenaires) */
 .cadre-unique{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.4fr);gap:8px 28px}
