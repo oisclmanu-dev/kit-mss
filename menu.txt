@@ -8,9 +8,21 @@
 
 Titre : Kit collectif MSS BZH
 Sous-titre : Maisons Sport-Santé
-Message d'accueil : Retrouvez ici le rôle des MSS, les procédures, la liste des MSS du collectif, les partenaires, les financements, les contacts, les formations, des documents modèles et le livret d'accueil des nouvelles MSS.
+Message d'accueil : Retrouvez ici le rôle des MSS, les procédures, la liste des MSS du collectif, les partenaires, les financements, les contacts, les formations, des outils, des documents modèles et le livret d'accueil des nouvelles MSS.
 Couleur : #0f766e
 
+
+# ---------------------------------------------------------------------
+#  [Dernières informations] : le flash affiché sur la page d'accueil.
+#  Une ligne par information : Libellé | lien | date | courte description
+#  Le lien peut être une adresse internet, un fichier du kit ou une rubrique (#/r/...).
+#  Laissez la section vide pour masquer le flash.
+# ---------------------------------------------------------------------
+[Dernières informations]
+Le livret d'accueil des nouvelles MSS | #/r/livret-d-accueil | Novembre 2026 | Kit d'accueil à générer en PDF, filtrable par département et statut juridique
+Livre blanc des Maisons Sport-Santé bretonnes – synthèse stratégique | rubriques/Outils/documents/Livre-blanc-MSS-bretonnes-synthese-strategique.docx | Novembre 2026
+Plaidoyer pour les Maisons Sport-Santé bretonnes | rubriques/Documents modeles/documents/Plaidoyer et livre blanc/Plaidoyer-MSS-bretonnes.docx | Novembre 2026 | Investir dans la prévention, c'est investir dans les territoires
+Cahiers de présentation par secteur (santé, social, collectivités, entreprises…) | #/r/documents-modeles | Novembre 2026 | 8 cahiers pour présenter les MSS à chaque type de partenaire
 
 [Menu]
 Presentation du role des MSS
@@ -21,5 +33,6 @@ Partenaires
 Financements
 Contacts
 Formations
+Outils
 Documents modeles
 Livret d'accueil

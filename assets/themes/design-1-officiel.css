@@ -1,0 +1,21 @@
+/* Design 1 « Officiel MSS » : bleu et orange du logo Maisons Sport-Santé, menu clair, lignes nettes */
+:root{--primaire:#1f3a8a !important;--primaire-clair:#e0e7ff;--primaire-fonce:#14275e;--accent:#f07d1a;--fond:#f6f7fb;--bord:#dde2ee;--rayon:8px;--ombre:0 1px 2px rgba(20,39,94,.08)}
+body{font-family:"Marianne","Segoe UI",system-ui,Arial,sans-serif}
+.sidebar{background:#fff;color:var(--texte);border-right:1px solid var(--bord)}
+.brand{border-bottom:3px solid var(--accent)}
+.brand-title{color:var(--primaire-fonce)}
+.brand-sub{color:var(--texte-doux);opacity:1}
+.brand-logo{background:var(--primaire);border-radius:6px}
+.nav a{color:#334155;border-radius:6px;border-left:3px solid transparent}
+.nav a:hover{background:var(--primaire-clair)}
+.nav a.active{background:var(--primaire-clair);color:var(--primaire-fonce);border-left-color:var(--accent)}
+.nav .sep{background:var(--bord)}
+.sidebar-foot{border-top:1px solid var(--bord)}
+.sidebar-foot a{color:var(--primaire)}
+.topbar{border-bottom:3px solid var(--primaire)}
+.hero{background:var(--primaire);border-left:8px solid var(--accent)}
+.tile{border-top:4px solid var(--primaire)}
+.tile:hover{border-top-color:var(--accent)}
+.tile .ico{background:var(--primaire-clair);border-radius:6px}
+.lv-table th{background:var(--primaire)}
+.hero .btn-pdf{background:#fff;color:var(--primaire-fonce)}

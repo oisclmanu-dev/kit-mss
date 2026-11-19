@@ -120,6 +120,16 @@ Document : plaquette.pdf</pre>
 <p><b>Filtres :</b> au moment de générer le livret, choisissez un département et/ou un statut juridique. Le livret ne garde alors que les référents de ce département, les MSS correspondantes et les financements locaux.</p>
 <p><b>Contenus automatiques :</b> le livret reprend les fiches du kit. Financements (avec le lien du champ <code>Site</code>), Formations, modèles de la rubrique « Documents modèles », MSS du collectif, et toutes les fiches qui ont un champ <code>Type de contact</code> (ARS, Délégation départementale ARS, DRAJES, SDJES, Référent collectif, Collectif MSS). Pour changer un référent ou l'adresse du collectif, modifiez la fiche correspondante dans « Contacts » ou « Partenaires ».</p>
 </div>
+<h2>Le flash « Dernières informations »</h2>
+<div class="bloc"><p>Dans <code>menu.txt</code>, la section <code>[Dernières informations]</code> alimente l'encadré de la page d'accueil. Une ligne par information : <code>Libellé | lien | date | courte description</code>. Le lien peut être une adresse internet, un fichier du kit (chemin depuis la racine) ou une rubrique (<code>#/r/...</code>). Section vide = encadré masqué.</p>
+<p><b>Designs :</b> pour prévisualiser un design, ajoutez <code>?design=1</code>, <code>?design=2</code> ou <code>?design=3</code> à l'adresse du site.</p></div>
+<h2>Champs particuliers</h2>
+<div class="bloc">
+<p><b>Carte des MSS</b> (rubrique « Liste MSS collectif ») : la ligne <code>Carte : 12 | 45,3 | 60,1</code> d'une fiche MSS place le numéro 12 sur l'image de la carte, à 45,3 % de la largeur et 60,1 % de la hauteur. Les filtres de la rubrique (statut juridique, département) masquent aussi les numéros sur la carte. Pour une nouvelle carte, remplacez <code>carte/carte-mss-bretagne.jpg</code> et ajustez les lignes <code>Carte</code>.</p>
+<p><b>Financements</b> : le champ <code>Type de financement</code> (Subvention, Appel à projets, Fondation) sert de filtre. La ligne <code>Livret : non</code> retire une fiche du livret d'accueil sans la retirer du kit. La liste des mutuelles est un tableau de <code>page.html</code>.</p>
+<p><b>Outils</b> : une fiche par outil, avec <code>Type d'outil</code> (filtre), <code>Public</code>, <code>Description</code> et <code>Site</code>. N'utilisez pas « et » dans une valeur de filtre (il sépare deux valeurs) : écrivez « Évaluation &amp; suivi ».</p>
+<p><b>Recherche</b> : elle porte sur les fiches, le contenu des pages et les libellés des documents. Le filtre « Catégorie » reprend automatiquement les valeurs des champs déclarés en <code>Filtres</code> dans chaque rubrique.</p>
+</div>
 <h2>Bon à savoir</h2>
 <div class="bloc">
   <p>• Le site se consulte depuis son <b>adresse web</b>. Pour le tester sur l'ordinateur, double-cliquez sur <code>Lancer-en-local-Windows.bat</code> (ou <code>Lancer-en-local-Mac.command</code> sur Mac) au lieu d'ouvrir <code>index.html</code>. Laissez la fenêtre ouverte pendant l'utilisation.</p>

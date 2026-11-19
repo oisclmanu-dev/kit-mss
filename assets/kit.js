@@ -107,6 +107,8 @@
         accueil: cfg.val("Message d'accueil", "Accueil"), couleur: cfg.val("Couleur"),
         logo: cfg.val("Logo")
       };
+      S.infos = [];
+      Object.keys(cfg.listes).forEach(function (k) { if (/^derni/.test(k)) S.infos = cfg.listes[k]; });
       return Promise.all((cfg.listes.menu || []).map(chargerRubrique));
     }).then(function (rubs) {
       S.rubriques = rubs;
@@ -135,9 +137,14 @@
 
   /* ---------- carte d'un bloc ---------- */
   function surligner(text, q) {
-    var t = esc(text); if (!q) return t;
-    var n = norm(t), out = "", i = 0, idx;
-    while ((idx = n.indexOf(q, i)) >= 0) { out += t.slice(i, idx) + "<mark>" + t.slice(idx, idx + q.length) + "</mark>"; i = idx + q.length; }
+    var t = esc(text), mots = (Array.isArray(q) ? q : [q]).filter(Boolean); if (!mots.length) return t;
+    var n = norm(t), iv = [];
+    mots.forEach(function (w) { var i = 0, idx; while ((idx = n.indexOf(w, i)) >= 0) { iv.push([idx, idx + w.length]); i = idx + w.length; } });
+    if (!iv.length) return t;
+    iv.sort(function (a, b) { return a[0] - b[0]; });
+    var m = [iv[0]]; iv.slice(1).forEach(function (x) { var d = m[m.length - 1]; if (x[0] <= d[1]) d[1] = Math.max(d[1], x[1]); else m.push(x); });
+    var out = "", i = 0;
+    m.forEach(function (x) { if (t.slice(i, x[1]).indexOf("&") >= 0 && /&[a-z#0-9]*$/i.test(t.slice(i, x[0]))) return; out += t.slice(i, x[0]) + "<mark>" + t.slice(x[0], x[1]) + "</mark>"; i = x[1]; });
     return out + t.slice(i);
   }
   function valeursChamp(b, nom) {
@@ -154,13 +161,14 @@
     if (b.email) l.push("✉️ " + String(b.email).split(/[;,\s]+/).filter(function (e) { return e.indexOf("@") > 0; }).map(function (e) { return '<a href="mailto:' + esc(e) + '">' + esc(e) + "</a>"; }).join(", "));
     if (b.site) l.push('🌐 <a href="' + esc(/^https?:/i.test(b.site) ? b.site : "https://" + b.site) + '" target="_blank" rel="noopener">' + esc(String(b.site).replace(/^https?:\/\//, "")) + "</a>");
     if (b.document) l.push('📄 <a href="' + esc(lien(b.base, b.document)) + '" target="_blank">' + esc(b.document.split("/").pop()) + "</a>");
-    var x = b.autres.filter(function (a) { return !champsBadges.some(function (c) { return cle(c) === cle(a[0]); }); }).map(function (a) { return "<b>" + esc(a[0]) + "</b> : " + liens(esc(a[1])).replace(/\n/g, "<br>"); });
+    var x = b.autres.filter(function (a) { return cle(a[0]) !== "carte" && cle(a[0]) !== "livret" && !champsBadges.some(function (c) { return cle(c) === cle(a[0]); }); }).map(function (a) { return "<b>" + esc(a[0]) + "</b> : " + liens(esc(a[1])).replace(/\n/g, "<br>"); });
     return '<article class="card"><div class="card-head">' + logoHtml(b) + "<div><h3>" + surligner(b.nom, q) + '</h3><div class="badges">' +
       (avecRubrique ? '<span class="badge type">' + esc(b.type || b.rubrique) + "</span>" : "") +
       champsBadges.map(function (c) { return valeursChamp(b, c).map(function (v) { return '<span class="badge filtre">' + esc(v) + "</span>"; }).join(""); }).join("") +
       (b.emetteur ? '<span class="badge emetteur">🏛️ ' + esc(b.emetteur) + "</span>" : "") +
       (b.statut ? '<span class="badge">' + esc(b.statut) + "</span>" : "") +
       (b.departement ? '<span class="badge">' + esc(b.departement) + "</span>" : "") +
+      (pointsCarte(b) ? '<span class="badge carte-num">📍 n° ' + esc(pointsCarte(b).num) + " sur la carte</span>" : "") +
       "</div></div></div>" + (b.description ? "<p>" + surligner(b.description, q).replace(/\n/g, "<br>") + "</p>" : "") +
       (x.length ? '<div class="lines infos">' + x.join("<br>") + "</div>" : "") +
       (l.length ? '<div class="lines coords">' + l.join("<br>") + "</div>" : "") +
@@ -168,7 +176,8 @@
   }
   function liens(t) { return t.replace(/https?:\/\/[^\s<]+[^\s<.,;)]/g, function (u) { return '<a href="' + u + '" target="_blank" rel="noopener">' + u.replace(/^https?:\/\//, "") + "</a>"; }); }
   function uniq(list, f) { var s = {}; list.forEach(function (d) { if (d[f]) s[String(d[f]).trim()] = 1; }); return Object.keys(s).sort(trier); }
-  function filtrer(list, q, statut, dept, rub, emet) {
+  function texteBloc(b) { return norm([b.nom, b.emetteur, b.ville, b.adresse, b.contact, b.description, b.statut, b.departement, b.rubrique, b.type, b.email].concat(b._cats || [], b.autres.map(function (a) { return a[0] + " " + a[1]; })).join(" ")); }
+  function filtrer(list, q, statut, dept, rub, emet, cat) {
     var mots = norm(q).split(/\s+/).filter(Boolean);
     return list.filter(function (b) {
       if (b.erreur) return !mots.length && !statut && !dept;
@@ -176,14 +185,35 @@
       if (dept && String(b.departement || "").trim() !== dept) return false;
       if (rub && b.rubrique !== rub) return false;
       if (emet && String(b.emetteur || "").trim() !== emet) return false;
+      if (cat && (b._cats || []).indexOf(cat) < 0) return false;
       if (!mots.length) return true;
-      var hay = norm([b.nom, b.emetteur, b.ville, b.adresse, b.contact, b.description, b.statut, b.departement, b.rubrique, b.type, b.email].concat(b.autres.map(function (a) { return a[0] + " " + a[1]; })).join(" "));
+      var hay = b._hay || (b._hay = texteBloc(b));
       return mots.every(function (w) { return hay.indexOf(w) >= 0; });
     });
   }
+  /* pertinence : un mot trouvé dans le nom compte davantage */
+  function score(b, mots) {
+    var nom = norm(b.nom), sec = norm([b.emetteur, b.ville, b.departement, (b._cats || []).join(" ")].join(" ")), s = 0;
+    mots.forEach(function (w) { if (nom.indexOf(w) === 0) s += 6; else if (nom.indexOf(w) >= 0) s += 4; if (sec.indexOf(w) >= 0) s += 2; });
+    return s;
+  }
+
+  /* ---------- flash « Dernières informations » (section [Dernières informations] de menu.txt) ---------- */
+  function afficherInfos() {
+    var box = $("infos"); if (!box) return;
+    var items = (S.infos || []).map(function (l) { return l.split("|").map(function (x) { return x.trim(); }); }).filter(function (p) { return p[0]; });
+    if (!items.length) { box.hidden = true; return; }
+    box.innerHTML = '<div class="infos-titre"><span class="infos-puce">⚡</span> Dernières informations</div><ul>' + items.map(function (p) {
+      var u = p[1] || "", ext = /^(https?:|#|mailto:)/i.test(u), href = ext ? u : encodeURI(u);
+      var nouv = /\.(docx?|pptx?|pdf|xlsx?)$/i.exec(u);
+      return "<li>" + (p[2] ? '<span class="infos-date">' + esc(p[2]) + "</span>" : "") + (u ? '<a href="' + esc(href) + '"' + (u.charAt(0) === "#" ? "" : ' target="_blank" rel="noopener"') + ">" + esc(p[0]) + "</a>" : "<b>" + esc(p[0]) + "</b>") +
+        (nouv ? ' <span class="infos-type">' + nouv[1].toUpperCase() + "</span>" : "") + (p[3] ? '<span class="infos-desc">' + esc(p[3]) + "</span>" : "") + "</li>";
+    }).join("") + "</ul>";
+    box.hidden = false;
+  }
 
   /* ---------- menu & accueil ---------- */
-  var ICONES = [[/livret/i, "📘"], [/identif/i, "🏷️"], [/r[ôo]le|pr[ée]sentation/i, "🧭"], [/habilit|proc[eé]dure/i, "📋"], [/r[eé]f[eé]renc/i, "🏷️"], [/liste|annuaire|collectif|mss/i, "📍"], [/partenaire/i, "🤝"], [/financ/i, "💶"], [/contact/i, "☎️"], [/formation/i, "🎓"], [/actu/i, "📰"], [/agenda|calendrier|[eé]v[eé]nement/i, "📅"], [/document|ressource|outil/i, "📂"], [/faq|question/i, "❓"], [/club/i, "🏃"]];
+  var ICONES = [[/livret/i, "📘"], [/identif/i, "🏷️"], [/r[ôo]le|pr[ée]sentation/i, "🧭"], [/habilit|proc[eé]dure/i, "📋"], [/r[eé]f[eé]renc/i, "🏷️"], [/liste|annuaire|collectif|mss/i, "📍"], [/partenaire/i, "🤝"], [/financ/i, "💶"], [/contact/i, "☎️"], [/formation/i, "🎓"], [/actu/i, "📰"], [/agenda|calendrier|[eé]v[eé]nement/i, "📅"], [/outil/i, "🧰"], [/document|ressource/i, "📂"], [/faq|question/i, "❓"], [/club/i, "🏃"]];
   function icone(n) { for (var i = 0; i < ICONES.length; i++) if (ICONES[i][0].test(n)) return ICONES[i][1]; return "📁"; }
   function construireMenu() {
     var h = '<a href="#/accueil" data-route="accueil"><span class="ico">🏠</span>Accueil</a>', t = "";
@@ -193,7 +223,7 @@
       t += '<a class="tile" href="#/r/' + s + '"><span class="ico">' + icone(r.titre) + '</span><span class="t">' + esc(r.titre) + "</span>" + (r.intro ? '<span class="d">' + esc(r.intro) + "</span>" : "") + "</a>";
     });
     h += '<div class="sep"></div><a href="#/recherche" data-route="recherche"><span class="ico">🔍</span>Rechercher</a>';
-    t += '<a class="tile tile-search" href="#/recherche"><span class="ico">🔍</span><span class="t">Rechercher</span><span class="d">Toutes les structures, filtrées par statut juridique et département.</span></a>';
+    t += '<a class="tile tile-search" href="#/recherche"><span class="ico">🔍</span><span class="t">Rechercher</span><span class="d">Fiches, pages et documents du kit : structures, financements, outils, formations… filtrables par rubrique, catégorie, département et statut.</span></a>';
     $("nav").innerHTML = h; $("tiles").innerHTML = t;
     var ok = function (r) { return r.blocs.filter(function (b) { return !b.erreur; }).length; };
     var avec = S.rubriques.filter(ok);
@@ -246,6 +276,7 @@
       });
       box.innerHTML = doc.body.innerHTML;
       preparerContenu(box, r);
+      majCarte(r);
     }).catch(function () { var box = $("rubPage"); if (!box) return; if (r.pageDeclaree) box.innerHTML = '<div class="alerte">⚠️ Fichier <b>' + esc(r.base + r.page) + "</b> introuvable.</div>"; else box.remove(); });
 
     if (r.blocs.length) {
@@ -256,11 +287,51 @@
         });
         $("rc").textContent = r.blocs.length > 3 ? res.length + " sur " + r.blocs.length : "";
         $("rcards").innerHTML = res.length ? res.map(function (b) { return carte(b, "", false, r.filtres); }).join("") : '<div class="empty">Aucun résultat.</div>';
+        Array.prototype.forEach.call($("rcards").children, function (el, i) { if (res[i]) el.setAttribute("data-bloc", r.blocs.indexOf(res[i])); });
+        r._res = res; r._filtre = res.length !== r.blocs.length; majCarte(r);
       };
       ["rq", "rs", "rd", "re"].forEach(function (id) { if ($(id)) $(id).addEventListener(id === "rq" ? "input" : "change", rendu); });
       document.querySelectorAll("#viewRub select[data-champ]").forEach(function (sel) { sel.addEventListener("change", rendu); });
       rendu();
     }
+  }
+  /* Carte des MSS : image + points reliés aux fiches (champ « Carte : numéro | x % | y % ») */
+  function pointsCarte(b) {
+    var v = valeurAutre(b, "Carte"); if (!v) return null;
+    var p = v.split("|").map(function (s) { return s.trim(); }), x = parseFloat(String(p[1]).replace(",", ".")), y = parseFloat(String(p[2]).replace(",", "."));
+    return isNaN(x) || isNaN(y) ? null : { num: p[0], x: x, y: y };
+  }
+  function majCarte(r) {
+    var box = document.querySelector("#viewRub [data-carte-mss]"); if (!box) return;
+    if (!box.getAttribute("data-pret")) {
+      box.innerHTML = '<div class="cmss-zone"><img src="' + esc(lien(r.base, box.getAttribute("data-carte-mss"))) + '" alt="Carte des Maisons Sport-Santé de Bretagne"><div class="cmss-pts"></div><div class="cmss-pop" hidden></div></div><div class="cmss-info"></div>';
+      box.setAttribute("data-pret", "1");
+      box.querySelector(".cmss-zone").addEventListener("click", function () { box.querySelector(".cmss-pop").hidden = true; });
+    }
+    var res = r._res || r.blocs, zone = box.querySelector(".cmss-zone"), pts = box.querySelector(".cmss-pts"), pop = box.querySelector(".cmss-pop");
+    var tot = r.blocs.filter(pointsCarte).length, n = 0;
+    pts.innerHTML = res.map(function (b) {
+      var p = pointsCarte(b); if (!p) return ""; n++;
+      return '<button type="button" class="cmss-pt" style="left:' + p.x + "%;top:" + p.y + '%" data-i="' + r.blocs.indexOf(b) + '" title="' + esc(b.nom) + '">' + esc(p.num) + "</button>";
+    }).join("");
+    zone.classList.toggle("filtree", !!r._filtre);
+    box.querySelector(".cmss-info").textContent = r._filtre ? n + " MSS affichée" + (n > 1 ? "s" : "") + " sur " + tot + " selon les filtres ci-dessous · cliquez sur un numéro pour voir la fiche" : tot + " MSS sur la carte · utilisez les filtres ci-dessous pour n'afficher que certaines MSS · cliquez sur un numéro pour voir la fiche";
+    pop.hidden = true;
+    pts.querySelectorAll(".cmss-pt").forEach(function (bt) {
+      bt.addEventListener("click", function (e) {
+        e.stopPropagation();
+        var i = +bt.getAttribute("data-i"), b = r.blocs[i];
+        pop.style.left = bt.style.left; pop.style.top = bt.style.top;
+        pop.classList.toggle("a-gauche", parseFloat(bt.style.left) > 70);
+        pop.innerHTML = "<b>" + esc(b.nom) + "</b><br>" + esc([b.ville, b.statut].filter(Boolean).join(" · ")) + (b.telephone ? "<br>📞 " + esc(b.telephone) : "") + '<br><a href="#" class="cmss-voir">Voir la fiche ↓</a>';
+        pop.hidden = false;
+        pop.querySelector(".cmss-voir").addEventListener("click", function (ev) {
+          ev.preventDefault();
+          var c = document.querySelector('#rcards [data-bloc="' + i + '"]');
+          if (c) { c.scrollIntoView({ behavior: "smooth", block: "center" }); c.classList.add("flash"); setTimeout(function () { c.classList.remove("flash"); }, 1800); }
+        });
+      });
+    });
   }
   /* Carte : pour uMap, désactive le zoom à la molette (évite de bloquer le défilement de la page) */
   function urlCarte(u) {
@@ -435,14 +506,26 @@
     if (txt.length > 42) txt = txt.slice(0, 40) + "…";
     return '<a href="' + esc(u) + '" target="_blank" rel="noopener">' + esc(txt) + "</a>";
   }
+  function lienDomaine(u) { if (!u) return "—"; u = String(u).split(/\s+/)[0]; return '<a href="' + esc(u) + '" target="_blank" rel="noopener">' + esc(u.replace(/^https?:\/\/(www\.)?/i, "").split("/")[0])+ "</a>"; }
   function tableFinancements() {
     var bl = blocsDe(/financ/i).filter(deptOk).filter(function (b) {
       var el = valeurAutre(b, "Statuts éligibles");
       return !LV.statut || !el || norm(el).indexOf(norm(LV.statut)) >= 0;
     });
+    bl = bl.filter(function (b) { return !/^non$/i.test(String(valeurAutre(b, "Livret") || "").trim()); });
     if (!bl.length) return '<p class="vide-cat">Aucune fiche dans la rubrique Financements.</p>';
-    return '<table class="lv-table lv-compact"><tr><th>Émetteur</th><th>Dispositif</th><th>Montant</th><th>Lien</th></tr>' + bl.map(function (b) {
-      return "<tr><td><b>" + esc(b.emetteur || "") + "</b></td><td>" + esc(b.nom) + "</td><td>" + esc(valeurAutre(b, "Montant") || "—") + "</td><td>" + lienLv(b.site) + "</td></tr>";
+    var lignes = bl.map(function (b) { return [b.emetteur || "", b.nom, valeurAutre(b, "Montant") || "—", b.site]; });
+    if (!LV.dept) {
+      /* sans filtre département : les dispositifs départementaux sont regroupés sur une ligne */
+      var dep = bl.filter(function (b) { return !estRegional(b); });
+      if (dep.length > 1) {
+        var nums = dep.map(function (b) { return String(b.departement).trim().slice(0, 2); }).sort().join(", ");
+        lignes = bl.filter(estRegional).map(function (b) { return [b.emetteur || "", b.nom, valeurAutre(b, "Montant") || "—", b.site]; });
+        lignes.push(["Conférences des financeurs (" + nums + ")", "Appels à projets de prévention de la perte d'autonomie (60 ans et +), un par département", "—", "https://www.pourbienvieillirbretagne.fr/appel-a-projets/"]);
+      }
+    }
+    return '<table class="lv-table lv-compact lv-fin"><tr><th>Émetteur</th><th>Dispositif</th><th>Montant</th><th>Lien</th></tr>' + lignes.map(function (l) {
+      return "<tr><td><b>" + esc(l[0]) + "</b></td><td>" + esc(l[1]) + "</td><td>" + esc(l[2]) + "</td><td>" + lienDomaine(l[3]) + "</td></tr>";
     }).join("") + "</table>";
   }
   var ORDRE_CONTACTS = ["collectifmss", "ars", "delegationdepartementalears", "drajes", "sdjes", "referentcollectif"];
@@ -490,14 +573,15 @@
     var bl = blocsDe(/formation/i);
     if (!bl.length) return '<p class="vide-cat">Aucune fiche dans la rubrique Formations.</p>';
     function dom(u) { if (!u) return "—"; u = String(u).split(/\s+/)[0]; return '<a href="' + esc(u) + '" target="_blank" rel="noopener">' + esc(u.replace(/^https?:\/\/(www\.)?/i, "").split("/")[0]) + "</a>"; }
-    return '<table class="lv-table lv-compact lv-form"><tr><th>Formation</th><th>Organisme et lieu</th><th>Durée / format</th><th>Lien</th></tr>' + bl.map(function (b) {
-      return "<tr><td><b>" + esc(b.nom) + "</b></td><td>" + esc(b.emetteur || "—") + (b.ville || b.departement ? " · " + esc(b.ville || b.departement) : "") + "</td><td>" + esc(valeurAutre(b, "Durée") || "—") + "</td><td>" + dom(b.site) + "</td></tr>";
+    function nomLie(b) { var u = b.site ? String(b.site).split(/\s+/)[0] : ""; return u ? '<a href="' + esc(u) + '" target="_blank" rel="noopener"><b>' + esc(b.nom) + "</b></a>" : "<b>" + esc(b.nom) + "</b>"; }
+    return '<table class="lv-table lv-compact lv-form"><tr><th>Formation (lien vers le site)</th><th>Organisme et lieu</th><th>Durée / format</th></tr>' + bl.map(function (b) {
+      return "<tr><td>" + nomLie(b) + "</td><td>" + esc(b.emetteur || "—") + (b.ville || b.departement ? " · " + esc(b.ville || b.departement) : "") + "</td><td>" + esc(valeurAutre(b, "Durée") || "—") + "</td></tr>";
     }).join("") + "</table>";
   }
   function outilsCom() {
     var r = S.rubriques.filter(function (x) { return /document|mod[eè]le/i.test(x.titre) && (x.categories.length || x.documents.length); })[0];
     if (!r) return "";
-    return '<div class="lv-outils">' + groupesDocs(r).map(function (g) {
+    return '<div class="lv-outils">' + groupesDocs(r).filter(function (g) { return !/plaidoyer|cahiers/i.test(g.nom || ""); }).map(function (g) {
       return '<div class="lv-carte"><b>' + iconeCategorie(g.nom) + " " + esc(g.nom || "Documents") + "</b>" +
         (g.docs.length ? "<ul>" + g.docs.map(function (d) { return "<li>" + lienLv(d.url).replace(/>[^<]*<\/a>$/, ">" + esc(d.libelle || d.fichier.split("/").pop()) + "</a>") + "</li>"; }).join("") + "</ul>" : '<br><small>Modèles à venir.</small>') + "</div>";
     }).join("") + "</div>";
@@ -623,19 +707,68 @@
   }
 
   /* ---------- vue Recherche ---------- */
-  var derniers = [];
-  function rechercher() {
-    var q = $("q").value.trim();
-    derniers = filtrer(S.blocs, q, $("fStatut").value, $("fDept").value, $("fRub").value).sort(function (a, b) { return trier(a.nom, b.nom); });
-    $("count").textContent = derniers.length + " résultat" + (derniers.length > 1 ? "s" : "") + " sur " + S.blocs.length;
-    var hq = norm(q).split(/\s+/).filter(Boolean); hq = hq.length === 1 ? hq[0] : "";
-    $("results").innerHTML = derniers.length ? derniers.map(function (b) { return carte(b, hq, true); }).join("") : '<div class="empty">Aucun résultat. Essayez d\'élargir les filtres.</div>';
+  var derniers = [], indexPages = null;
+  function chargerIndexPages() {
+    if (indexPages) return indexPages;
+    indexPages = Promise.all(S.rubriques.map(function (r) {
+      if (!r.page) return Promise.resolve("");
+      return lireTexte(r.base + r.page).then(function (html) {
+        var d = new DOMParser().parseFromString(html, "text/html");
+        d.querySelectorAll("script,style").forEach(function (x) { x.remove(); });
+        d.querySelectorAll("td,th,li,p,h2,h3,div,br").forEach(function (x) { x.appendChild(d.createTextNode(" ")); });
+        return (d.body.textContent || "").replace(/\s+/g, " ").trim();
+      }).catch(function () { return ""; });
+    })).then(function (t) { S.rubriques.forEach(function (r, i) { r._texte = t[i]; r._ntexte = norm(t[i]); }); });
+    return indexPages;
   }
-  function remiseAZero() { $("q").value = ""; $("fStatut").value = ""; $("fDept").value = ""; $("fRub").value = ""; }
+  function extrait(texte, ntexte, mots) {
+    var i = ntexte.indexOf(mots[0]); if (i < 0) i = 0;
+    var deb = Math.max(0, i - 70), fin = Math.min(texte.length, i + 150);
+    return (deb > 0 ? "…" : "") + surligner(texte.slice(deb, fin), mots) + (fin < texte.length ? "…" : "");
+  }
+  function rechercher() {
+    var q = $("q").value.trim(), rubSel = $("fRub").value, cat = $("fType").value;
+    var mots = norm(q).split(/\s+/).filter(Boolean);
+    var tous = filtrer(S.blocs, q, $("fStatut").value, $("fDept").value, "", "", cat);
+    derniers = tous.filter(function (b) { return !rubSel || b.rubrique === rubSel; });
+    derniers.sort(mots.length ? function (a, b) { return score(b, mots) - score(a, mots) || trier(a.nom, b.nom); } : function (a, b) { return trier(a.nom, b.nom); });
+    /* pastilles par rubrique avec le nombre de résultats */
+    var nb = {}; tous.forEach(function (b) { nb[b.rubrique] = (nb[b.rubrique] || 0) + 1; });
+    $("rubChips").innerHTML = S.rubriques.filter(function (r) { return nb[r.titre]; }).map(function (r) {
+      return '<button type="button" class="chip' + (rubSel === r.titre ? " actif" : "") + '" data-rub="' + esc(r.titre) + '">' + icone(r.titre) + " " + esc(r.titre) + " <b>" + nb[r.titre] + "</b></button>";
+    }).join("") + (rubSel ? '<button type="button" class="chip tout" data-rub="">✕ Toutes les rubriques</button>' : "");
+    $("rubChips").querySelectorAll(".chip").forEach(function (c) { c.onclick = function () { $("fRub").value = c.getAttribute("data-rub"); rechercher(); }; });
+    $("results").innerHTML = derniers.length ? derniers.map(function (b) { return carte(b, mots, true); }).join("") : '<div class="empty">Aucune fiche ne correspond. Essayez un autre mot ou élargissez les filtres.</div>';
+    var compte = function (nP, nD) {
+      var t = derniers.length + " fiche" + (derniers.length > 1 ? "s" : "") + " sur " + S.blocs.length;
+      if (nP) t += " · " + nP + " page" + (nP > 1 ? "s" : "");
+      if (nD) t += " · " + nD + " document" + (nD > 1 ? "s" : "");
+      $("count").textContent = t;
+    };
+    compte(0, 0);
+    $("pagesRes").innerHTML = "";
+    if (!mots.length || $("fStatut").value || $("fDept").value || cat) return;
+    chargerIndexPages().then(function () {
+      if ($("q").value.trim() !== q) return;
+      var rubs = S.rubriques.filter(function (r) { return (!rubSel || r.titre === rubSel) && r._ntexte && mots.every(function (w) { return r._ntexte.indexOf(w) >= 0; }); });
+      var docs = [];
+      S.rubriques.forEach(function (r) {
+        if (rubSel && r.titre !== rubSel) return;
+        r.documents.forEach(function (d) { var h = norm((d.libelle || "") + " " + d.fichier + " " + (d.categorie || "")); if (mots.every(function (w) { return h.indexOf(w) >= 0; })) docs.push({ r: r, d: d }); });
+      });
+      compte(rubs.length, docs.length);
+      if (!rubs.length && !docs.length) return;
+      var h = '<div class="pages-box"><h3>📄 Dans le contenu des pages et les documents</h3>';
+      h += rubs.map(function (r) { return '<a class="page-hit" href="#/r/' + slug(r.titre) + '"><b>' + icone(r.titre) + " " + esc(r.titre) + "</b><span>" + extrait(r._texte, r._ntexte, mots) + "</span></a>"; }).join("");
+      if (docs.length) h += '<ul class="docs doc-hits">' + docs.map(function (x) { return docHtml(x.d).replace("</a></li>", ' <em>· ' + esc(x.r.titre) + "</em></a></li>"); }).join("") + "</ul>";
+      $("pagesRes").innerHTML = h + "</div>";
+    });
+  }
+  function remiseAZero() { $("q").value = ""; $("fStatut").value = ""; $("fDept").value = ""; $("fRub").value = ""; $("fType").value = ""; }
   function exporter() {
-    var cols = ["rubrique", "nom", "statut", "departement", "ville", "adresse", "contact", "telephone", "email", "site", "description"];
-    var tete = ["Rubrique", "Nom", "Statut juridique", "Département", "Ville", "Adresse", "Contact", "Téléphone", "Email", "Site", "Description"];
-    var rows = [tete].concat(derniers.map(function (b) { return cols.map(function (c) { return b[c] || ""; }); }));
+    var cols = ["rubrique", "nom", "_cat", "statut", "departement", "ville", "adresse", "contact", "telephone", "email", "site", "description"];
+    var tete = ["Rubrique", "Nom", "Catégorie", "Statut juridique", "Département", "Ville", "Adresse", "Contact", "Téléphone", "Email", "Site", "Description"];
+    var rows = [tete].concat(derniers.map(function (b) { return cols.map(function (c) { return c === "_cat" ? (b._cats || []).join(", ") : b[c] || ""; }); }));
     var csv = "﻿" + rows.map(function (r) { return r.map(function (v) { return '"' + String(v).replace(/"/g, '""') + '"'; }).join(";"); }).join("\r\n");
     var a = document.createElement("a");
     a.href = URL.createObjectURL(new Blob([csv], { type: "text/csv;charset=utf-8" }));
@@ -670,14 +803,30 @@
     $("brandSub").textContent = R.soustitre || "";
     $("heroTitle").textContent = "Bienvenue sur le " + R.titre;
     $("heroText").textContent = R.accueil || "";
+    afficherInfos();
     if (R.couleur) document.documentElement.style.setProperty("--primaire", R.couleur);
     var logos = R.logo ? [lien("", R.logo)] : LOGOS.map(function (f) { return "logo/" + f; });
     $("brandLogo").innerHTML = logoHtml({ nom: "♥", logos: logos }).replace('class="logo" alt', 'class="logo-site" alt');
     remplir($("fStatut"), uniq(S.blocs, "statut"));
     remplir($("fDept"), uniq(S.blocs, "departement"));
     remplir($("fRub"), S.rubriques.filter(function (r) { return r.blocs.length; }).map(function (r) { return r.titre; }));
-    $("q").addEventListener("input", rechercher);
-    ["fStatut", "fDept", "fRub"].forEach(function (id) { $(id).addEventListener("change", rechercher); });
+    /* catégories : valeurs des champs déclarés en « Filtres » dans chaque rubrique */
+    var groupes = {};
+    S.rubriques.forEach(function (r) {
+      r.blocs.forEach(function (b) {
+        b._cats = [];
+        r.filtres.forEach(function (f) { valeursChamp(b, f).forEach(function (v) { b._cats.push(v); (groupes[f] = groupes[f] || {})[v] = 1; }); });
+      });
+    });
+    Object.keys(groupes).sort(trier).forEach(function (f) {
+      var og = document.createElement("optgroup"); og.label = f;
+      Object.keys(groupes[f]).sort(trier).forEach(function (v) { var o = document.createElement("option"); o.value = o.textContent = v; og.appendChild(o); });
+      $("fType").appendChild(og);
+    });
+    var minuteur;
+    $("q").addEventListener("input", function () { clearTimeout(minuteur); minuteur = setTimeout(rechercher, 150); });
+    $("q").addEventListener("keydown", function (e) { if (e.key === "Escape") { $("q").value = ""; rechercher(); } });
+    ["fStatut", "fDept", "fRub", "fType"].forEach(function (id) { $(id).addEventListener("change", rechercher); });
     $("reset").onclick = function () { remiseAZero(); rechercher(); };
     $("exportCsv").onclick = exporter;
     $("quickSearch").onsubmit = function (e) {

@@ -6,6 +6,8 @@
 <meta name="robots" content="noindex, nofollow">
 <title>Kit collectif MSS BZH – Maisons Sport-Santé</title>
 <link rel="stylesheet" href="assets/kit.css">
+<script>/* aperçu des designs : ajoutez ?design=1, 2 ou 3 à l'adresse du site */
+(function(){var m=/[?&]design=([123])/.exec(location.search),f={"1":"design-1-officiel","2":"design-2-bretagne","3":"design-3-energie"};if(m){var l=document.createElement("link");l.rel="stylesheet";l.href="assets/themes/"+f[m[1]]+".css";document.head.appendChild(l);}})();</script>
 </head>
 <body>
 <!-- Ce fichier ne se modifie pas. Le contenu vient de menu.txt et du dossier rubriques (voir mode-emploi.html). -->
@@ -27,7 +29,7 @@
       <button class="burger" id="burger" aria-label="Ouvrir le menu">☰</button>
       <h1 class="page-title" id="pageTitle">Accueil</h1>
       <form class="quick-search" id="quickSearch" role="search">
-        <input type="search" id="quickQ" placeholder="Rechercher une structure, une ville…" aria-label="Recherche rapide">
+        <input type="search" id="quickQ" placeholder="Rechercher une structure, un outil, un financement…" aria-label="Recherche rapide">
         <button type="submit">🔍</button>
       </form>
     </header>
@@ -45,22 +47,27 @@
 
     <section class="view" id="viewHome" hidden>
       <div class="hero"><h2 id="heroTitle">Bienvenue</h2><p id="heroText"></p><div class="hero-actions"><button type="button" class="btn-pdf" id="btnLivretAccueil">📘 Générer le livret d'accueil</button><button type="button" class="btn-pdf" id="btnPdf">📄 Générer le kit en format PDF</button></div></div>
+      <div class="infos" id="infos" hidden></div>
       <div class="tiles" id="tiles"></div>
       <div class="stats" id="stats"></div>
     </section>
 
     <section class="view" id="viewSearch" hidden>
       <div class="search-panel">
-        <div class="search-row"><input type="search" id="q" placeholder="Nom, ville, mot-clé…" aria-label="Mot-clé"></div>
+        <div class="search-row"><input type="search" id="q" placeholder="Nom, ville, mot-clé (ex. : APA Lorient, mutuelle, santé mentale)…" aria-label="Mot-clé"></div>
+        <div class="search-aide">Recherche sans tenir compte des accents ni des majuscules, dans les fiches, le contenu des pages et les documents. Plusieurs mots = tous doivent être présents.</div>
         <div class="filters">
-          <label>Statut juridique <select id="fStatut"><option value="">Tous</option></select></label>
-          <label>Département <select id="fDept"><option value="">Tous</option></select></label>
           <label>Rubrique <select id="fRub"><option value="">Toutes</option></select></label>
+          <label>Catégorie <select id="fType"><option value="">Toutes</option></select></label>
+          <label>Département <select id="fDept"><option value="">Tous</option></select></label>
+          <label>Statut juridique <select id="fStatut"><option value="">Tous</option></select></label>
           <button class="btn-ghost" id="reset" type="button">Réinitialiser</button>
           <button class="btn-ghost" id="exportCsv" type="button">⬇ Exporter (CSV)</button>
         </div>
       </div>
       <div class="result-count" id="count"></div>
+      <div class="rub-chips" id="rubChips"></div>
+      <div class="pages-res" id="pagesRes"></div>
       <div class="cards" id="results"></div>
     </section>
 
