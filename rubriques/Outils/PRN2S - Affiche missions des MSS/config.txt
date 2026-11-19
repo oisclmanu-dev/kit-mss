@@ -1,0 +1,7 @@
+# Source : Flash info MSS n°47 spécial communication du PRN2S (relevé du 19/11/2026)
+Nom : Affiche « Missions des MSS »
+Type d'outil : Communication MSS
+Public : MSS habilitées
+Émetteur : PRN2S – CREPS de Vichy
+Description : Affiche présentant les missions des Maisons Sport-Santé, pour l'affichage, le web ou les présentations.
+Site : https://fichiers.numerique.gouv.fr/explorer/items/files/a0ff78bb-ac8f-46d8-992a-80df2dd2629c

@@ -1,0 +1,7 @@
+# Source : Flash info MSS n°47 spécial communication du PRN2S (relevé du 19/11/2026)
+Nom : Visuels pour les réseaux sociaux (LinkedIn, Facebook)
+Type d'outil : Communication MSS
+Public : MSS habilitées
+Émetteur : PRN2S – CREPS de Vichy
+Description : Visuels personnalisables au nom de votre MSS pour LinkedIn et Facebook.
+Site : https://fichiers.numerique.gouv.fr/explorer/items/1bd4f2e1-1289-4501-9a06-a7370273821f

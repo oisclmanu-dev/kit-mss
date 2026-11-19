@@ -1,0 +1,12 @@
+# Source : annuaire Service-Public (lannuaire.service-public.gouv.fr) et ac-rennes.fr (relevé du 18/11/2026)
+Nom : DRAJES Bretagne
+Type de contact : DRAJES
+Statut juridique : Établissement public
+Département : Toute la Bretagne
+Ville : Rennes
+Adresse : 1 quai Dujardin, CS 73145, 35031 Rennes Cedex (bureaux) – adresse postale : 96 rue d'Antrain, CS 10503, 35705 Rennes Cedex 7
+Téléphone : 02 99 25 10 20
+Email : ce.drajes@ac-rennes.fr
+Site : https://www.ac-rennes.fr/drajes-bretagne
+Rôle pour les MSS : habilitation (avec l'ARS), subvention annuelle MSS (Le Compte Asso), lien avec le mouvement sportif.
+Logo : logo.png

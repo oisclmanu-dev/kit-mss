@@ -1,0 +1,6 @@
+Nom : Planificateur d'activité physique
+Type d'outil : Évaluation & suivi
+Public : Bénéficiaires
+Émetteur : Azur Sport Santé (boîte à outils)
+Description : Support pour organiser sa pratique d'activité physique dans la semaine.
+Site : https://azursportsante.fr/fr/outils/id-11-planificateur-d-activite-physique

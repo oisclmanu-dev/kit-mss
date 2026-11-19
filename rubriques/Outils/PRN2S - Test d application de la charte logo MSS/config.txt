@@ -1,0 +1,7 @@
+# Source : Flash info MSS n°47 spécial communication du PRN2S (relevé du 19/11/2026)
+Nom : Test d'application de la charte du logo MSS
+Type d'outil : Communication MSS
+Public : MSS habilitées
+Émetteur : PRN2S – CREPS de Vichy
+Description : Questionnaire en ligne pour vérifier sa bonne compréhension des règles d'utilisation du logo.
+Site : https://app.wooclap.com/TQTYDBF/questionnaires/6a1ef260fa15221dd190a3c0

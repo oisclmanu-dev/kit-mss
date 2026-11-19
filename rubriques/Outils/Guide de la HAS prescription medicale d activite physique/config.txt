@@ -1,0 +1,6 @@
+Nom : Guide de la HAS : prescription médicale d'activité physique
+Type d'outil : Prescription
+Public : Médecins, professionnels de santé
+Émetteur : Azur Sport Santé (boîte à outils)
+Description : Guide de référence de la Haute Autorité de santé sur la prescription d'activité physique chez l'adulte.
+Site : https://azursportsante.fr/fr/outils/id-30-guide-de-la-has-prescription-medicale-d-activite-physique-pour-la-sante-des-adultes
