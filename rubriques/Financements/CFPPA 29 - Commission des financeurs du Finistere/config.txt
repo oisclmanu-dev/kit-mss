@@ -1,0 +1,12 @@
+# Fiche du bloc — logo de l'émetteur possible dans ce dossier (logo.png, .jpg, .svg, .webp)
+# Attention : dans les lignes de suite d'un texte, n'utilisez pas le caractère deux-points.
+
+Nom : Appel à candidatures commun de la Commission des financeurs (CFPPA 29)
+Type de financement : Appel à projets
+Émetteur : Commission des financeurs 29
+Département : 29 - Finistère
+Description : Appel à candidatures commun de la Commission des financeurs de la prévention de la perte d'autonomie du Finistère, de Pour bien vieillir Bretagne (inter-régime des caisses de retraite) et de l'ARS Bretagne, pour des actions de prévention auprès des personnes âgées.
+Projets éligibles : actions collectives de prévention (dont activité physique adaptée et prévention des chutes) pour les 60 ans et plus.
+Porteurs éligibles : acteurs publics ou privés à but non lucratif
+Dernière campagne connue : 2026
+Site : https://www.bretagne.ars.sante.fr/media/151972/download

@@ -1,0 +1,12 @@
+# Fiche du bloc — logo de l'émetteur possible dans ce dossier (logo.png, .jpg, .svg, .webp)
+# Attention : dans les lignes de suite d'un texte, n'utilisez pas le caractère deux-points.
+
+Nom : Appel à projets commun de la Commission des financeurs (CFPPA 56)
+Type de financement : Appel à projets
+Émetteur : Commission des financeurs 56
+Département : 56 - Morbihan
+Description : Appel à projets commun de la Commission des financeurs du Morbihan, de Pour bien vieillir Bretagne et de l'ARS Bretagne, pour des actions de prévention de la perte d'autonomie des 60 ans et plus et de soutien aux aidants. L'ARS y finance notamment la nutrition et l'activité physique.
+Dernière campagne connue : 2026, dossiers à remettre avant le 27 février 2026
+Calendrier : appel à projets annuel publié en fin d'année
+Email : conferencefinanceurs@morbihan.fr
+Site : https://www.bretagne.ars.sante.fr/index.php/media/149542/download

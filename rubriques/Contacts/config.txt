@@ -1,0 +1,21 @@
+# =====================================================================
+#  CONFIGURATION DE LA RUBRIQUE « Contacts »
+#  • Introduction : texte affiché sous le titre
+#  • page.html (dans ce dossier) → contenu libre affiché sous l'introduction
+#  • Section Blocs : une ligne par bloc = nom EXACT d'un sous-dossier de cette
+#    rubrique. Chaque bloc a son config.txt et son logo (logo.png…).
+#  • Section Documents : un fichier par ligne (chemin depuis ce dossier).
+#    Pour un libellé personnalisé :  Mon libellé | documents/fichier.pdf
+# =====================================================================
+
+Introduction : Le collectif des Maisons Sport-Santé de Bretagne et ses référents dans chaque département. Les coordonnées des institutions (ARS, DRAJES, SDJES) sont dans la rubrique « Partenaires ».
+Filtres : Type de contact
+
+[Blocs]
+Collectif MSS Bretagne
+Referent collectif 22
+Referent collectif 29
+Referent collectif 35
+Referent collectif 56
+
+[Documents]
