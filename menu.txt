@@ -16,7 +16,7 @@ Couleur : #0f766e
 #  [Dernières informations] : le flash affiché sur la page d'accueil.
 #  Une ligne par information : Libellé | lien | date | courte description
 #  Le lien peut être une adresse internet, un fichier du kit ou une rubrique (#/r/...).
-#  Un lien YouTube s'affiche en miniature (vignette de la vidéo).
+#  Chaque ligne s'affiche en miniature : vignette pour un lien YouTube, pictogramme selon le type (Word, présentation, PDF, rubrique, lien).
 #  Laissez la section vide pour masquer le flash.
 # ---------------------------------------------------------------------
 [Dernières informations]
@@ -35,6 +35,7 @@ Liste MSS collectif
 Partenaires
 Financements
 Contacts
+Nous contacter
 Formations
 Outils
 Documents modeles

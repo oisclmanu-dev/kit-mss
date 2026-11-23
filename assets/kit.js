@@ -198,29 +198,76 @@
     return s;
   }
 
+  /* ---------- formulaire « Nous contacter » : prépare un courriel (mailto), sans serveur ---------- */
+  function initFormContact(box, r) {
+    var f = box.querySelector("#formContact"); if (!f) return;
+    var dest = String((r.cfg && r.cfg.val("Email du formulaire")) || "collectifmssbzh@gmail.com").trim();
+    f.querySelector(".fc-adresse").textContent = dest;
+    var statut = f.querySelector(".fc-statut"), doc = f.querySelector(".fc-doc");
+    var majType = function () { var t = f.querySelector("input[name=type]:checked").value; doc.hidden = !/^Dépôt/.test(t); };
+    f.querySelectorAll("input[name=type]").forEach(function (x) { x.addEventListener("change", majType); }); majType();
+    var v = function (n) { var e = f.elements[n]; return e ? String(e.value || "").trim() : ""; };
+    function composer() {
+      var t = f.querySelector("input[name=type]:checked").value;
+      var lignes = ["Type de demande : " + t, "Nom : " + v("nom"), "Structure / MSS : " + (v("structure") || "—"), "Email : " + v("email"), "Téléphone : " + (v("tel") || "—"), "Département : " + (v("dept") || "—")];
+      if (!doc.hidden) lignes.push("Titre du document : " + (v("doc_titre") || "—"), "Rubrique proposée : " + (v("doc_rubrique") || "—"));
+      lignes.push("", v("message"), "", "— Message envoyé depuis le Kit collectif MSS BZH");
+      return { sujet: "[Kit MSS] " + t + " – " + v("objet"), corps: lignes.join("\n") };
+    }
+    function valide() {
+      var manque = [];
+      ["nom", "email", "objet", "message"].forEach(function (n) { if (!v(n)) manque.push(f.elements[n].closest("label").firstChild.textContent.replace("*", "").trim()); });
+      if (v("email") && !/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(v("email"))) manque.push("Email valide");
+      if (!f.elements.accord.checked) manque.push("accord pour l'utilisation des informations");
+      statut.className = "fc-statut" + (manque.length ? " erreur" : "");
+      statut.textContent = manque.length ? "À compléter : " + manque.join(", ") + "." : "";
+      return !manque.length;
+    }
+    f.addEventListener("submit", function (e) {
+      e.preventDefault(); if (!valide()) return;
+      var m = composer();
+      location.href = "mailto:" + dest + "?subject=" + encodeURIComponent(m.sujet) + "&body=" + encodeURIComponent(m.corps);
+      statut.className = "fc-statut ok";
+      statut.textContent = "Votre messagerie s'ouvre avec le message prêt. Pensez à cliquer sur « Envoyer » dans votre messagerie" + (doc.hidden ? "." : " après avoir joint votre document.");
+    });
+    f.querySelector(".fc-copier").addEventListener("click", function () {
+      if (!valide()) return;
+      var m = composer(), texte = "À : " + dest + "\nObjet : " + m.sujet + "\n\n" + m.corps;
+      var fini = function () { statut.className = "fc-statut ok"; statut.textContent = "Message copié. Collez-le dans un nouveau courriel adressé à " + dest + "."; };
+      if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(texte).then(fini, function () { secours(texte); fini(); });
+      else { secours(texte); fini(); }
+    });
+    function secours(t) { var ta = document.createElement("textarea"); ta.value = t; document.body.appendChild(ta); ta.select(); try { document.execCommand("copy"); } catch (x) {} ta.remove(); }
+  }
+
   /* ---------- flash « Dernières informations » (section [Dernières informations] de menu.txt) ---------- */
   function afficherInfos() {
     var box = $("infos"); if (!box) return;
     var items = (S.infos || []).map(function (l) { return l.split("|").map(function (x) { return x.trim(); }); }).filter(function (p) { return p[0]; });
     if (!items.length) { box.hidden = true; return; }
-    /* les liens YouTube s'affichent en miniatures cliquables au-dessus de la liste */
+    /* chaque information s'affiche en petite miniature : vignette YouTube pour une vidéo, pictogramme selon le type sinon */
     var idYt = function (u) { var m = /(?:youtu\.be\/|[?&]v=|\/embed\/)([\w-]{11})/.exec(u || ""); return m ? m[1] : null; };
-    var videos = items.filter(function (p) { return idYt(p[1]); }); items = items.filter(function (p) { return !idYt(p[1]); });
-    var vh = videos.length ? '<div class="infos-videos">' + videos.map(function (p) {
-      var id = idYt(p[1]);
-      return '<a class="infos-video" href="https://www.youtube.com/watch?v=' + id + '" target="_blank" rel="noopener"><span class="infos-vignette"><img src="https://i.ytimg.com/vi/' + id + '/mqdefault.jpg" alt="" loading="lazy" onerror="this.style.visibility=\'hidden\'"><span class="infos-play">▶</span></span><span class="infos-vtitre">' + esc(p[0]) + "</span>" + (p[2] ? '<span class="infos-date">' + esc(p[2]) + "</span>" : "") + "</a>";
-    }).join("") + "</div>" : "";
-    box.innerHTML = '<div class="infos-titre"><span class="infos-puce">⚡</span> Dernières informations</div>' + vh + '<ul>' + items.map(function (p) {
-      var u = p[1] || "", ext = /^(https?:|#|mailto:)/i.test(u), href = ext ? u : encodeURI(u);
-      var nouv = /\.(docx?|pptx?|pdf|xlsx?)$/i.exec(u);
-      return "<li>" + (p[2] ? '<span class="infos-date">' + esc(p[2]) + "</span>" : "") + (u ? '<a href="' + esc(href) + '"' + (u.charAt(0) === "#" ? "" : ' target="_blank" rel="noopener"') + ">" + esc(p[0]) + "</a>" : "<b>" + esc(p[0]) + "</b>") +
-        (nouv ? ' <span class="infos-type">' + nouv[1].toUpperCase() + "</span>" : "") + (p[3] ? '<span class="infos-desc">' + esc(p[3]) + "</span>" : "") + "</li>";
-    }).join("") + "</ul>";
+    var TYPES = { doc: ["📄", "Word", "t-word"], docx: ["📄", "Word", "t-word"], ppt: ["📊", "Présentation", "t-ppt"], pptx: ["📊", "Présentation", "t-ppt"], pdf: ["📕", "PDF", "t-pdf"], xls: ["📈", "Tableur", "t-xls"], xlsx: ["📈", "Tableur", "t-xls"] };
+    box.innerHTML = '<div class="infos-titre"><span class="infos-puce">⚡</span> Dernières informations</div><div class="infos-grille">' + items.map(function (p) {
+      var u = p[1] || "", id = idYt(u), ext = /^(https?:|mailto:)/i.test(u), interne = u.charAt(0) === "#";
+      var href = id ? "https://www.youtube.com/watch?v=" + id : (ext || interne ? u : encodeURI(u));
+      var vign, type;
+      if (id) {
+        vign = '<img src="https://i.ytimg.com/vi/' + id + '/mqdefault.jpg" alt="" loading="lazy" onerror="this.style.visibility=\'hidden\'"><span class="infos-play">▶</span>';
+        type = "Vidéo";
+      } else {
+        var e = (/\.([a-z0-9]+)$/i.exec(u.split(/[?#]/)[0]) || [])[1], t = TYPES[(e || "").toLowerCase()] || (interne ? ["📘", "Rubrique du kit", "t-kit"] : ["🔗", "Lien", "t-web"]);
+        vign = '<span class="infos-picto ' + t[2] + '">' + t[0] + "</span>"; type = t[1];
+      }
+      return '<a class="infos-mini" href="' + esc(href) + '"' + (interne ? "" : ' target="_blank" rel="noopener"') + (p[3] ? ' title="' + esc(p[3]) + '"' : "") + ">" +
+        '<span class="infos-vignette">' + vign + '<span class="infos-type">' + esc(type) + "</span></span>" +
+        '<span class="infos-vtitre">' + esc(p[0]) + "</span>" + (p[2] ? '<span class="infos-date">' + esc(p[2]) + "</span>" : "") + "</a>";
+    }).join("") + "</div>";
     box.hidden = false;
   }
 
   /* ---------- menu & accueil ---------- */
-  var ICONES = [[/livret/i, "📘"], [/identif/i, "🏷️"], [/r[ôo]le|pr[ée]sentation/i, "🧭"], [/habilit|proc[eé]dure/i, "📋"], [/r[eé]f[eé]renc/i, "🏷️"], [/liste|annuaire|collectif|mss/i, "📍"], [/partenaire/i, "🤝"], [/financ/i, "💶"], [/contact/i, "☎️"], [/formation/i, "🎓"], [/actu/i, "📰"], [/agenda|calendrier|[eé]v[eé]nement/i, "📅"], [/outil/i, "🧰"], [/document|ressource/i, "📂"], [/faq|question/i, "❓"], [/club/i, "🏃"]];
+  var ICONES = [[/livret/i, "📘"], [/identif/i, "🏷️"], [/r[ôo]le|pr[ée]sentation/i, "🧭"], [/habilit|proc[eé]dure/i, "📋"], [/r[eé]f[eé]renc/i, "🏷️"], [/liste|annuaire|collectif|mss/i, "📍"], [/partenaire/i, "🤝"], [/financ/i, "💶"], [/nous contacter/i, "✉️"], [/contact/i, "☎️"], [/formation/i, "🎓"], [/actu/i, "📰"], [/agenda|calendrier|[eé]v[eé]nement/i, "📅"], [/outil/i, "🧰"], [/document|ressource/i, "📂"], [/faq|question/i, "❓"], [/club/i, "🏃"]];
   function icone(n) { for (var i = 0; i < ICONES.length; i++) if (ICONES[i][0].test(n)) return ICONES[i][1]; return "📁"; }
   function construireMenu() {
     var h = '<a href="#/accueil" data-route="accueil"><span class="ico">🏠</span>Accueil</a>', t = "";
@@ -283,6 +330,9 @@
       });
       box.innerHTML = doc.body.innerHTML;
       preparerContenu(box, r);
+      initFormContact(box, r);
+      /* une rubrique sans fiche mais avec du contenu n'affiche pas « encore vide » */
+      if (box.textContent.trim()) Array.prototype.forEach.call(box.parentNode.querySelectorAll(".empty"), function (x) { if (!x.closest(".cards")) x.remove(); });
       /* la barre de filtres remonte au-dessus de la première carte : elle filtre la carte et la liste */
       var cm = box.querySelector(".carte-mss"), fl = box.parentNode.querySelector(".rub-filtres");
       /* les éléments marqués class="apres-fiches" s'affichent sous la liste des fiches */
@@ -824,8 +874,7 @@
     $("heroTitle").textContent = "Bienvenue sur le " + R.titre;
     $("heroText").textContent = R.accueil || "";
     afficherInfos();
-    var cd = $("choixDesign");
-    if (cd) { cd.value = window.kitDesignActuel || "0"; cd.onchange = function () { window.kitDesign(cd.value, true); }; }
+
     if (R.couleur) document.documentElement.style.setProperty("--primaire", R.couleur);
     var logos = R.logo ? [lien("", R.logo)] : LOGOS.map(function (f) { return "logo/" + f; });
     $("brandLogo").innerHTML = logoHtml({ nom: "♥", logos: logos }).replace('class="logo" alt', 'class="logo-site" alt');
