@@ -1,0 +1,15 @@
+# =====================================================================
+#  CONFIGURATION DE LA RUBRIQUE « Nous contacter »
+#  • page.html contient le formulaire (balise <form id="formContact">).
+#  • Adresse qui reçoit les demandes : ligne « Email du formulaire » ci-dessous.
+#  • Le formulaire ouvre la messagerie du visiteur avec le message prérempli
+#    (pas de serveur, pas de PHP). Un bouton permet aussi de copier le message.
+# =====================================================================
+
+Titre : Nous contacter
+Introduction : Une question, besoin d'un document, ou un document à partager avec les autres MSS ? Écrivez au collectif des Maisons Sport-Santé de Bretagne.
+Email du formulaire : collectifmssbzh@gmail.com
+
+[Blocs]
+
+[Documents]
