@@ -1,0 +1,6 @@
+Nom : Outils d'évaluation de la condition physique
+Type d'outil : Évaluation & suivi
+Public : Encadrants APA, MSS
+Émetteur : Azur Sport Santé (boîte à outils)
+Description : Batterie de tests pour évaluer la condition physique des bénéficiaires lors du bilan initial et des bilans de suivi.
+Site : https://azursportsante.fr/fr/outils/id-8-outils-d-evaluation-de-la-condition-physique

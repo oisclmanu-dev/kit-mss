@@ -1,0 +1,6 @@
+Nom : Ordonnancier pour prescription d'activité physique
+Type d'outil : Prescription
+Public : Médecins, professionnels de santé
+Émetteur : Azur Sport Santé (boîte à outils)
+Description : Modèle d'ordonnance pour la prescription d'activité physique adaptée.
+Site : https://azursportsante.fr/fr/outils/id-15-ordonnancier-pour-prescription-d-activite-physique

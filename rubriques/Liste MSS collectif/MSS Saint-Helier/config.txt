@@ -1,0 +1,13 @@
+# Fiche du bloc — déposez le logo dans ce dossier sous le nom logo.png (ou .jpg, .svg, .webp)
+
+Nom : MSS Saint-Hélier
+Statut juridique : Fondation
+Département : 35 - Ille-et-Vilaine
+Ville : Rennes
+Adresse : 54 rue St Hélier
+Contact : HERVIEUX David
+Téléphone : 
+Email : 
+Site : 
+Description : 
+Carte : 26 | 81.8 | 46.9

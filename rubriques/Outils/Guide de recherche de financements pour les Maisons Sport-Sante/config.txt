@@ -1,0 +1,6 @@
+Nom : Guide de recherche de financements pour les Maisons Sport-Santé
+Type d'outil : Fonctionnement de la MSS
+Public : MSS
+Émetteur : Azur Sport Santé (boîte à outils)
+Description : Guide d'accompagnement des MSS dans la recherche de financements.
+Site : https://azursportsante.fr/fr/outils/id-140-guide-d-accompagnement-a-la-recherche-de-financements-pour-les-maisons-sport-sante

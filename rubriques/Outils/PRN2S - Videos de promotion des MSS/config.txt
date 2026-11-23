@@ -1,0 +1,7 @@
+# Source : Flash info MSS n°47 spécial communication du PRN2S (relevé du 19/11/2026)
+Nom : Vidéos de promotion des Maisons Sport-Santé
+Type d'outil : Communication MSS
+Public : MSS habilitées
+Émetteur : PRN2S – CREPS de Vichy
+Description : Vidéos sur l'expertise des MSS, témoignage de bénéficiaire, clip promo et capsules (le dispositif, l'accompagnement, les bénéfices).
+Site : https://fichiers.numerique.gouv.fr/explorer/items/7c3852eb-9799-4fe4-9975-cc7ae5692528

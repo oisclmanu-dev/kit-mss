@@ -1,0 +1,58 @@
+# =====================================================================
+#  CONFIGURATION DE LA RUBRIQUE « Liste MSS collectif »
+#  • Introduction : texte affiché sous le titre
+#  • page.html (dans ce dossier) → contenu libre affiché sous l'introduction
+#  • Section Blocs : une ligne par bloc = nom EXACT d'un sous-dossier de
+#    cette rubrique. Chaque bloc a son config.txt et son logo (logo.png…).
+#    L'ordre des lignes = l'ordre d'affichage.
+#  • Section Documents : un fichier par ligne (chemin depuis ce dossier).
+#    Pour un libellé personnalisé :  Mon libellé | documents/fichier.pdf
+# =====================================================================
+
+Introduction : Les Maisons Sport-Santé de Bretagne. Filtrez par statut juridique ou par département.
+Titre des blocs : Les MSS
+
+Filtres en haut : oui
+
+[Blocs]
+MSS d'Armor - MBSS
+MSS de Dinan - UFOLEP 22
+MSS de Guingamp
+MSS de l'Arguenon - MSP
+MSS du Centre Bretagne Loudeac-Pontivy (Loudeac)
+MSS du Kreiz Breizh - CPTS
+MSS du Pays de Du Guesclin - OISCL
+MSS de Cornouaille - CHIC
+MSS des Pays de Morlaix - CH
+MSS Ouessant - Sport Sante Ouessant
+MSS Pays de Brest - UFOLEP 29
+MSS Poher Menez Are
+MSS UBOuge de Brest
+MSS Breizh Activ Bain - OCAS
+MSS de Redon - Commune
+MSS de Rennes - CHU
+MSS de Rennes - UFOLEP 35
+MSS de St Jouan - Octopus Sport
+MSS de St Malo - Sports Mer Sante
+MSS du Pays de Broceliande
+MSS du Pays de Romille
+MSS du Poudouvre - Dinard Sport Sante
+MSS Fougeres
+MSS Ker Sport Sante
+MSS Marches de Bretagne - CPTS
+MSS Patis F'orm
+MSS Roche aux Fees Communaute
+MSS Saint-Helier
+MSS Vitre Communaute
+Maison Sport-Sante Questembert
+MSS Augus'Ti Sport Sante
+MSS Centre Morbihan
+MSS de Lorient
+MSS du Centre Bretagne Loudeac-Pontivy (Pontivy)
+MSS en Broceliande
+MSS Pays de Guer
+MSS UFOLEP 56
+MSS Vannes Agglomeration
+
+[Documents]
+Carte des MSS de Bretagne – novembre 2026 (PDF) | documents/Carte-MSS-Bretagne-2026-11.pdf
