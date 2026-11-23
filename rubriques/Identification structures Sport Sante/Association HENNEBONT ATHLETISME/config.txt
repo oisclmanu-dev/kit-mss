@@ -2,7 +2,7 @@
 # Déposez le logo dans ce dossier sous le nom logo.png
 
 Nom : Association HENNEBONT ATHLETISME
-Type d'offre : APA
+Type d'offre : Sport Santé
 Département : 56 - Morbihan
 Ville : Hennebont
 Téléphone : 0688332569

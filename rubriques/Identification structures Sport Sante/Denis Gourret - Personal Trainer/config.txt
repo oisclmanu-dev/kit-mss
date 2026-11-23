@@ -2,7 +2,7 @@
 # Déposez le logo dans ce dossier sous le nom logo.png
 
 Nom : Denis Gourret – Personal Trainer
-Type d'offre : Sport Santé, APA
+Type d'offre : Sport Santé
 Département : 29 - Finistère
 Ville : Brest
 Téléphone : 0688944847

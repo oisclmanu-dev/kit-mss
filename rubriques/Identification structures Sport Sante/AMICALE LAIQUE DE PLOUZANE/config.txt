@@ -2,7 +2,7 @@
 # Déposez le logo dans ce dossier sous le nom logo.png
 
 Nom : AMICALE LAIQUE DE PLOUZANE
-Type d'offre : APA
+Type d'offre : Sport Santé
 Département : 29 - Finistère
 Ville : Plouzané
 Téléphone : 0298497434

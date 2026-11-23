@@ -2,7 +2,7 @@
 # Déposez le logo dans ce dossier sous le nom logo.png
 
 Nom : Gym Préventive – Plérin
-Type d'offre : Sport Santé, APA
+Type d'offre : Sport Santé
 Département : 22 - Côtes-d'Armor
 Ville : Plérin
 Autres communes : Trégueux

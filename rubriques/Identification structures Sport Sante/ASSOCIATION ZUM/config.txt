@@ -2,7 +2,7 @@
 # Déposez le logo dans ce dossier sous le nom logo.png
 
 Nom : ASSOCIATION ZUM
-Type d'offre : Sport Santé, APA
+Type d'offre : Sport Santé
 Département : 22 - Côtes-d'Armor
 Ville : Plouaret
 Téléphone : 0674954275

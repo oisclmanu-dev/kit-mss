@@ -2,7 +2,7 @@
 # Déposez le logo dans ce dossier sous le nom logo.png
 
 Nom : ASSA (Association Santé Sport Adapté)
-Type d'offre : Sport Santé, APA
+Type d'offre : Sport Santé
 Département : 56 - Morbihan
 Ville : Mauron
 Autres communes : Néant-sur-Yvel, Saint-Brieuc-de-Mauron

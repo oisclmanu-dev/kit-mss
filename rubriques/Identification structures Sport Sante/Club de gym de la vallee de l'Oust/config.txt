@@ -2,7 +2,7 @@
 # Déposez le logo dans ce dossier sous le nom logo.png
 
 Nom : Club de gym de la vallée de l’Oust
-Type d'offre : Sport Santé, APA
+Type d'offre : Sport Santé
 Département : 56 - Morbihan
 Ville : Rohan
 Téléphone : 

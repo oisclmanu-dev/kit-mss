@@ -2,7 +2,7 @@
 # Déposez le logo dans ce dossier sous le nom logo.png
 
 Nom : Activités Gymniques Adaptées – Brest
-Type d'offre : APA
+Type d'offre : Sport Santé
 Département : 29 - Finistère
 Ville : Brest
 Téléphone : 

@@ -2,7 +2,7 @@
 # Déposez le logo dans ce dossier sous le nom logo.png
 
 Nom : GaElleS Coach Fitness
-Type d'offre : APA
+Type d'offre : Sport Santé
 Département : 35 - Ille-et-Vilaine
 Ville : Montfort-sur-Meu
 Téléphone : 0783202163

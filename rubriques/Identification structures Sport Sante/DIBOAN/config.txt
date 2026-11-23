@@ -2,7 +2,7 @@
 # Déposez le logo dans ce dossier sous le nom logo.png
 
 Nom : DIBOAN
-Type d'offre : Sport Santé, APA
+Type d'offre : Sport Santé
 Département : 29 - Finistère
 Ville : Quéménéven
 Téléphone : 06 45 31 69 13

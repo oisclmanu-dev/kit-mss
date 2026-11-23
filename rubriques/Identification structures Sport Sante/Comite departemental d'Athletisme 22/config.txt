@@ -2,7 +2,7 @@
 # Déposez le logo dans ce dossier sous le nom logo.png
 
 Nom : Comité départemental d’Athlétisme 22
-Type d'offre : APA
+Type d'offre : Sport Santé
 Département : 22 - Côtes-d'Armor
 Ville : Ploufragan
 Téléphone : 0623021815

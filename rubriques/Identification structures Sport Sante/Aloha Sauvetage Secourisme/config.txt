@@ -2,7 +2,7 @@
 # Déposez le logo dans ce dossier sous le nom logo.png
 
 Nom : Aloha Sauvetage Secourisme
-Type d'offre : APA
+Type d'offre : Sport Santé
 Département : 56 - Morbihan
 Ville : Auray
 Téléphone : 0648968249

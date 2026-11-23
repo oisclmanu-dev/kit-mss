@@ -2,7 +2,7 @@
 # Déposez le logo dans ce dossier sous le nom logo.png
 
 Nom : AQUASUD
-Type d'offre : APA
+Type d'offre : Sport Santé
 Département : 29 - Finistère
 Ville : Pont-l'Abbé
 Téléphone : 0684954266

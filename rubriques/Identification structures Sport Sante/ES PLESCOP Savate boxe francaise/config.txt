@@ -2,7 +2,7 @@
 # Déposez le logo dans ce dossier sous le nom logo.png
 
 Nom : ES PLESCOP Savate boxe française
-Type d'offre : APA
+Type d'offre : Sport Santé
 Département : 56 - Morbihan
 Ville : Plescop
 Téléphone : 0685193973

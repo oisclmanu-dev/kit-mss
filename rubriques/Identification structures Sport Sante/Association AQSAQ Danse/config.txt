@@ -2,7 +2,7 @@
 # Déposez le logo dans ce dossier sous le nom logo.png
 
 Nom : Association AQSAQ Danse
-Type d'offre : APA
+Type d'offre : Sport Santé
 Département : 35 - Ille-et-Vilaine
 Ville : Dinard
 Téléphone : 0612550905

@@ -2,7 +2,7 @@
 # Déposez le logo dans ce dossier sous le nom logo.png
 
 Nom : Club de Stretching de Brest-Iroise
-Type d'offre : APA
+Type d'offre : Sport Santé
 Département : 29 - Finistère
 Ville : Brest
 Téléphone : 0641238733

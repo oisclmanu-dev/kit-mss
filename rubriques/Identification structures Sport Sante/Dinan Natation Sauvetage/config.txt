@@ -2,7 +2,7 @@
 # Déposez le logo dans ce dossier sous le nom logo.png
 
 Nom : Dinan Natation Sauvetage
-Type d'offre : APA
+Type d'offre : Sport Santé
 Département : 22 - Côtes-d'Armor
 Ville : Dinan
 Téléphone : 0602297257

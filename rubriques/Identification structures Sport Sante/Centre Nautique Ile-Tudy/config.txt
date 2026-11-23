@@ -2,7 +2,7 @@
 # Déposez le logo dans ce dossier sous le nom logo.png
 
 Nom : Centre Nautique Ile-Tudy
-Type d'offre : APA
+Type d'offre : Sport Santé
 Département : 29 - Finistère
 Ville : Île-Tudy / Combrit
 Téléphone : 02-98-56-43-10

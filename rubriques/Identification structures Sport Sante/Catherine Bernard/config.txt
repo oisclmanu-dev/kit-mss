@@ -2,7 +2,7 @@
 # Déposez le logo dans ce dossier sous le nom logo.png
 
 Nom : Catherine Bernard
-Type d'offre : APA
+Type d'offre : Sport Santé
 Département : 56 - Morbihan
 Ville : Sarzeau
 Téléphone : 0669496902

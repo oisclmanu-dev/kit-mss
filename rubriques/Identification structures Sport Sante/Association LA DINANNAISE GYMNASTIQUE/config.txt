@@ -2,7 +2,7 @@
 # Déposez le logo dans ce dossier sous le nom logo.png
 
 Nom : Association LA DINANNAISE GYMNASTIQUE
-Type d'offre : APA
+Type d'offre : Sport Santé
 Département : 22 - Côtes-d'Armor
 Ville : Dinan
 Téléphone : 0650183232

@@ -2,7 +2,7 @@
 # Déposez le logo dans ce dossier sous le nom logo.png
 
 Nom : Lannion Canoë-Kayak
-Type d'offre : APA
+Type d'offre : Sport Santé
 Département : 22 - Côtes-d'Armor
 Ville : Lannion
 Téléphone : 0638051340

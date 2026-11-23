@@ -2,7 +2,7 @@
 # Déposez le logo dans ce dossier sous le nom logo.png
 
 Nom : GOLFE DU MORBIHAN VANNES AGGLOMERATION
-Type d'offre : APA
+Type d'offre : Sport Santé
 Département : 56 - Morbihan
 Ville : Vannes
 Téléphone : 02 97 62 68 00

@@ -2,7 +2,7 @@
 # Déposez le logo dans ce dossier sous le nom logo.png
 
 Nom : Aviron Pays De Redon
-Type d'offre : Sport Santé, APA
+Type d'offre : Sport Santé
 Département : 44 - Loire-Atlantique
 Ville : Saint-Nicolas-de-Redon
 Téléphone : 0671578859

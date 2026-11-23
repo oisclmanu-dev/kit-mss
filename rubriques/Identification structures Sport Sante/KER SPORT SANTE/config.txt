@@ -2,7 +2,7 @@
 # Déposez le logo dans ce dossier sous le nom logo.png
 
 Nom : KER SPORT SANTE
-Type d'offre : APA
+Type d'offre : Sport Santé
 Département : 35 - Ille-et-Vilaine
 Ville : Bruz
 Téléphone : 0785856281

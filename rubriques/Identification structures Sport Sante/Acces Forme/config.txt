@@ -2,7 +2,7 @@
 # Déposez le logo dans ce dossier sous le nom logo.png
 
 Nom : Accès Forme
-Type d'offre : Sport Santé, APA
+Type d'offre : Sport Santé
 Département : 56 - Morbihan
 Ville : Ploemeur
 Téléphone : 0663942408

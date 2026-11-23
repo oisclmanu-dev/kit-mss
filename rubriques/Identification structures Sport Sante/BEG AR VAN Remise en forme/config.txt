@@ -2,7 +2,7 @@
 # Déposez le logo dans ce dossier sous le nom logo.png
 
 Nom : BEG AR VAN Remise en forme
-Type d'offre : Sport Santé, APA
+Type d'offre : Sport Santé
 Département : 29 - Finistère
 Ville : Cléden-Cap-Sizun
 Téléphone : 0677013591

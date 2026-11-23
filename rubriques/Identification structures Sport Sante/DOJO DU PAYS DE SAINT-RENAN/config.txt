@@ -2,7 +2,7 @@
 # Déposez le logo dans ce dossier sous le nom logo.png
 
 Nom : DOJO DU PAYS DE SAINT-RENAN
-Type d'offre : Sport Santé, APA
+Type d'offre : Sport Santé
 Département : 29 - Finistère
 Ville : Saint-Renan
 Téléphone : 0649981485 / 0622755672

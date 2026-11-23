@@ -2,7 +2,7 @@
 # Déposez le logo dans ce dossier sous le nom logo.png
 
 Nom : Amicale Laïque de Benodet
-Type d'offre : Sport Santé, APA
+Type d'offre : Sport Santé
 Département : 29 - Finistère
 Ville : Bénodet
 Téléphone : 06 52 57 09 06

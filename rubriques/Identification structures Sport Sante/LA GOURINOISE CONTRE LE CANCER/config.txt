@@ -2,7 +2,7 @@
 # Déposez le logo dans ce dossier sous le nom logo.png
 
 Nom : LA GOURINOISE CONTRE LE CANCER
-Type d'offre : APA
+Type d'offre : Sport Santé
 Département : 56 - Morbihan
 Ville : Gourin
 Téléphone : 06 30 44 72 61

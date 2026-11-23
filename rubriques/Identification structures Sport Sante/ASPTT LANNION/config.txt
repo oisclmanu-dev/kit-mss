@@ -2,7 +2,7 @@
 # Déposez le logo dans ce dossier sous le nom logo.png
 
 Nom : ASPTT LANNION
-Type d'offre : APA
+Type d'offre : Sport Santé
 Département : 22 - Côtes-d'Armor
 Ville : Plestin-les-Grèves
 Téléphone : 0659305100

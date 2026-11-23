@@ -2,7 +2,7 @@
 # Déposez le logo dans ce dossier sous le nom logo.png
 
 Nom : Annabelle Troudet (Annabelle-coaching)
-Type d'offre : Sport Santé, APA
+Type d'offre : Sport Santé
 Département : 56 - Morbihan
 Ville : Pluvigner
 Téléphone : 0766404766

@@ -2,7 +2,7 @@
 # Déposez le logo dans ce dossier sous le nom logo.png
 
 Nom : Club Athlétique Lorientais
-Type d'offre : Sport Santé, APA
+Type d'offre : Sport Santé
 Département : 56 - Morbihan
 Ville : Lorient
 Téléphone : 06 23 98 76 57
