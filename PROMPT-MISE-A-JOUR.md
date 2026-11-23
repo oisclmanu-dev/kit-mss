@@ -63,7 +63,7 @@ Tu vas mettre à jour le **« Kit collectif MSS BZH »**, un site statique pour 
 
 **Méthode pour l'annuaire Bretagne Sport Santé.** La page charge les activités en JavaScript. Utilise un navigateur si tu en as un, sinon l'API publique WordPress du site (`/wp-json/wp/v2/job-listings`, avec le champ `_job_location`) et les pages de détail `/activite/<slug>/`. Une page de détail donne la catégorie (« Forme Santé » ou « Maladies Chroniques »), la structure, le mail, le site, le téléphone, le type d'activité, le profil des encadrants et les pathologies. Ensuite :
 - **Regroupe les activités par structure** : un bloc par structure, nommé d'après la structure. Si aucune structure n'est indiquée, nomme le bloc « activité – commune ».
-- **Type d'offre** : « Forme Santé » donne `Sport Santé`, « Maladies chroniques » donne `APA`. Une structure qui a les deux reçoit les deux valeurs.
+- **Type d'offre** : `APA` uniquement si l'encadrement est assuré par un **enseignant en APA** ; sinon `Sport Santé` (même si l'annuaire classe l'activité « Maladies chroniques »). Une structure avec un enseignant APA et des activités « Forme Santé » reçoit les deux valeurs.
 - **Département** : tiré du code postal, ou de la commune à défaut.
 - **Champs de chaque fiche** : `Activités` (une ligne `• titre — commune — catégorie` par activité), `Encadrement` (profils, sans nom de personne), `Pathologies prises en charge (APA)` et `Fiche Bretagne Sport Santé` (lien vers la fiche d'origine).
 - **Mise à jour** : compare avec les fiches existantes. Ajoute, modifie ou supprime, puis mets à jour `[Blocs]` et le nombre de structures cité dans `page.html`.
