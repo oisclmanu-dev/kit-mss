@@ -1,2 +1,0 @@
-Déposez ici les modèles de la catégorie « Communication vers les collectivités »,
-puis ajoutez une ligne sous « Catégorie : Communication vers les collectivités » dans le config.txt de la rubrique.

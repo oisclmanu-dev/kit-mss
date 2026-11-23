@@ -1,6 +1,0 @@
-Nom : Vidéos de pauses actives au travail
-Type d'outil : Collectivités & entreprises
-Public : Salariés, employeurs
-Émetteur : Azur Sport Santé (boîte à outils)
-Description : Vidéos courtes de pauses actives à proposer au travail.
-Site : https://azursportsante.fr/fr/outils/id-45-videos-de-pauses-actives-au-travail

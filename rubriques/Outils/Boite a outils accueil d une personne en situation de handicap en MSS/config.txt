@@ -1,6 +1,0 @@
-Nom : Boîte à outils : accueil d'une personne en situation de handicap en MSS
-Type d'outil : Fonctionnement de la MSS
-Public : MSS
-Émetteur : Azur Sport Santé (boîte à outils)
-Description : Outils pour accueillir et orienter une personne en situation de handicap au sein d'une MSS.
-Site : https://azursportsante.fr/fr/outils/id-139-boite-a-outils-pour-l-accueil-d-une-personne-en-situation-de-handicap-au-sein-d-une-maison-sport-sante

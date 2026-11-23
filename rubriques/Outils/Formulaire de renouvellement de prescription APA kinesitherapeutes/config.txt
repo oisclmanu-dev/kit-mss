@@ -1,6 +1,0 @@
-Nom : Formulaire de renouvellement de prescription APA (kinésithérapeutes)
-Type d'outil : Prescription
-Public : Masseurs-kinésithérapeutes
-Émetteur : Azur Sport Santé (boîte à outils)
-Description : Formulaire pour le renouvellement de la prescription d'activité physique adaptée par les masseurs-kinésithérapeutes.
-Site : https://azursportsante.fr/fr/outils/id-12-formulaire-de-renouvellement-prescription-apa-pour-kinesitherapeutes

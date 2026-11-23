@@ -1,6 +1,0 @@
-Nom : Guide « Santé mentale et activité physique »
-Type d'outil : Guides thématiques
-Public : Encadrants, professionnels de santé
-Émetteur : Azur Sport Santé (boîte à outils)
-Description : Guide sur l'activité physique comme levier de santé mentale.
-Site : https://azursportsante.fr/fr/outils/id-133-guide-sante-mentale-et-activite-physique

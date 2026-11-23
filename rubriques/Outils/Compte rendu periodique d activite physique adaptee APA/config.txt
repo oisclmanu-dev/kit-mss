@@ -1,6 +1,0 @@
-Nom : Compte rendu périodique d'activité physique adaptée (APA)
-Type d'outil : Évaluation & suivi
-Public : Encadrants APA, professionnels de santé
-Émetteur : Azur Sport Santé (boîte à outils)
-Description : Modèle de compte rendu à transmettre au médecin prescripteur pendant le programme d'APA.
-Site : https://azursportsante.fr/fr/outils/id-16-compte-rendu-periodique-d-activite-physique-adaptee-apa
