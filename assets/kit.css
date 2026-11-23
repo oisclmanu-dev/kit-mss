@@ -503,29 +503,4 @@ mark{background:#fde68a;color:inherit;border-radius:3px;padding:0 1px}
 .infos-vtitre{font-weight:600;font-size:13px;line-height:1.3;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
 .infos-mini .infos-date{align-self:flex-start;font-size:11px}
 
-/* formulaire « Nous contacter » */
-.form-contact{background:var(--carte);border:1px solid var(--bord);border-radius:var(--rayon);padding:22px 26px;box-shadow:var(--ombre);max-width:880px}
-.fc-types{border:0;padding:0;margin:0 0 18px;display:grid;grid-template-columns:repeat(auto-fill,minmax(190px,1fr));gap:10px}
-.fc-types legend{font-weight:700;margin-bottom:10px;color:var(--primaire-fonce)}
-.fc-type input{position:absolute;opacity:0}
-.fc-type span{display:block;padding:12px 14px;border:1.5px solid var(--bord);border-radius:var(--rayon);cursor:pointer;font-weight:600;font-size:14px;background:#fff}
-.fc-type input:checked+span{border-color:var(--primaire);background:var(--primaire-clair);color:var(--primaire-fonce)}
-.fc-type input:focus-visible+span{outline:3px solid var(--accent)}
-.fc-grille{display:grid;grid-template-columns:1fr 1fr;gap:12px 18px}
-.form-contact label{display:flex;flex-direction:column;gap:5px;font-size:13.5px;font-weight:600;color:var(--texte)}
-.form-contact input[type=text],.form-contact input[type=email],.form-contact input[type=tel],.form-contact select,.form-contact textarea{font:inherit;font-weight:400;font-size:14px;padding:9px 11px;border:1px solid var(--bord);border-radius:8px;background:#fff;color:var(--texte)}
-.form-contact input:focus,.form-contact select:focus,.form-contact textarea:focus{outline:none;border-color:var(--primaire);box-shadow:0 0 0 3px var(--primaire-clair)}
-.fc-doc{display:grid;grid-template-columns:1fr 1fr;gap:12px 18px;margin-top:14px;padding:14px;border:1px dashed var(--primaire);border-radius:var(--rayon);background:var(--primaire-clair)}
-.fc-doc[hidden]{display:none}
-.fc-doc .fc-aide{grid-column:1/-1;margin:0}
-.fc-plein{margin-top:14px}
-.form-contact .fc-case{flex-direction:row;align-items:flex-start;gap:8px;font-weight:400;margin-top:12px}
-.fc-actions{display:flex;flex-wrap:wrap;gap:10px;margin-top:16px}
-.fc-actions button{font:inherit;font-weight:700;font-size:14px;padding:10px 18px;border-radius:999px;cursor:pointer;border:1.5px solid var(--primaire)}
-.fc-envoyer{background:var(--primaire);color:#fff}
-.fc-copier{background:#fff;color:var(--primaire)}
-.fc-statut{min-height:1.2em;margin:10px 0 0;font-weight:600;font-size:13.5px}
-.fc-statut.erreur{color:#b91c1c}.fc-statut.ok{color:#15803d}
-.fc-aide{font-size:12.5px;color:var(--texte-doux);margin:8px 0 0}
-@media (max-width:700px){.fc-grille,.fc-doc{grid-template-columns:1fr}}
-@media print{.form-contact{display:none}}
+

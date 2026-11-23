@@ -198,48 +198,6 @@
     return s;
   }
 
-  /* ---------- formulaire « Nous contacter » : prépare un courriel (mailto), sans serveur ---------- */
-  function initFormContact(box, r) {
-    var f = box.querySelector("#formContact"); if (!f) return;
-    var dest = String((r.cfg && r.cfg.val("Email du formulaire")) || "collectifmssbzh@gmail.com").trim();
-    f.querySelector(".fc-adresse").textContent = dest;
-    var statut = f.querySelector(".fc-statut"), doc = f.querySelector(".fc-doc");
-    var majType = function () { var t = f.querySelector("input[name=type]:checked").value; doc.hidden = !/^Dépôt/.test(t); };
-    f.querySelectorAll("input[name=type]").forEach(function (x) { x.addEventListener("change", majType); }); majType();
-    var v = function (n) { var e = f.elements[n]; return e ? String(e.value || "").trim() : ""; };
-    function composer() {
-      var t = f.querySelector("input[name=type]:checked").value;
-      var lignes = ["Type de demande : " + t, "Nom : " + v("nom"), "Structure / MSS : " + (v("structure") || "—"), "Email : " + v("email"), "Téléphone : " + (v("tel") || "—"), "Département : " + (v("dept") || "—")];
-      if (!doc.hidden) lignes.push("Titre du document : " + (v("doc_titre") || "—"), "Rubrique proposée : " + (v("doc_rubrique") || "—"));
-      lignes.push("", v("message"), "", "— Message envoyé depuis le Kit collectif MSS BZH");
-      return { sujet: "[Kit MSS] " + t + " – " + v("objet"), corps: lignes.join("\n") };
-    }
-    function valide() {
-      var manque = [];
-      ["nom", "email", "objet", "message"].forEach(function (n) { if (!v(n)) manque.push(f.elements[n].closest("label").firstChild.textContent.replace("*", "").trim()); });
-      if (v("email") && !/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(v("email"))) manque.push("Email valide");
-      if (!f.elements.accord.checked) manque.push("accord pour l'utilisation des informations");
-      statut.className = "fc-statut" + (manque.length ? " erreur" : "");
-      statut.textContent = manque.length ? "À compléter : " + manque.join(", ") + "." : "";
-      return !manque.length;
-    }
-    f.addEventListener("submit", function (e) {
-      e.preventDefault(); if (!valide()) return;
-      var m = composer();
-      location.href = "mailto:" + dest + "?subject=" + encodeURIComponent(m.sujet) + "&body=" + encodeURIComponent(m.corps);
-      statut.className = "fc-statut ok";
-      statut.textContent = "Votre messagerie s'ouvre avec le message prêt. Pensez à cliquer sur « Envoyer » dans votre messagerie" + (doc.hidden ? "." : " après avoir joint votre document.");
-    });
-    f.querySelector(".fc-copier").addEventListener("click", function () {
-      if (!valide()) return;
-      var m = composer(), texte = "À : " + dest + "\nObjet : " + m.sujet + "\n\n" + m.corps;
-      var fini = function () { statut.className = "fc-statut ok"; statut.textContent = "Message copié. Collez-le dans un nouveau courriel adressé à " + dest + "."; };
-      if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(texte).then(fini, function () { secours(texte); fini(); });
-      else { secours(texte); fini(); }
-    });
-    function secours(t) { var ta = document.createElement("textarea"); ta.value = t; document.body.appendChild(ta); ta.select(); try { document.execCommand("copy"); } catch (x) {} ta.remove(); }
-  }
-
   /* ---------- flash « Dernières informations » (section [Dernières informations] de menu.txt) ---------- */
   function afficherInfos() {
     var box = $("infos"); if (!box) return;
@@ -267,7 +225,7 @@
   }
 
   /* ---------- menu & accueil ---------- */
-  var ICONES = [[/livret/i, "📘"], [/identif/i, "🏷️"], [/r[ôo]le|pr[ée]sentation/i, "🧭"], [/habilit|proc[eé]dure/i, "📋"], [/r[eé]f[eé]renc/i, "🏷️"], [/liste|annuaire|collectif|mss/i, "📍"], [/partenaire/i, "🤝"], [/financ/i, "💶"], [/nous contacter/i, "✉️"], [/contact/i, "☎️"], [/formation/i, "🎓"], [/actu/i, "📰"], [/agenda|calendrier|[eé]v[eé]nement/i, "📅"], [/outil/i, "🧰"], [/document|ressource/i, "📂"], [/faq|question/i, "❓"], [/club/i, "🏃"]];
+  var ICONES = [[/livret/i, "📘"], [/identif/i, "🏷️"], [/r[ôo]le|pr[ée]sentation/i, "🧭"], [/habilit|proc[eé]dure/i, "📋"], [/r[eé]f[eé]renc/i, "🏷️"], [/liste|annuaire|collectif|mss/i, "📍"], [/partenaire/i, "🤝"], [/financ/i, "💶"], [/contact/i, "☎️"], [/formation/i, "🎓"], [/actu/i, "📰"], [/agenda|calendrier|[eé]v[eé]nement/i, "📅"], [/outil/i, "🧰"], [/document|ressource/i, "📂"], [/faq|question/i, "❓"], [/club/i, "🏃"]];
   function icone(n) { for (var i = 0; i < ICONES.length; i++) if (ICONES[i][0].test(n)) return ICONES[i][1]; return "📁"; }
   function construireMenu() {
     var h = '<a href="#/accueil" data-route="accueil"><span class="ico">🏠</span>Accueil</a>', t = "";
@@ -330,7 +288,6 @@
       });
       box.innerHTML = doc.body.innerHTML;
       preparerContenu(box, r);
-      initFormContact(box, r);
       /* une rubrique sans fiche mais avec du contenu n'affiche pas « encore vide » */
       if (box.textContent.trim()) Array.prototype.forEach.call(box.parentNode.querySelectorAll(".empty"), function (x) { if (!x.closest(".cards")) x.remove(); });
       /* la barre de filtres remonte au-dessus de la première carte : elle filtre la carte et la liste */
