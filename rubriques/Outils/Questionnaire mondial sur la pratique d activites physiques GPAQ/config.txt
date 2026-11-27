@@ -1,0 +1,8 @@
+# Source : Bulletin de veille scientifique n°43 du PRN2S (relevé du 27/11/2026)
+Nom : Questionnaire mondial sur la pratique d'activités physiques (GPAQ)
+Type d'outil : Évaluation & suivi
+Public : Encadrants APA, MSS, professionnels de santé
+Émetteur : Organisation mondiale de la santé (version française diffusée par l'Onaps)
+Description : Questionnaire de l'OMS qui mesure l'activité physique au travail, dans les déplacements et pendant les loisirs, ainsi que le temps assis. Il permet de situer un bénéficiaire par rapport aux recommandations (150 minutes d'activité modérée par semaine) ; une étude de 2025 sur la cohorte ComPaRe l'a utilisé auprès de patients atteints de maladies chroniques.
+Site : https://onaps.fr/wp-content/uploads/2024/09/GPAQ.pdf
+Guide d'analyse : https://onaps.fr/wp-content/uploads/2024/09/Interpretation-GPAQ.pdf

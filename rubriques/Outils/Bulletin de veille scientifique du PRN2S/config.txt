@@ -1,0 +1,7 @@
+# Source : Bulletin de veille scientifique n°43 du PRN2S (relevé du 27/11/2026)
+Nom : Bulletin de veille scientifique du Pôle ressources national sport-santé
+Type d'outil : Veille scientifique
+Public : MSS, encadrants APA, coordinateurs
+Émetteur : PRN2S – CREPS de Vichy, avec le laboratoire LAMHESS (université Côte d'Azur)
+Description : Sélection régulière d'articles, de rapports, de thèses et de podcasts sur le sport-santé, avec résumés traduits en français. Inscription gratuite auprès du PRN2S. Le n°43 (novembre 2026) porte sur les maladies chroniques, l'APA et le cancer, le surpoids et l'obésité.
+Site : https://pole-sante.creps-vichy.sports.gouv.fr

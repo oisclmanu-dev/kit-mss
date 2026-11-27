@@ -11,6 +11,8 @@ Filtres en haut : oui
 Titre des blocs : Boîte à outils
 
 [Blocs]
+Questionnaire mondial sur la pratique d activites physiques GPAQ
+Bulletin de veille scientifique du PRN2S
 PRN2S - Charte d utilisation et valise du logo MSS
 PRN2S - Test d application de la charte logo MSS
 PRN2S - Support 4 pages - 1 page a personnaliser
@@ -70,6 +72,14 @@ Livret Agir pour les jeunes
 Methodologie ICAPS activite physique et sedentarite chez les jeunes
 
 [Documents]
+Catégorie : Veille scientifique – bulletin n°43 du PRN2S (novembre 2026)
+Niveaux d'activité physique et perception de soi chez les patients atteints de maladies chroniques (cohorte ComPaRe, 2025) | https://doi.org/10.1080/13814788.2025.2566110
+Le dispositif régional IMAPAC : initier et maintenir une APA avec un cancer (Santé publique, 2025) | https://doi.org/10.3917/spub.254.0113
+Entraînement physique et cancer du sein HER2-positif : l'étude CARDAPAC (2026) | https://doi.org/10.1007/s10549-026-07903-x
+Les trois saisons du cancer : fatigue et interventions en APA (thèse, 2024) | https://theses.hal.science/tel-04891587
+Socialisations « traumatiques » à l'activité physique chez les femmes concernées par une chirurgie bariatrique (Staps, 2025) | https://doi.org/10.3917/sta.153.0075
+
+Catégorie : Documents et ressources
 Livre blanc des Maisons Sport-Santé bretonnes – synthèse stratégique (collectif MSS Bzh) | documents/Livre-blanc-MSS-bretonnes-synthese-strategique.docx
 Flash info MSS n°47 – spécial communication (PRN2S) | documents/Flash-info-MSS-47-special-communication.pdf
 Boîte à outils des MSS du PRN2S | https://pole-sante.creps-vichy.sports.gouv.fr/?page_id=17951
